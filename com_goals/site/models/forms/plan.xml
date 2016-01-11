@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form
+	addfieldpath="/administrator/components/com_goals/models/fields"
+>
+	<fieldset name="details" label="COM_GOALS_FIELDSET_PLAN_DETAILS"
+	>
+		<field	name="id"	type="hidden" />
+        <field	name="template"	type="hidden" />
+        <field	name="featured"	type="hidden" default="1" />
+
+		<field
+			name="title"
+			type="text"
+			label="JGLOBAL_TITLE"
+			description="COM_GOALS_GOAL_TITLE_DESC"
+			size="40"
+			class="inputbox"
+			required="true"
+			default=""
+		/>
+		
+		
+		<field
+			name="cid"
+			type="sql"
+			label="COM_GOALS_TASK_CAT"
+			description="COM_GOALS_GOAL_CAT_DESC"
+			query="SELECT id, title FROM #__goals_categories"
+			key_field="id"
+			value_field="title"
+			class="inputbox"
+			required="true"
+			default=""
+		/>
+        <field
+                name="featured"
+                type="list"
+                label="JFEATURED"
+                size="1"
+                class="inputbox"
+                default="0"
+                >
+            <option value="1">JYES</option>
+            <option value="0">JNO</option>
+        </field>
+		<field
+			name="description"
+			type="textarea"
+			label="COM_GOALS_DESCRIPTION"
+			description="COM_GOALS_DESCRIPTION_DESC"
+			class="inputbox"
+			cols="40"
+			rows="8"
+		/>
+		
+		<field
+			name="startup"
+			type="calendar"
+			size="30"
+			label="COM_GOALS_STARTUP"
+			description="COM_GOALS_STARTUP_DESC"		
+			required="true"	
+		/>
+		
+		<field
+			name="deadline"
+			type="calendar"
+			size="30"
+			label="COM_GOALS_DEADLINE"
+			description="COM_GOALS_DEADLINE_DESC"		
+			required="true"	
+		/>
+		
+		<field
+			name="start"
+			type="text"
+			label="COM_GOALS_START"
+			description="COM_GOALS_START_DESC"
+			size="40"
+			class="inputbox"
+			default="0"
+			required="true"
+		/>
+		
+		<field
+			name="finish"
+			type="text"
+			label="COM_GOALS_FINISH"
+			description="COM_GOALS_FINISH_DESC"
+			size="40"
+			class="inputbox"
+			default=""
+			required="true"
+		/>		
+		<field
+			name="metric"
+			type="text"
+			label="COM_GOALS_METRIC"
+			description="COM_GOALS_METRIC_DESC"
+			size="40"
+			class="inputbox"
+			default=""
+		/>
+
+        <field
+                name="image"
+                type="planimage"
+                size="40"
+                label="COM_GOALS_IMAGE"
+                description="COM_GOALS_IMAGE_DESC"
+                />
+		
+		<field	
+			name="userfields" 	
+			type="planuserfields"
+			label="COM_GOAL_USER_CASTOM_FIELDS"	
+			multiple="multiple" 
+			description="COM_GOAL_USER_CASTOM_FIELDS_DESC"	
+			size="4"	
+			class="gl_custom_group"	
+			default=""
+		/>
+		
+	</fieldset>
+</form>
+

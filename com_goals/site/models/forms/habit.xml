@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form
+	addfieldpath="/administrator/components/com_goals/models/fields"
+>
+	<fieldset name="habitform" label="COM_GOALS_FIELDSET_HABIT_DETAILS"
+	>
+		<field	name="id"	type="hidden" />
+        <field	name="date"	type="hidden" />
+		
+		<field
+			name="title"
+			type="text"
+			label="JGLOBAL_TITLE"
+			description="COM_GOALS_HABIT_TITLE_DESC"
+			size="40"
+			class="inputbox"
+			required="true"
+			default=""
+		/>
+			
+	
+		<field
+			name="weight"
+			type="text"
+			label="COM_GOALS_HABIT_WEIGHT"
+			description="COM_GOALS_HABIT_WEIGHT_DESC"
+			class="inputbox"
+			size="3"
+			default="1"
+		/>
+
+
+
+		<field
+			name="finish"
+			type="text"
+			label="COM_GOALS_HABIT_FINISH"
+			description="COM_GOALS_HABIT_FINISH_DESC"
+			class="inputbox"
+			size="3"
+			default="21"
+		/>		
+			
+		<field
+			name="type"
+			type="radio"
+			label="COM_GOALS_HABIT_TYPE"
+			description="COM_GOALS_HABIT_TYPE_DESC"
+			size="1"
+			class="inputbox"
+			default="+"
+		>
+			<option value="+"><![CDATA[<img src="components/com_goals/assets/images/positive.png" alt=""/> Positive</label><br style="clear:both">]]></option>
+			<option value="-"><![CDATA[<img src="components/com_goals/assets/images/negative.png" alt=""/> Negative]]></option>
+		</field>
+
+        <field
+                name="days"
+                type="hidden"
+
+                />
+        <field	name="featured"	type="hidden" default="1" />
+	</fieldset>
+</form>
+

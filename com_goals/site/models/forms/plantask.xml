@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form
+	addfieldpath="/administrator/components/com_goals/models/fields"
+>
+	<fieldset name="details" label="COM_GOALS_FIELDSET_PLANTASK_DETAILS"
+	>
+		<field	name="id"	type="hidden" />
+
+		<field
+			name="title"
+			type="text"
+			label="JGLOBAL_TITLE"
+			description=""
+			size="40"
+			class="inputbox"
+			required="true"
+			default=""
+		/>
+
+		<field name="description" type="editor" buttons="true" hide="pagebreak,readmore"
+			class="inputbox"
+			filter="raw"
+			label="COM_GOALS_TASK_DESCRIPTION" required="false" />
+
+		<field
+			name="value"
+			type="text"
+			label="COM_GOALS_TASK_VALUE"
+			class="inputbox"
+			size="10"
+		/>
+
+		<field
+			name="date"
+			type="calendar"
+			size="30"
+            format="%Y-%m-%d %H:%m:%S"
+			label="COM_GOALS_TASK_DUEDATE"
+		/>
+
+		<field
+			name="sid"
+			type="stage"
+			label="COM_GOALS_STAGE_SELECT"
+			required="true"
+		/>
+        <field
+                name="status"
+                type="list"
+                label="COM_GOALS_TASK_STATUS"
+                size="1"
+                class="inputbox"
+                default="0"
+                >
+            <option value="1">COM_GOALS_MILISTONE_COMPLETE</option>
+            <option value="0">COM_GOALS_MILISTONE_NOTCOMPLETE</option>
+        </field>
+
+	</fieldset>
+</form>
+

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form
+	addfieldpath="/administrator/components/com_goals/models/fields"
+>
+	<fieldset name="habitform" label="COM_GOALS_FIELDSET_HABIT_LOG_DETAILS"
+	>
+		<field	name="id"	type="hidden" />
+		
+		<field
+			name="hid"
+			type="habits"
+			label="COM_GOALS_CHOICE_HABIT"
+			description="COM_GOALS_CHOICE_HABIT_DESC"
+			required="true"
+			default=""
+		/>		
+		
+		<field
+			name="status"
+			type="list"
+			label="COM_GOALS_HABITLOG_QUESTION"
+			size="1"
+			class="inputbox"
+			default="0"
+		>
+			<option value="1">Yes</option>
+			<option value="0">No</option>
+		</field>
+		
+		<field
+			name="date"
+			type="calendar"
+			required="true"
+			size="30"
+			label="COM_GOALS_HABITLOG_DATE"			
+		/>
+	
+	</fieldset>
+</form>
+

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form addfieldpath="/administrator/components/com_goals/models/fields" >
+	<fieldset name="details" label="COM_GOALS_FIELDSET_FIELDS_DETAILS"
+	>
+		<field	name="id"	type="hidden" />
+		<field
+			name="title"
+			type="text"
+			label="JGLOBAL_TITLE"
+			description=""
+			size="40"
+			class="inputbox"
+			required="true"
+			default=""
+		/>
+		
+		
+		<field	
+			name="groups" 	
+			type="customgroups"	
+			label="COM_GOALS_GROUP_LIST"	
+			multiple="multiple" 
+			description="COM_GOALS_GROUP_LIST_DESC"	
+			size="4"	
+			class="gl_custom_group"	
+			default=""	
+		/>
+		
+		<field	
+			name="type" 	
+			type="customtypes" 
+			label="COM_GOALS_FIELD_TYPE"	
+			description="COM_GOALS_FIELD_TYPE_DESC" 
+			required="true"	
+		/>
+		
+	<field	name="values" type="hidden" />	
+	
+	</fieldset>
+</form>
+

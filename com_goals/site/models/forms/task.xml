@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form
+	addfieldpath="/administrator/components/com_goals/models/fields"
+>
+	<fieldset name="details" label="COM_GOALS_FIELDSET_GOAL_DETAILS"
+	>
+		<field	name="id"	type="hidden" />
+		
+		<field
+			name="title"
+			type="text"
+			label="JGLOBAL_TITLE"
+			size="40"
+			class="inputbox"
+			required="true"
+			default=""
+		/>
+			
+		<field
+			name="description"
+			type="textarea"
+			label="COM_GOALS_TASK_DESCRIPTION"
+			class="inputbox"
+			cols="30"
+			rows="6"
+		/>
+		
+		<field
+			name="value"
+			type="text"
+			label="COM_GOALS_TASK_VALUE"
+			description="COM_GOALS_TASK_VALUE_DESC"
+			class="inputbox"
+			size="10"
+		/>
+				
+		<field
+			name="date"
+			type="calendar"
+			size="30"
+			format="%Y-%m-%d %H:%m:%S"
+			label="COM_GOALS_TASK_DUEDATE"			
+		/>		
+			
+		<field
+			name="gid"
+			type="goal"
+			label="COM_GOALS_TASK_SELECT"	
+			required="true"		
+		/>
+		
+	</fieldset>
+</form>
+

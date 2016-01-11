@@ -1,0 +1,93 @@
+.pb_width
+{
+	float:left;
+	width:65% !important;
+	padding-right: 9px !important; 
+}
+.progressbar_background {
+	border: solid 1px #A3A3A3 !important; 
+	width:100%; 
+	background-color:#fff !important; 
+	text-align:left;
+}
+.gl_goal_progress
+{
+	float:right;
+	width:30%;
+	padding:2px !important; 
+}
+
+.progressbar_label_right
+{
+	float:left;
+	font-weight:bold;	
+}
+
+.progressbar_background, 
+.progressbar_progress_red, 
+.progressbar_progress_yellow, 
+.progressbar_progress_blue,
+.progressbar_progress_green,
+.progressbar_progress_pink,
+.progressbar_progress_gray
+{
+	height:15px;
+	text-align:left !important; 
+	border-radius:3px;
+}
+
+.progressbar_progress_red, 
+.progressbar_progress_yellow, 
+.progressbar_progress_blue,
+.progressbar_progress_green,
+.progressbar_progress_pink,
+.progressbar_progress_gray
+{
+	color:#000;
+}
+.progressbar_progress_red {
+	background: #4db2e2 url(progressbar_red.png) repeat-x left top !important; 
+}
+
+.progressbar_progress_yellow {
+	background: #4db2e2 url(progressbar_yellow.png) repeat-x left top !important; 
+}
+.progressbar_progress_blue {
+	background: #4db2e2 url(progressbar_blue.png) repeat-x left top !important; 
+}
+.progressbar_progress_green {
+	background: #4db2e2 url(progressbar_green.png) repeat-x left top !important; 
+}
+.progressbar_progress_pink {
+	background: #4db2e2 url(progressbar_pink.png) repeat-x left top !important; 
+}
+.progressbar_progress_gray {
+	background: #4db2e2 url(progressbar_gray.png) repeat-x left top !important; 
+}
+
+
+.progressbar_container strong{font-size:12px; display:block; text-align:left; padding-bottom:5px !important; }
+
+/*
+
+.progressbar_progress_cp {
+	text-align:left !important; 
+	background: #4db2e2 url(progressbar_orange.png) repeat-x left top;
+	color:#000; 
+	height:12px;
+}
+.progressbar_progress {
+	text-align:left !important; 
+	background: #4db2e2 url(progressbar.png) repeat-x left top;
+	color:#000; 
+	height:12px;
+}
+.progressbar_label {
+	float: center; 
+	position:relative; 
+	margin-top:-16px;
+	margin-bottom:5px;
+	color:#000;
+	text-align:center;
+}
+*/

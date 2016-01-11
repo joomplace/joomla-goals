@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+    <fieldset name="component" label="COM_GOALS_SETTINGS_GLOBAL">
+        <field name="result_mode" type="list"
+               label="COM_GOALS_RESULT_MODE"
+               description="COM_GOALS_RESULT_MODE"
+               default="1"
+                >
+            <option value="0">COM_GOALS_RESULT_MODE_ABSOLUTE</option>
+            <option value="1">COM_GOALS_RESULT_MODE_RELATIVE</option>
+        </field>
+        <field
+                name="file_exts"
+                type="text"
+                label="COM_GOALS_ALLOWED_EXTENSIONS"
+                description="COM_GOALS_ALLOWED_EXTENSIONS_DESC"
+                size="40"
+                class="inputbox"
+                default="jpg,jpeg,png,gif,bmp"
+                />
+        <field
+                name="file_sizes"
+                type="text"
+                label="COM_GOALS_MAX_SIZE"
+                description="COM_GOALS_MAX_SIZE_DESC"
+                size="40"
+                class="inputbox"
+                default=""
+                />
+        <field
+                name="chart_date_format"
+                type="text"
+                label="COM_GOALS_SETTINGS_CHART_DATEFORMAT"
+                description="COM_GOALS_SETTINGS_CHART_DATEFORMAT_DESC"
+                size="15"
+                class="inputbox"
+                default="%d-%m-%y"
+                />
+        <field name="allow_userfields" type="list"
+               label="COM_GOALS_SETTINGS_ALLOW_USER_FIELDS"
+               description="COM_GOALS_SETTINGS_ALLOW_USER_FIELDS_DESC"
+               default="0"
+                >
+            <option value="0">COM_GOALS_SETTINGS_DISALLOW</option>
+            <option value="1">COM_GOALS_SETTINGS_ALLOW</option>
+        </field>
+        <field name="enable_jsoc_int" type="list"
+               label="COM_GOALS_SETTINGS_JSOC_INT_ENABLE"
+               description="COM_GOALS_SETTINGS_JSOC_INT_ENABLE_DESC"
+               default="0"
+                >
+            <option value="0">COM_GOALS_SETTINGS_JS_INTEGRATION_NO</option>
+            <option value="1">COM_GOALS_SETTINGS_JS_INTEGRATION_GOALS_PLANS</option>
+            <option value="2">COM_GOALS_SETTINGS_JS_INTEGRATION_TASKS_RECORDS</option>
+            <option value="3">COM_GOALS_SETTINGS_JS_INTEGRATION_HABITS</option>
+            <option value="4">COM_GOALS_SETTINGS_JS_INTEGRATION_ALL</option>
+        </field>
+        <field
+                name="jsoc_activity_mess_goal"
+                type="text"
+                label="COM_GOALS_SETTINGS_JSOC_ACT_MESS_GOAL"
+                description="COM_GOALS_SETTINGS_JSOC_ACT_MESS_DESC"
+                size="80"
+                class="inputbox"
+                default="{actor} created a new goal: {goal}  with a due date {due_date}"
+                />
+        <field
+                name="jsoc_activity_mess_plan"
+                type="text"
+                label="COM_GOALS_SETTINGS_JSOC_ACT_MESS_PLAN"
+                description="COM_GOALS_SETTINGS_JSOC_ACT_MESS_DESC"
+                size="80"
+                class="inputbox"
+                default="{actor} created a new plan: {plan}  with a due date {due_date}"
+                />
+        <field
+                name="jsoc_activity_mess_record"
+                type="text"
+                label="COM_GOALS_SETTINGS_JSOC_ACT_MESS_RECORD"
+                description="COM_GOALS_SETTINGS_JSOC_ACT_MESS_DESC"
+                size="80"
+                class="inputbox"
+                default="{actor} created a new record: {record}  with value: {value} {metric} for {goal}"
+                />
+        <field
+                name="jsoc_activity_mess_task"
+                type="text"
+                label="COM_GOALS_SETTINGS_JSOC_ACT_MESS_TASK"
+                description="COM_GOALS_SETTINGS_JSOC_ACT_MESS_DESC"
+                size="80"
+                class="inputbox"
+                default="{actor} created a new task: {record}  with value: {value} {metric} for {plan}"
+                />
+
+        <field name="weak_day_start" type="list"
+               label="COM_GOALS_SETTINGS_WEAK_DAY_START"
+               description=""
+               default="m"
+                >
+            <option value="m">COM_GOALS_SETTINGS_WEAK_DAY_START_MONDAY</option>
+            <option value="s">COM_GOALS_SETTINGS_WEAK_DAY_START_SUNDAY</option>
+
+        </field>
+
+        <field
+                name="jsoc_activity_mess_hab"
+                type="text"
+                label="COM_GOALS_SETTINGS_JSOC_ACT_MESS_HAB"
+                description="COM_GOALS_SETTINGS_JSOC_ACT_MESS_HAB_DESC"
+                size="80"
+                class="inputbox"
+                default="{actor} created new {type} habit: {habit}"
+                />
+        <field
+                name="images_width"
+                type="text"
+                label="COM_GOALS_SETTINGS_IMAGES_MAX_WIDTH"
+                description="COM_GOALS_SETTINGS_IMAGES_MAX_WIDTH_DESC"
+                size="5"
+                class="inputbox"
+                default="250"
+                />
+        <field
+                name="images_height"
+                type="text"
+                label="COM_GOALS_SETTINGS_IMAGES_MAX_HEIGHT"
+                description="COM_GOALS_SETTINGS_IMAGES_MAX_HEIGHT_DESC"
+                size="5"
+                class="inputbox"
+                default="250"
+                />
+        <field
+                name="away_status_color"
+                type="text"
+                label="COM_GOALS_SETTINGS_AHEAD_PLAN_LABEL"
+                description="COM_GOALS_SETTINGS_AHEAD_PLAN_DESC"
+                size="15"
+                class="inputbox"
+                default="#4A8BE0"
+                />
+        <field
+                name="away_image"
+                type="media"
+                directory="goals"
+                default="images/goals/"
+                hide_default="yes"
+                size="20"
+                label=""
+                description=""
+                />
+        <field
+                name="late_status_color"
+                type="text"
+                label="COM_GOALS_SETTINGS_BEHIND_PLAN_COLOR_LABEL"
+                description="COM_GOALS_SETTINGS_BEHIND_PLAN_COLOR_DESC"
+                size="15"
+                class="inputbox"
+                default="#ED8787"
+                />
+        <field
+                name="late_image"
+                type="media"
+                directory="goals"
+                default="images/goals/"
+                hide_default="yes"
+                size="20"
+                label=""
+                description=""
+                />
+        <field
+                name="complete_status_color"
+                type="text"
+                label="COM_GOALS_SETTINGS_COMPLETE_COLOR_LABEL"
+                description="COM_GOALS_SETTINGS_COMPLETE_COLOR_DESC"
+                size="15"
+                class="inputbox"
+                default="#CF6F08"
+                />
+        <field
+                name="complete_image"
+                type="media"
+                directory="goals"
+                default="images/goals/"
+                hide_default="yes"
+                size="20"
+                label=""
+                description=""
+                />
+        <field
+                name="justint_status_color"
+                type="text"
+                label="COM_GOALS_SETTINGS_JUSTINT_COLOR_LABEL"
+                description="COM_GOALS_SETTINGS_JUSTINT_COLOR_DESC"
+                size="15"
+                class="inputbox"
+                default="#67CF6B"
+                />
+        <field
+                name="justint_image"
+                type="media"
+                directory="goals"
+                default="images/goals/"
+                hide_default="yes"
+                size="20"
+                label=""
+                description=""
+                />
+        <field
+                name="n_days_ahed"
+                type="text"
+                label=""
+                description=""
+                size="5"
+                class="inputbox nofloat"
+                default="2"
+                />
+        <field
+                name="m_days_behind"
+                type="text"
+                label=""
+                description=""
+                size="5"
+                class="inputbox nofloat"
+                default="2"
+                />
+        <field name="include_jquery" type="list"
+               label="COM_GOALS_SETTINGS_INCLUDE_JQUERY"
+               description=""
+               default="1"
+                >
+            <option value="0">COM_GOALS_SETTINGS_INCLUDE_JQUERY_NOT</option>
+            <option value="1">COM_GOALS_SETTINGS_INCLUDE_JQUERY_LOCAL</option>
+            <option value="2">COM_GOALS_SETTINGS_INCLUDE_JQUERY_LATEST_GOOGLE</option>
+
+        </field>
+        <field name="include_local_bootstrap" type="list"
+               label="COM_GOALS_SETTINGS_INCLUDE_LOCALIZED_BOOTSTRAP"
+               description=""
+               default="0"
+                >
+            <option value="0">COM_GOALS_SETTINGS_INCLUDE_LOCALIZED_BOOTSTRAP_NOT</option>
+            <option value="1">COM_GOALS_SETTINGS_INCLUDE_LOCALIZED_BOOTSTRAP</option>
+
+        </field>
+        
+    </fieldset>
+    <fieldset
+        name="permissions"
+        label="JCONFIG_PERMISSIONS_LABEL"
+        description="JCONFIG_PERMISSIONS_DESC"
+        >
+        <field
+            name="rules"
+            type="rules"
+            label="JCONFIG_PERMISSIONS_LABEL"
+			validate="rules"
+			filter="rules"
+            component="com_goals"
+            section="component" />
+    </fieldset>
+</config>

@@ -1,0 +1,91 @@
+----- 1.2.5 Goals Release [ next release ] -----
+- Fixed: Minor bugs
+
+----- 1.2.4 Goals Release [28-July-2014] -----
+- Fixed: Minor bugs
+- Fixed: Graph dates overlaying
+- Improved: UI
+- New: "Result mode" moved to administrator settings
+
+----- 1.2.3 Goals Release [01-July-2014] -----
+- Fixed: EasySocial Compatibility issues
+- Improved: SEF URLs
+- Improved: Breadcrumbs specification
+- Improved: Plans stages & tasks management
+- New: Goals milestones status change based on user’s achievements
+- New: Separate Plans & Goals dashboard items
+- New: Goals Management toolbar
+- New: Tasklist
+
+----- 1.2.2 Goals Release [26-May-2014] -----
+- Added:  Joomla! 3.3.x compatibility
+- Added: Integration with EasySocial 3.x
+- Improved: User Interface
+- New: Breadcrumbs
+- New: Charts building based on the custom fields
+
+----- 1.2.1 Goals Release [January-2014] -----
+- Fixed minor bugs
+- Compatible with JomSocial 3.0
+
+----- 1.2.0 Goals Release [March-2013] -----
+- Added component version for Joomla 3.0
+
+
+----- 1.1.1 Goals Release [February-2013] -----
+- Added week navigation for Habits
+- Added content and editor-xtd plugins for Plans
+- Added jQuery option
+- Added Bootstrap options
+- Added Creator field in Habits
+- Fixed error when creating plan from template
+- Fixed habits calculations
+- Fixed goals/plans progress bar color issue
+- Fixed issue showing unnecessary separators in Add New menu
+- Fixed issue regarding mixed names of plans and plan templates
+- Fixed phrases in language files
+- Fixed layout when creating objects from templates
+- Fixed duplicates issue in achievements
+- Fixed issue that prevented fields to be populated when creating tasks from templates
+- Fixed other minor issues
+
+
+----- 1.1.0 Goals Release [December-2012] -----
+- New: Planning feature. Users will be able to create Plans-Stages-Tasks chains.
+- New: Templates for Goals, Plans, Habits. Users will be able to create their goals, plan, habits from predefined templates.
+- New: Tasks added to chart on completion
+- Fixed: When user removed goal related data had been preserved
+- Fixed: Wrong calculations on habits chart
+- Fixed: JomSocial stream link was pointing admin if created from admin panel
+- Added: Creator field to sort goals and plans
+- Added: Calendar now displaying tasks and records
+- Fixed: Sorting issues on records chart
+- Fixed: Sorting issue in habits actions list
+- Added: Today dashboard
+- Added: New enhanced user interface with separate dashboards for goals&plan and habits
+- Added: Option to choose color and icons for goals and plans statuses
+- Fixed: Other minor corrections in language files
+- Fixed: Minor issues with JomSocial plugins
+
+
+----- 1.0.3 Goals Release [May-2012] -----
+- Added support for Fractional numbers in result fields.
+- Added possibility to create a copy of goal in administrator's area.
+- Added possibility to assign/change owner of habit in administrator's area.
+- Improved goal's chart. Now spline chart is used.
+- Improved habit's chart. Bar chart is used to display positive and negative habits, spline chart is used to display day's summary
+- Fixed lack of links in Habits application for JomSocial when no habits created.
+- Fixed goal's completion bar issue.
+
+----- 1.0.2 Goals Release [May-2012] -----
+- Changed `Start` & `Finish` values from `int` to `float` in "Goals"
+- Changed `Result` value from `int` to `float` in "Record"
+
+- [Update from May-10-2012] Deleted bug with uploaded image
+
+----- 1.0.1 Goals Release [January-2012] -----
+- Fixed minor bugs
+- Fixed html-slicing issues
+
+----- 1.0.0 Goals Release [November-2011] -----
+[Release]

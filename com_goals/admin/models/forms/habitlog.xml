@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form
+	addfieldpath="/administrator/components/com_goals/models/fields"
+>
+	<fieldset name="habitform" label="COM_GOALS_FIELDSET_HABIT_DETAILS"
+	>
+		<field	name="id"	type="hidden" />
+		
+		<field
+			name="hid"
+			type="text"
+			label="JGLOBAL_TITLE"
+			description=""
+			size="40"
+			class="inputbox"
+			required="true"
+			default=""
+		/>			
+	
+	</fieldset>
+</form>
+
