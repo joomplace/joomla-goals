@@ -16,15 +16,18 @@
                 required="true"
                 default=""
                 />
+		
+		<field
+			name="description"
+			type="editor"
+			class="inputbox"
+			filter="raw"
+			buttons="true"
+			label="COM_GOALS_TASK_DESCRIPTION"
+			hide="pagebreak,goals,plans,habits,comparisonchart,surveyforce,html5flippingbook_button,flashmagazinedeluxe_button,testimonial,article,checklist_button,readmore"
 
-        <field
-                name="description"
-                type="textarea"
-                label="COM_GOALS_TASK_DESCRIPTION"
-                class="inputbox"
-                cols="20"
-                rows="8"
-                />
+		/>
+		
 
         <field
                 name="pid"

@@ -30,16 +30,18 @@
 			required="true"
 			default=""
 		/>
-		
 		<field
 			name="description"
-			type="textarea"
+			type="editor"
+			class="inputbox"
+			filter="raw"
+			buttons="true"
 			label="COM_GOALS_DESCRIPTION"
 			description="COM_GOALS_DESCRIPTION_DESC"
-			class="inputbox"
-			cols="30"
-			rows="6"
-		/>
+			hide="pagebreak,goals,plans,habits,comparisonchart,surveyforce,html5flippingbook_button,flashmagazinedeluxe_button,testimonial,article,checklist_button,readmore"
+
+		/>		
+
 		
 		<field
 			name="startup"

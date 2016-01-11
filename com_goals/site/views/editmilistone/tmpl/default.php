@@ -59,10 +59,10 @@ if (isset($this->item->id)) $old=true;
 
     <div class="goals-form-set">
 		<div class="control-group"><?php showJbField($this->form,'title'); ?></div>
-        <div class="control-group wide-input"><?php showJbField($this->form,'description'); ?></div>
         <div class="control-group"><?php showJbField($this->form,'gid'); ?></div>
         <div class="control-group"><?php showJbField($this->form,'duedate'); ?></div>
         <div class="control-group"><?php showJbField($this->form,'value'); ?></div>
+		<div class="control-group wide-input"><?php showJbField($this->form,'description'); ?></div>
         <div class="control-group"><?php showJbField($this->form,'status'); ?></div>
     </div>
     <div class="goals-form-actions control-group">

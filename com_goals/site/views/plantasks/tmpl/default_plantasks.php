@@ -139,9 +139,6 @@ if(count($this->plans)){
                                     <input type="hidden" name="return" value="<?php echo $return_url; ?>" />
                                 <?php } ?>
                                 </form>
-                                <p>
-                                    <?php echo $task->description; ?>
-                                </p>
                                 <table class="table">
                                     <tbody>
 

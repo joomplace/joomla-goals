@@ -17,10 +17,16 @@
 			default=""
 		/>
 
-		<field name="description" type="editor" buttons="true" hide="pagebreak,readmore"
+		<field
+			name="description"
+			type="editor"
 			class="inputbox"
 			filter="raw"
-			label="COM_GOALS_TASK_DESCRIPTION" required="false" />
+			buttons="true"
+			label="COM_GOALS_TASK_DESCRIPTION"
+			hide="pagebreak,goals,plans,habits,comparisonchart,surveyforce,html5flippingbook_button,flashmagazinedeluxe_button,testimonial,article,checklist_button,readmore"
+
+		/>
 
 		<field
 			name="value"

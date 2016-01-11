@@ -43,15 +43,19 @@
             <option value="1">JYES</option>
             <option value="0">JNO</option>
         </field>
+	
 		<field
 			name="description"
-			type="textarea"
+			type="editor"
+			class="inputbox"
+			filter="raw"
+			buttons="true"
 			label="COM_GOALS_DESCRIPTION"
 			description="COM_GOALS_DESCRIPTION_DESC"
-			class="inputbox"
-			cols="40"
-			rows="8"
+			hide="pagebreak,goals,plans,habits,comparisonchart,surveyforce,html5flippingbook_button,flashmagazinedeluxe_button,testimonial,article,checklist_button,readmore"
+
 		/>
+
 		
 		<field
 			name="startup"

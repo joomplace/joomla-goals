@@ -23,9 +23,9 @@ function showJbField($form, $name='')
 }
 
 
-
 JHTML::_('behavior.modal', 'a.modal');
 $old = false;
+
 if (isset($this->item->id)) $old=true;
 ?>
 <div id="goals-wrap">
@@ -87,7 +87,6 @@ function function_exists( function_name ) {
  	</h2>
     <div class="goals-form-set">
         <div class="control-group"><?php showJbField($this->form,'title'); ?></div>
-		<div class="control-group wide-input"><?php showJbField($this->form,'description'); ?></div>
 		<div class="control-group"><?php showJbField($this->form,'date'); ?></div>
 		<div class="control-group controls-row"><?php showJbField($this->form,'value'); ?><span class="controls metric"><?php if (isset($this->item->metric)) echo $this->item->metric ?></span></div>
 		<div class="control-group">
@@ -100,8 +99,8 @@ function function_exists( function_name ) {
 		</div>
 		<div class="control-group"><?php showJbField($this->form,'sid'); ?></div>
         <div class="control-group"><?php showJbField($this->form,'status'); ?></div>
-
-        <div class="clr"></div>
+		<div class="control-group wide-input"><?php showJbField($this->form,'description'); ?></div>
+		<div class="clr"></div>
         <div id="customfields" class="control-group"></div>
         <div class="clr"></div>
     </div>
