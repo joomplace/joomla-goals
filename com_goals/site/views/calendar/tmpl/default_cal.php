@@ -135,5 +135,5 @@ $itemId = $itemId?('&Itemid='.$itemId):'';
 				}
 			});
 		}
-
+		addCalendarTips();
 </script>
