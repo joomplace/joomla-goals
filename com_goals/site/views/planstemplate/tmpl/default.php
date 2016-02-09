@@ -45,6 +45,16 @@ JHtml::_('behavior.formvalidation');
 					</div>
 				</div>
             <?php } ?>
+        <form class="" action="<?php echo JRoute::_('index.php?option=com_goals&view=planstemplate&Itemid='.GoalsHelperRoute::getClosesItemId(array('view' => 'plans'))) ?>" method="post" name="adForm" id="adminForm">
+            <div class="pagination row-fluid">
+                <div class="span6">
+                 <?php echo $this->pagination->getPagesLinks(); ?>
+                </div>
+                <div class="span6 text-right">
+                  <?php echo $this->pagination->getLimitBox(); ?>
+                </div>
+            </div>
+        </form>
     </div>
 
 

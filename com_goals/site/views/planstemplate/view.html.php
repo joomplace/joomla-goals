@@ -27,6 +27,7 @@ class goalsViewPlansTemplate extends JViewLegacy
 		$this->state		= $this->get('State');
 		$this->items			= $this->get('Items');
 		$this->form			= $this->get('Form');
+		$this->pagination	= $this->get('Pagination');
 
 		//echo 'SMT DEBUG: <pre>'; print_R($this->form); echo '</pre>';
 		if (empty($this->items)) {
