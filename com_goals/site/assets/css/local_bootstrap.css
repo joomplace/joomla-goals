@@ -2153,6 +2153,9 @@ div#goals-wrap .fade {
 div#goals-wrap .fade.in {
   opacity: 1;
 }
+div#goals-wrap .nav-collapse .collapse {
+  overflow: visible;
+}
 div#goals-wrap .collapse {
   position: relative;
   height: 0;

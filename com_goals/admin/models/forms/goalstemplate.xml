@@ -33,7 +33,7 @@
 		
 		<field
 			name="description"
-			type="textarea"
+			type="editor"
 			label="COM_GOALS_DESCRIPTION"
 			description="COM_GOALS_DESCRIPTION_DESC"
 			class="inputbox"

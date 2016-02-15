@@ -20,7 +20,7 @@
 			
 		<field
 			name="description"
-			type="textarea"
+			type="editor"
 			label="COM_GOALS_TASK_DESCRIPTION"
 			class="inputbox"
 			cols="20"
