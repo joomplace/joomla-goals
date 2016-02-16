@@ -23,6 +23,7 @@
 			class="inputbox"
 			cols="30"
 			rows="6"
+			filter="raw"
 		/>
 		
 		<field

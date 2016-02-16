@@ -25,6 +25,7 @@
 			class="inputbox"
 			cols="20"
 			rows="8"
+			filter="raw"
 		/>
 				
 		<field
