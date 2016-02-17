@@ -18,7 +18,7 @@ function generateRecordActButtons($milistone){
     $html = array();
     $html[] ='<div class="btn-group">';
     $html[] ='<a type="button" class="btn" href="'.JRoute::_('index.php?option=com_goals&view=editmilistone&id='.(int)$milistone->id.'&gid='.$milistone->gid.$tmpl).'">'. JText::_('COM_GOAL_MIL_EDITBUTTON').'</a>';
-    $html[] ='<input type="button" class="btn" onclick="if (confirm('.JText::_('COM_GOALS_DELETE_MIL_MESS').'))goalgoto('.JRoute::_('index.php?option=com_goals&task=milistone.delete&id='.(int)$milistone->id.$tmpl.$inparent).')" value="'.JText::_('COM_GOALS_DELETE_MILISTONE').'" />';
+    $html[] ='<input type="button" class="btn" onclick="if (confirm(\''.JText::_('COM_GOALS_DELETE_MIL_MESS').'\'))goalgoto(\''.JRoute::_('index.php?option=com_goals&task=milistone.delete&id='.(int)$milistone->id.$tmpl.$inparent).'\')" value="'.JText::_('COM_GOALS_DELETE_MILISTONE').'" />';
     $html[] ='</div>';
     return implode('',$html);
 }
