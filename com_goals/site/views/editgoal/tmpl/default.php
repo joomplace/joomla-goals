@@ -86,12 +86,12 @@ if (isset($this->item->id)) $old=true;
 		<div class="control-group"><?php showJbField($this->form,'finish'); ?></div>
 		<div class="control-group"><?php showJbField($this->form,'metric'); ?></div>
 		<div class="control-group"><?php showJbField($this->form,'image'); ?></div>
+		<div class="control-group wide-input"><?php showJbField($this->form,'description'); ?></div>
 		<?php if (GoalsHelper::getSettings()->allow_userfields) { ?>
 		<div class="control-group">
 			<div class="control-label"><?php echo $this->form->getLabel('userfields');?></div>
 			<div class="controls"><?php echo $this->form->getInput('userfields');?></div>
 		</div>
-		<div class="control-group wide-input"><?php showJbField($this->form,'description'); ?></div>
 		<div class="control-group">
 			<?php if ($old) { ?><div class="controls"><a class="popup btn btn-small" href="<?php echo  JRoute::_('index.php?option=com_goals&view=editfield&tmpl=component&gid='.(int) $this->item->id); ?>" rel="{handler: 'iframe', size: {x: 640, y: 480}}" ><?php echo JText::_('COM_GOALS_ADD_NEW_FIELD');?></a></div>
 				<?php }else { echo '<div class="controls"><small class="help-block">'.JText::_('COM_GOALS_ADD_NEW_FIELD_NOTE').'</small></div>';}?></div>
