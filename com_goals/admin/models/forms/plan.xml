@@ -95,7 +95,12 @@
 		
 		<field 
 			name="uid" 
-			type="user"
+			type="sql"
+			query="SELECT id, username FROM #__users" 
+			multiple="true"
+			required="true"
+			key_field="id" 
+			value_field="username"
 			label="COM_GOALS_USER" 
 			description="COM_GOALS_USER_DESC"
 		/>

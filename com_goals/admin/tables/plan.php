@@ -20,19 +20,31 @@ class GoalsTablePlan extends JTable
 
 	public function store($updateNulls = false)
 	{
-		$settings = GoalsHelper::getSettings();
-		if (!$this->uid)
-		{
-			$this->uid=JFactory::getUser()->id;
+		$uids = array();
+		if(is_array($this->uid) && count($this->uid)>1){
+			$uids = $this->uid;
+		}else{
+			$this->uid = $this->uid[0];
 		}
-		$isnew = false;
-		if (!$this->id) $isnew = true;
+		
+		/* code duplication - bad but quick - anyway refactoring is coming */
+		if($uids){
+			foreach($uids as $uid){
+				$this->id = '';
+				$this->uid = $uid;
+				
+				$settings = GoalsHelper::getSettings();
+				if (!$this->uid)
+				{
+					$this->uid=JFactory::getUser()->id;
+				}
+				$isnew = false;
+				if (!$this->id) $isnew = true;
 
-		$form = JRequest::getVar('jform');	
-			if (parent::store($updateNulls))
-			{	
-			/*** GOALS XREF ***/
-				$userfields = (array)$form['userfields'];
+				$form = JRequest::getVar('jform');	
+				if (parent::store($updateNulls)){	
+					/*** GOALS XREF ***/
+					$userfields = (array)$form['userfields'];
 
 					if(sizeof($userfields))
 					{
@@ -54,161 +66,291 @@ class GoalsTablePlan extends JTable
 						}
 					}
 
-                if ($form['template']) {
+					if ($form['template']) {
 
-                    $db = JFactory::getDbo();
-                    $query = $db->getQuery(true);
-                    $query->select('*')->from('#__goals_stagestemplates')->where('pid='.$form['template']);
-                    $db->setQuery($query);
-                    $milistones = $db->loadObjectList();
-                    if ($milistones) {
-                        foreach ($milistones as $milistone) {
-                            $insertObj = new JObject();
-                            /* Creating new object to store in the database */
-                            $insertObj->id = null;
-                            $insertObj->pid = $this->id;
-                            $insertObj->duedate = date('Y-m-d', time()+((int)$milistone->daysto)*24*60*60);
-                            $insertObj->title = $milistone->title;
-                            $insertObj->description = $milistone->description;
-                            $insertObj->status = $milistone->status;
-                            $insertObj->color = $milistone->color;
-                            $insertObj->cdate = $milistone->cdate;
-                            $db->insertObject('#__goals_stages',$insertObj);
+						$db = JFactory::getDbo();
+						$query = $db->getQuery(true);
+						$query->select('*')->from('#__goals_stagestemplates')->where('pid='.$form['template']);
+						$db->setQuery($query);
+						$milistones = $db->loadObjectList();
+						if ($milistones) {
+							foreach ($milistones as $milistone) {
+								$insertObj = new JObject();
+								/* Creating new object to store in the database */
+								$insertObj->id = null;
+								$insertObj->pid = $this->id;
+								$insertObj->duedate = date('Y-m-d', time()+((int)$milistone->daysto)*24*60*60);
+								$insertObj->title = $milistone->title;
+								$insertObj->description = $milistone->description;
+								$insertObj->status = $milistone->status;
+								$insertObj->color = $milistone->color;
+								$insertObj->cdate = $milistone->cdate;
+								$db->insertObject('#__goals_stages',$insertObj);
 
-                            unset($insertObj);
+								unset($insertObj);
 
-                            $stageid = $db->insertid();
-                            $query = $db->getQuery(true);
-                            $query->select('*')->from('#__goals_plantaskstemplates')->where('sid='.$milistone->id);
-                            $db->setQuery($query);
-                            $plantasks = $db->loadObjectList();
-                            if ($plantasks) {
-                                foreach ($plantasks as $plantask) {
+								$stageid = $db->insertid();
+								$query = $db->getQuery(true);
+								$query->select('*')->from('#__goals_plantaskstemplates')->where('sid='.$milistone->id);
+								$db->setQuery($query);
+								$plantasks = $db->loadObjectList();
+								if ($plantasks) {
+									foreach ($plantasks as $plantask) {
 
-                                    $insertPlanTask = new JObject();
-                                    $insertPlanTask->date = date('Y-m-d', time()+((int)$plantask->period)*24*60*60);
-                                    $insertPlanTask->title = $plantask->title;
-                                    $insertPlanTask->description = $plantask->description;
-                                    $insertPlanTask->status = $plantask->status;
-                                    $insertPlanTask->sid = $stageid;
-                                    $insertPlanTask->value = $plantask->value;
-                                    $db->insertObject('#__goals_plantasks',$insertPlanTask);
+										$insertPlanTask = new JObject();
+										$insertPlanTask->date = date('Y-m-d', time()+((int)$plantask->period)*24*60*60);
+										$insertPlanTask->title = $plantask->title;
+										$insertPlanTask->description = $plantask->description;
+										$insertPlanTask->status = $plantask->status;
+										$insertPlanTask->sid = $stageid;
+										$insertPlanTask->value = $plantask->value;
+										$db->insertObject('#__goals_plantasks',$insertPlanTask);
 
-                                    unset($insertPlanTask);
-                                }
-                            }
-                        }
-                    }
-                }
-
-					
-			/***/
-			
-			/*IMAGE*/
-                /*
-				if (file_exists(JPATH_SITE.DIRECTORY_SEPARATOR.$this->image) && is_file(JPATH_SITE.DIRECTORY_SEPARATOR.$this->image))
-				{
-					
-					$images_width = $settings->images_width?$settings->images_width:250;
-					$images_height = $settings->images_height?$settings->images_height:250;
-							
-					$filepath = JPATH_SITE.DIRECTORY_SEPARATOR.$this->image;
-									if (file_exists($filepath) &&  is_file($filepath))
-									{
-									list($width, $height, $type) = getimagesize($filepath);
-											
-										if ($width > $images_width){
-											$new_width = $images_width;
-											$new_height = round(($height*$new_width)/$width);
-
-                                            $image_p = imagecreatetruecolor($new_width, $new_height);
-
-                                            $background_color = imagecolorallocate($image_p, 255, 255, 255);
-                                            imagefill ( $image_p, 0, 0, $background_color );
-											switch ($type)
-											{
-												case 3:
-													$image = imagecreatefrompng($filepath);
-												break;
-												case 2:
-													$image = imagecreatefromjpeg($filepath);
-												break;
-												case 1:
-													$image = imagecreatefromgif($filepath);
-												break;
-												case 6:
-													$image = imagecreatefromwbmp($filepath);
-												break;				
-											}	
-								
-											imagecopyresampled($image_p, $image, 0, 0, 0, 0, $new_width, $new_height, $width, $height);
-						
-											// saving
-											switch($type)
-											{
-												case 3:
-													@imagepng($image_p, $filepath);
-												break;
-												case 2:
-													@imagejpeg($image_p, $filepath);
-												break;
-												case 1:
-													@imagegif($image_p, $filepath);
-												break;			
-											}
-										} 
+										unset($insertPlanTask);
 									}
-				
-				}
-                */
+								}
+							}
+						}
+					}
+						
+					if ($settings->enable_jsoc_int==1 || $settings->enable_jsoc_int==4){
+						/*ACTIVITY STREAM FOR GOAL JS*/
+						jimport( 'joomla.filesystem.folder' );
+						if (JFolder::exists(JPATH_SITE.DIRECTORY_SEPARATOR.'components'.DIRECTORY_SEPARATOR.'com_community'))
+						{
+							$db = JFactory::getDBO();
+							$glink = 'index.php?option=com_goals&view=plan&id='.(int)$this->id;
 
-		if ($settings->enable_jsoc_int==1 || $settings->enable_jsoc_int==4)
-		{
-		/*ACTIVITY STREAM FOR GOAL JS*/
-		jimport( 'joomla.filesystem.folder' );
-		if (JFolder::exists(JPATH_SITE.DIRECTORY_SEPARATOR.'components'.DIRECTORY_SEPARATOR.'com_community'))
-		{
-		$db = JFactory::getDBO();
-		$glink = 'index.php?option=com_goals&view=plan&id='.(int)$this->id;
 
-
-		$templ_mes = $settings->jsoc_activity_mess_plan;
-		$a = $b = array();
-		$a[] = '{plan}';		$b[] = '<a href="'.$glink.'">'.$this->title.'</a>';
-		$a[] = '{due_date}';	$b[] = $this->deadline;
-		
-		$mes = $db->quote(str_replace($a,$b,$templ_mes));
-		
-			$query = $db->getQuery(true);			
-			$today = JFactory::getDate();
-			$date = $db->quote($today->toSQL());
-			$query->insert('#__community_activities');	 	 	 	 	 	 	 	 	 	
-			$query->set('`actor`='.(int)$this->uid);
-			$query->set('`title`='.$mes);
-			$query->set('`app`="goal"');
-			$query->set('`created`='.$date);
-			$query->set('`comment_type`="system.message"');
-			$query->set('`like_type`="system.message"');
-			$query->set('`points`=0');
-			$db->setQuery($query);
-			$db->query();
-				
-			$id = $db->insertid();
-			if ($id)
+							$templ_mes = $settings->jsoc_activity_mess_plan;
+							$a = $b = array();
+							$a[] = '{plan}';		$b[] = '<a href="'.$glink.'">'.$this->title.'</a>';
+							$a[] = '{due_date}';	$b[] = $this->deadline;
+							
+							$mes = $db->quote(str_replace($a,$b,$templ_mes));
+							
+							$query = $db->getQuery(true);			
+							$today = JFactory::getDate();
+							$date = $db->quote($today->toSQL());
+							$query->insert('#__community_activities');	 	 	 	 	 	 	 	 	 	
+							$query->set('`actor`='.(int)$this->uid);
+							$query->set('`title`='.$mes);
+							$query->set('`app`="goal"');
+							$query->set('`created`='.$date);
+							$query->set('`comment_type`="system.message"');
+							$query->set('`like_type`="system.message"');
+							$query->set('`points`=0');
+							$db->setQuery($query);
+							$db->query();
+								
+							$id = $db->insertid();
+							if ($id)
+							{
+								$query = $db->getQuery(true);
+								$query->update('#__community_activities');
+								$query->where('`id`='.(int)$id);
+								$query->set('`like_id`='.(int)$id);
+								$query->set('`comment_id`='.(int)$id);
+								$db->setQuery($query);
+								$db->query();
+							}
+						}
+					}
+				}else return false;
+			}
+		}else{
+			$settings = GoalsHelper::getSettings();
+			if (!$this->uid)
 			{
-				$query = $db->getQuery(true);
-				$query->update('#__community_activities');
-				$query->where('`id`='.(int)$id);
-				$query->set('`like_id`='.(int)$id);
-				$query->set('`comment_id`='.(int)$id);
+				$this->uid=JFactory::getUser()->id;
+			}
+			$isnew = false;
+			if (!$this->id) $isnew = true;
+
+			$form = JRequest::getVar('jform');	
+				if (parent::store($updateNulls))
+				{	
+				/*** GOALS XREF ***/
+					$userfields = (array)$form['userfields'];
+
+						if(sizeof($userfields))
+						{
+							$db = $this->_db;
+							$query = $db->getQuery(true);
+								$query->delete('#__goals_plans_xref');
+								$query->where('pid='.$this->id);
+								$db->setQuery($query);
+							$db->query();
+								
+							foreach ( $userfields as $fid ) 
+							{						
+								$query = $db->getQuery(true);
+									$query->insert('#__goals_plans_xref');
+									$query->set('`pid`='.$db->quote($this->id).', `fid`='.$db->quote($fid));
+									$db->setQuery($query);
+								$db->query();
+								
+							}
+						}
+
+					if ($form['template']) {
+
+						$db = JFactory::getDbo();
+						$query = $db->getQuery(true);
+						$query->select('*')->from('#__goals_stagestemplates')->where('pid='.$form['template']);
+						$db->setQuery($query);
+						$milistones = $db->loadObjectList();
+						if ($milistones) {
+							foreach ($milistones as $milistone) {
+								$insertObj = new JObject();
+								/* Creating new object to store in the database */
+								$insertObj->id = null;
+								$insertObj->pid = $this->id;
+								$insertObj->duedate = date('Y-m-d', time()+((int)$milistone->daysto)*24*60*60);
+								$insertObj->title = $milistone->title;
+								$insertObj->description = $milistone->description;
+								$insertObj->status = $milistone->status;
+								$insertObj->color = $milistone->color;
+								$insertObj->cdate = $milistone->cdate;
+								$db->insertObject('#__goals_stages',$insertObj);
+
+								unset($insertObj);
+
+								$stageid = $db->insertid();
+								$query = $db->getQuery(true);
+								$query->select('*')->from('#__goals_plantaskstemplates')->where('sid='.$milistone->id);
+								$db->setQuery($query);
+								$plantasks = $db->loadObjectList();
+								if ($plantasks) {
+									foreach ($plantasks as $plantask) {
+
+										$insertPlanTask = new JObject();
+										$insertPlanTask->date = date('Y-m-d', time()+((int)$plantask->period)*24*60*60);
+										$insertPlanTask->title = $plantask->title;
+										$insertPlanTask->description = $plantask->description;
+										$insertPlanTask->status = $plantask->status;
+										$insertPlanTask->sid = $stageid;
+										$insertPlanTask->value = $plantask->value;
+										$db->insertObject('#__goals_plantasks',$insertPlanTask);
+
+										unset($insertPlanTask);
+									}
+								}
+							}
+						}
+					}
+
+						
+				/***/
+				
+				/*IMAGE*/
+					/*
+					if (file_exists(JPATH_SITE.DIRECTORY_SEPARATOR.$this->image) && is_file(JPATH_SITE.DIRECTORY_SEPARATOR.$this->image))
+					{
+						
+						$images_width = $settings->images_width?$settings->images_width:250;
+						$images_height = $settings->images_height?$settings->images_height:250;
+								
+						$filepath = JPATH_SITE.DIRECTORY_SEPARATOR.$this->image;
+										if (file_exists($filepath) &&  is_file($filepath))
+										{
+										list($width, $height, $type) = getimagesize($filepath);
+												
+											if ($width > $images_width){
+												$new_width = $images_width;
+												$new_height = round(($height*$new_width)/$width);
+
+												$image_p = imagecreatetruecolor($new_width, $new_height);
+
+												$background_color = imagecolorallocate($image_p, 255, 255, 255);
+												imagefill ( $image_p, 0, 0, $background_color );
+												switch ($type)
+												{
+													case 3:
+														$image = imagecreatefrompng($filepath);
+													break;
+													case 2:
+														$image = imagecreatefromjpeg($filepath);
+													break;
+													case 1:
+														$image = imagecreatefromgif($filepath);
+													break;
+													case 6:
+														$image = imagecreatefromwbmp($filepath);
+													break;				
+												}	
+									
+												imagecopyresampled($image_p, $image, 0, 0, 0, 0, $new_width, $new_height, $width, $height);
+							
+												// saving
+												switch($type)
+												{
+													case 3:
+														@imagepng($image_p, $filepath);
+													break;
+													case 2:
+														@imagejpeg($image_p, $filepath);
+													break;
+													case 1:
+														@imagegif($image_p, $filepath);
+													break;			
+												}
+											} 
+										}
+					
+					}
+					*/
+
+			if ($settings->enable_jsoc_int==1 || $settings->enable_jsoc_int==4)
+			{
+			/*ACTIVITY STREAM FOR GOAL JS*/
+			jimport( 'joomla.filesystem.folder' );
+			if (JFolder::exists(JPATH_SITE.DIRECTORY_SEPARATOR.'components'.DIRECTORY_SEPARATOR.'com_community'))
+			{
+			$db = JFactory::getDBO();
+			$glink = 'index.php?option=com_goals&view=plan&id='.(int)$this->id;
+
+
+			$templ_mes = $settings->jsoc_activity_mess_plan;
+			$a = $b = array();
+			$a[] = '{plan}';		$b[] = '<a href="'.$glink.'">'.$this->title.'</a>';
+			$a[] = '{due_date}';	$b[] = $this->deadline;
+			
+			$mes = $db->quote(str_replace($a,$b,$templ_mes));
+			
+				$query = $db->getQuery(true);			
+				$today = JFactory::getDate();
+				$date = $db->quote($today->toSQL());
+				$query->insert('#__community_activities');	 	 	 	 	 	 	 	 	 	
+				$query->set('`actor`='.(int)$this->uid);
+				$query->set('`title`='.$mes);
+				$query->set('`app`="goal"');
+				$query->set('`created`='.$date);
+				$query->set('`comment_type`="system.message"');
+				$query->set('`like_type`="system.message"');
+				$query->set('`points`=0');
 				$db->setQuery($query);
 				$db->query();
+					
+				$id = $db->insertid();
+				if ($id)
+				{
+					$query = $db->getQuery(true);
+					$query->update('#__community_activities');
+					$query->where('`id`='.(int)$id);
+					$query->set('`like_id`='.(int)$id);
+					$query->set('`comment_id`='.(int)$id);
+					$db->setQuery($query);
+					$db->query();
+				}
 			}
+			}
+					
+				return true;
+			}else return false;
 		}
-		}
-				
-			return true;
-		}else return false;
+		
+		return true;
 	}
 
 
