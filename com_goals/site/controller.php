@@ -22,6 +22,7 @@ class GoalsController extends JControllerLegacy
 	{
 		$app = JFactory::getApplication();
 		$user = JFactory::getUser();
+		JHtml::_('bootstrap.framework');
 			if(!$user->id)
 			{
 				$uri = JFactory::getURI();
