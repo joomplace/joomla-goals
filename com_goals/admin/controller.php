@@ -93,11 +93,29 @@ class GoalsController extends JControllerLegacy
 
 			}
 
+			$version_arr = explode('.',$version);
+			array_pop($version_arr);
+
+			$tm_version_arr = explode('.',$tm_version);
+			array_pop($tm_version_arr);
+
+			$actual_version = true;
+
+			foreach ($version_arr as $key => $value) {
+				if ((int)$value > (int)$tm_version_arr[$key]){
+					break;
+				}
+				elseif ((int)$value < (int)$tm_version_arr[$key]) {
+					$actual_version = false;
+					break;
+				}
+			}
+
 			if($s->error || $s->status != 200){
 
 		    	echo '<font color="red">Connection to update server failed: ERROR: ' . $s->error . ($s->status == -100 ? 'Timeout' : $s->status).'</font>';
 
-		    } else if($version == $tm_version){
+		    } else if($actual_version){
 
                 $version_array = explode('.', $version);
 
