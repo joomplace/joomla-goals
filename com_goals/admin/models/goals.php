@@ -19,7 +19,7 @@ class GoalsModelGoals extends JModelList
 		parent::__construct($config);
 	}
 	
-	protected function populateState()
+	protected function populateState($ordering = NULL, $direction = NULL)
 	{
 		$app	= JFactory::getApplication();
 		if ($layout = $app->input->get('layout'))

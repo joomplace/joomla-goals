@@ -37,7 +37,7 @@ class GoalsControllerRecord extends JControllerForm
 		return $model->getCustomfieldsTable($id,$tid,$negative);
 	}
 
-	function save()
+	function save($key = NULL, $urlVar = NULL)
 	{
 		$app		= JFactory::getApplication();
 		$context	= "$this->option.edit.$this->context";
@@ -106,7 +106,7 @@ class GoalsControllerRecord extends JControllerForm
         $app->redirect(JRoute::_($app->getUserState($context.'.return'), false));
 	}
 
-	 function cancel()
+	 function cancel($key = NULL)
 	 {
 	 	$mainframe = JFactory::getApplication();
 	 	$id = JRequest::getInt('gid');
