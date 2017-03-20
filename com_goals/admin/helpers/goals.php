@@ -164,6 +164,8 @@ class GoalsHelper
     public function updateGoal($id){
         $goal = new stdClass();
         $goal = GoalsHelper::getGoal($id);
+        $goalTable = JTable::getInstance('goal', 'GoalsTable');
+        $milistoneTable = JTable::getInstance('milistone', 'GoalsTable');
         if($goal){
             JLoader::register('GoalsTableGoal', JPATH_COMPONENT_ADMINISTRATOR . DIRECTORY_SEPARATOR . 'tables' . DIRECTORY_SEPARATOR . 'goal.php');
             JLoader::register('GoalsTableMilistone', JPATH_COMPONENT_ADMINISTRATOR . DIRECTORY_SEPARATOR . 'tables' . DIRECTORY_SEPARATOR . 'milistone.php');
@@ -171,8 +173,14 @@ class GoalsHelper
             $goal->records = GoalsHelper::getRecords($goal->id);
             $goal->milestones = GoalsHelper::getMilistones($goal->id);
             $goal->summary = GoalsHelper::calculateGoal($goal->records, $goal->start, $goal->finish)->summary;
-            if(($goal->summary >= $goal->finish && $goal->finish >= $goal->start) || ($goal->summary <= $goal->finish && $goal->finish <= $goal->start)) GoalsTableGoal::complete(array($goal->id), '1');
-            else GoalsTableGoal::complete(array($goal->id), '0');
+            if(($goal->summary >= $goal->finish && $goal->finish >= $goal->start) || ($goal->summary <= $goal->finish && $goal->finish <= $goal->start)) {
+                //GoalsTableGoal::complete(array($goal->id), '1');
+                $goalTable->complete(array($goal->id), '1');
+            }
+            else {
+                //GoalsTableGoal::complete(array($goal->id), '0');
+                $goalTable->complete(array($goal->id), '0');
+            }
 
             $good_stones = array();
             $bad_stones = array();
@@ -193,8 +201,8 @@ class GoalsHelper
                 }
             }
 
-            GoalsTableMilistone::complete($good_stones, '1');
-            GoalsTableMilistone::complete($bad_stones, '0');
+            $milistoneTable->complete($good_stones, '1');
+            $milistoneTable->complete($bad_stones, '0');
         }
         else{
             return false;

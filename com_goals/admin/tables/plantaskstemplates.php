@@ -221,7 +221,8 @@ class GoalsTablePlanTasksTemplates extends JTable
                     $db->setQuery($query);
                     $tmpid = $db->loadResult();
 
-                    $value = '"' . mysql_escape_string($value) . '"';
+                    //$value = '"' . mysql_escape_string($value) . '"';
+                    $value = '"'.$db->escape($value).'"';
                     if ($tmpid) {
                         $query = $db->getQuery(true);
                         $query->update('#__goals_plantasks_xref');
