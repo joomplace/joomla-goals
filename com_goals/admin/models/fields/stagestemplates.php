@@ -76,9 +76,13 @@ class JFormFieldStagesTemplates extends JFormFieldList
             $query->where("`g`.`uid` =  ".(int)$uid);
             $query->order('`title` ASC');
         } else {
-            $query->select("`g`.`id` AS `value`, `g`.`title` AS `text`");
-            $query->from("`#__goals_stagestemplates` AS  `g`");
-            $query->order('`title` ASC');
+            //$query->select("`g`.`id` AS `value`, `g`.`title` AS `text`");
+            //$query->from("`#__goals_stagestemplates` AS  `g`");
+            //$query->order('`title` ASC');
+
+            $query->select("`s`.`id` AS `value`, CONCAT(`s`.`title`, ' (plan: ', `p`.`title`, ')') AS `text`");
+            $query->from("`#__goals_stagestemplates` AS  `s`");
+            $query->join('left','#__goals_planstemplates as `p` ON s.pid=p.id');
         }
 		$db->setQuery($query);
 		$options = $db->loadObjectList();
