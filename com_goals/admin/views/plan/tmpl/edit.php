@@ -26,8 +26,8 @@ JHtml::_('behavior.formvalidation');
 			if (!$('jform_title').get('value')) {alert('<?php echo JText::sprintf('COM_GOALS_ERROR_NOT_TITLE','plan'); ?>');$('jform_title').focus();}
 			else 
 			if (!$('jform_cid').get('value')) {alert('<?php echo JText::_('COM_GOALS_ERROR_SELECT_CATEGORY'); ?>');$('jform_cid').focus();}
-			else 
-			if (!$('jform_deadline').get('value')) {alert('<?php echo JText::_('COM_GOALS_ERROR_ENTER_DEADLINE'); ?>');$('jform_deadline').focus();}
+			//else
+			//if (!$('jform_deadline').get('value')) {alert('<?php echo JText::_('COM_GOALS_ERROR_ENTER_DEADLINE'); ?>');$('jform_deadline').focus();}
 			else 
 			if (!$('jform_start').get('value')) {alert('<?php echo JText::_('COM_GOALS_ERROR_ENTER_STARTVAL'); ?>');$('jform_start').focus();}
 			else 
