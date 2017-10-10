@@ -17,7 +17,7 @@ $listDirn	= $this->escape($this->state->get('list.direction'));
 $search 	= $this->escape($this->state->get('filter.search'));
 ?>
 <?php echo $this->loadTemplate('menu');?>
-<form action="<?php echo JRoute::_('index.php?option=com_goals&view=plantask'); ?>" method="post" name="adminForm" id="adminForm">
+<form action="<?php echo JRoute::_('index.php?option=com_goals&view=plantasks'); ?>" method="post" name="adminForm" id="adminForm">
 <?php if (!empty( $this->sidebar)) : ?>
 	<div id="j-sidebar-container" class="span2">
 		<?php echo $this->sidebar; ?>
@@ -84,8 +84,8 @@ $search 	= $this->escape($this->state->get('filter.search'));
 								<?php } else { ?>
 									<?php echo $this->escape($item->title); ?>
 								<?php } ?>
-								</td>	
-								<td align="center">									
+								</td>
+								<td align="center">
 									<?php echo JHtml::_('date',$item->date); ?>
 								</td>
 								<td>

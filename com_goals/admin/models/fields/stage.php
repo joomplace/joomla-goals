@@ -71,20 +71,26 @@ class JFormFieldStage extends JFormFieldList
 		$db		= JFactory::getDbo();
 		$query	= $db->getQuery(true);
         if ($app->isSite()) {
-            $query->select("`s`.`id` AS `value`, `s`.`title` AS `text`");
+            $query->select("`s`.`id` AS `value`, `s`.`title` AS `text`, `u`.`username`");
 
             $query->from("`#__goals_plans` AS  `g`");
 
             $query->join('left','#__goals_stages as `s` ON s.pid=g.id');
+            $query->join('left','#__users as `u` ON g.uid=u.id');
             $query->where("`g`.`uid` =  ".(int)$uid);
             if (JRequest::getInt('pid')) {
                 $query->where("`s`.`pid` =  ".JRequest::getInt('pid'));
             }
             $query->order('`s`.`title` ASC');
         } else {
-            $query->select("`g`.`id` AS `value`, `g`.`title` AS `text`");
+            /*$query->select("`g`.`id` AS `value`, `g`.`title` AS `text`");
             $query->from("`#__goals_stages` AS  `g`");
-            $query->order('`title` ASC');
+            $query->order('`title` ASC'); */
+
+            $query->select("`s`.`id` AS `value`, CONCAT(`s`.`title`, ' (user: ', `u`.`username`, ')') AS `text`");
+            $query->from("`#__goals_stages` AS  `s`");
+            $query->join('left','#__goals_plans as `p` ON s.pid=p.id');
+            $query->join('left','#__users as `u` ON p.uid=u.id');
         }
 		$db->setQuery($query);
 		$options = $db->loadObjectList();
