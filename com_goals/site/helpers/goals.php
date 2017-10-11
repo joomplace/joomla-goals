@@ -8,7 +8,7 @@
 **/
 defined('_JEXEC') or die;
 
-class GoalsHelper
+class GoalsHelperGoals
 {
     public static function getHabitLog($id = 0)
     {
@@ -177,23 +177,23 @@ class GoalsHelper
         $tmpl = $jinput->get('tmpl');
         $db = JFactory::getDbo();
 
-        $query = GoalsHelper::getListQuery("goals",$db, null, array("is_complete" => 0, "featured" => 1));
+        $query = GoalsHelperGoals::getListQuery("goals",$db, null, array("is_complete" => 0, "featured" => 1));
         $db->setQuery($query);
         $featured_goals =  count($db->loadObjectList());
-        $query = GoalsHelper::getListQuery("plans",$db, null, array("is_complete" => 0, "featured" => 1));
+        $query = GoalsHelperGoals::getListQuery("plans",$db, null, array("is_complete" => 0, "featured" => 1));
         $db->setQuery($query);
         $featured_plans =  count($db->loadObjectList());
 
-        $query = GoalsHelper::getListQuery("goals",$db);
+        $query = GoalsHelperGoals::getListQuery("goals",$db);
         $db->setQuery($query);
         $goals_count = count($db->loadObjectList());
-        $query = GoalsHelper::getListQuery("plans",$db);
+        $query = GoalsHelperGoals::getListQuery("plans",$db);
         $db->setQuery($query);
         $plans_count = count($db->loadObjectList());
-        $query = GoalsHelper::getListQuery("goals",$db, null, array("is_complete" => 1));
+        $query = GoalsHelperGoals::getListQuery("goals",$db, null, array("is_complete" => 1));
         $db->setQuery($query);
         $done_goals =  count($db->loadObjectList());
-        $query = GoalsHelper::getListQuery("plans",$db, null, array("is_complete" => 1));
+        $query = GoalsHelperGoals::getListQuery("plans",$db, null, array("is_complete" => 1));
         $db->setQuery($query);
         $done_plans =  count($db->loadObjectList());
 
@@ -222,13 +222,13 @@ class GoalsHelper
         if($jinput->get('option')=='easysocial')
             $relativeLinks = true;
 
-        GoalsHelper::renderDashHeader($relativeLinks, $can_manage, $tmpl, $featured_goals, $featured_plans, $goals_count, $plans_count, $stages_count, $goalstemplates_count, $planstemplates_count, $done_goals, $done_plans, $featuredActive, $goalsActive, $plansActive, $achievementsActive);
+        GoalsHelperGoals::renderDashHeader($relativeLinks, $can_manage, $tmpl, $featured_goals, $featured_plans, $goals_count, $plans_count, $stages_count, $goalstemplates_count, $planstemplates_count, $done_goals, $done_plans, $featuredActive, $goalsActive, $plansActive, $achievementsActive);
     }
 
     protected function makeDashLink($vars=array(), $relativeLinks='false'){
 
         $router = JRouter::getInstance('site');
-		
+
         $query = $router->getVars();
 
         if($relativeLinks){
@@ -1304,7 +1304,7 @@ class GoalsHelper
     {
         $settings = GoalsHelper::getSettings();
         $date_format = JText::_('DATE_FORMAT_LC3');
-        
+
         $tmpl = JRequest::getVar('tmpl');
 
         //if ($tmpl == 'component') $tmpl = '&tmpl=component'; else $tmpl = '';
@@ -1685,12 +1685,12 @@ class GoalsHelper
                                 if ($ivals) {
 
                                     $ivals = str_replace('"', '', $ivals);
-                                    
+
                                     $ivals = str_replace('\\', '/', $ivals);
 
                                     if (file_exists(JPATH_SITE . $ivals) && is_file(JPATH_SITE . $ivals)) {
 
-                                        
+
                                         $default_text = '<img src="' . JURI::root() . $ivals . '" alt="" />';
 
                                     }
@@ -2013,7 +2013,7 @@ class GoalsHelper
 					<?php
 
         // echo JHtml::_('tabs.panel',JText::_('COM_GOAL_CATEGORY_FIELDS'), 'gl-category-fields');
-		
+
         $cfs = $custom_fields;
 
         $emchecks = $urlchecks = array();
@@ -2705,9 +2705,9 @@ class GoalsHelper
         }
 
     }
-	
-	// retrieves $object 
-	
+
+	// retrieves $object
+
     public static function getPercents($goal) {
 		$negative = false;
 		//if($goal->finish < $goal->start) $negative = true;
@@ -2725,7 +2725,7 @@ class GoalsHelper
 		if($goal->finish == $goal->start || $sum_val == $goal->finish) $goal->percent = 100;
 		else $goal->percent = round( ((($sum_val - $goal->start))/($goal->finish - $goal->start))*100 );
 		$goal->negative = $negative;
-		
+
         return $goal;
     }
 

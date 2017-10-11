@@ -24,8 +24,7 @@ function showJbField($form, $name='')
     echo '</div>';
 }
 
-//require_once( JPATH_COMPONENT.DIRECTORY_SEPARATOR.'helpers'.DIRECTORY_SEPARATOR.'goals.php' );
-
+require_once(JPATH_COMPONENT.DIRECTORY_SEPARATOR.'helpers'.DIRECTORY_SEPARATOR.'goals.php');
 
 JHTML::_('behavior.modal', 'a.modal');
 $old = false;
@@ -52,7 +51,7 @@ if (isset($this->item->id)) $old=true;
 </script>
 <div id="goals-wrap">
     <div class="gl_dashboard">
-        <?php //GoalsHelper::showDashHeader('','active','',''); ?>
+        <?php GoalsHelperGoals::showDashHeader(' ','active',' ',' '); ?>
     </div>
 <form action="<?php echo JRoute::_(GoalsHelperRoute::buildLink(array('view'=>'editmilistone','id'=>$this->item->id))); ?>" method="post" name="adminForm" id="adminForm" class="form-validate">
 <div class="gl_dashboard  form-horizontal">
@@ -77,6 +76,7 @@ if (isset($this->item->id)) $old=true;
 	<input type="hidden" name="task" value="milistone.edit" />
 	<input type="hidden" name="id" value="<?php echo ($old)?$this->item->id:0; ?>" />
 	<input type="hidden" name="gid" value="<?php echo (isset($this->item->gid))?$this->item->gid:0; ?>" />
+    <input type="hidden" name="return" value="<?php echo GoalsHelperGoals::getReturnURL(null,array('view'=>'milistones','gid'=>JFactory::getApplication()->input->get('gid'))); ?>" />
 
 	<?php $tmpl = JRequest::getVar('tmpl'); if ($tmpl=='component') echo'<input type="hidden" name="tmpl" value="component" />';?>
 	<?php echo JHtml::_('form.token'); ?>
