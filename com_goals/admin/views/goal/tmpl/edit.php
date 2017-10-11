@@ -21,17 +21,17 @@ JHtml::_('behavior.formvalidation');
 		if (task == 'goal.cancel' || document.formvalidator.isValid(document.id('item-form'))) {
 			Joomla.submitform(task, document.getElementById('item-form'));
 		}
-		else {
-			if (!$('jform_title').get('value')) {alert('<?php echo JText::sprintf('COM_GOALS_ERROR_NOT_TITLE','goal'); ?>');$('jform_title').focus();}
-			else 
-			if (!$('jform_cid').get('value')) {alert('<?php echo JText::_('COM_GOALS_ERROR_SELECT_CATEGORY'); ?>');$('jform_cid').focus();}
-			//else
-			//if (!$('jform_deadline').get('value')) {alert('<?php echo JText::_('COM_GOALS_ERROR_ENTER_DEADLINE'); ?>');$('jform_deadline').focus();}
-			else
-			if (!$('jform_start').get('value')) {alert('<?php echo JText::_('COM_GOALS_ERROR_ENTER_STARTVAL'); ?>');$('jform_start').focus();}
-			else 
-			if (!$('jform_finish').get('value')) {alert('<?php echo JText::_('COM_GOALS_ERROR_ENTER_FINVAL'); ?>');$('jform_finish').focus();}
-		}
+        else {
+            if (!$('jform_title').get('value')) {alert('<?php $newstr = str_ireplace("'", "\'", JText::sprintf('COM_GOALS_ERROR_NOT_TITLE','plan')); echo $newstr; ?>');$('jform_title').focus();}
+            else
+            if (!$('jform_cid').get('value')) {alert('<?php $newstr = str_ireplace("'", "\'", JText::_('COM_GOALS_ERROR_SELECT_CATEGORY')); echo $newstr; ?>');$('jform_cid').focus();}
+            else
+            if (!$('jform_deadline').get('value')) {alert('<?php $newstr = str_ireplace("'", "\'", JText::_('COM_GOALS_ERROR_ENTER_DEADLINE')); echo $newstr; ?>');$('jform_deadline').focus();}
+            else
+            if (!$('jform_start').get('value')) {alert('<?php $newstr = str_ireplace("'", "\'", JText::_('COM_GOALS_ERROR_ENTER_STARTVAL')); echo $newstr; ?>');$('jform_start').focus();}
+            else
+            if (!$('jform_finish').get('value')) {alert('<?php $newstr = str_ireplace("'", "\'", JText::_('COM_GOALS_ERROR_ENTER_FINVAL')); echo $newstr; ?>');$('jform_finish').focus();}
+        }
 	}
 </script>
 <?php echo $this->loadTemplate('menu');?>
