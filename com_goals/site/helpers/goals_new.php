@@ -1,14 +1,14 @@
 <?php
 /**
-* Goals component for Joomla 3.0
-* @package Goals
-* @author JoomPlace Team
-* @Copyright Copyright (C) JoomPlace, www.joomplace.com
-* @license GNU/GPL http://www.gnu.org/copyleft/gpl.html
-**/
+ * Goals component for Joomla 3.0
+ * @package Goals
+ * @author JoomPlace Team
+ * @Copyright Copyright (C) JoomPlace, www.joomplace.com
+ * @license GNU/GPL http://www.gnu.org/copyleft/gpl.html
+ **/
 defined('_JEXEC') or die;
 
-class GoalsHelper
+class GoalsHelperGoals
 {
     public static function getHabitLog($id = 0)
     {
@@ -177,23 +177,23 @@ class GoalsHelper
         $tmpl = $jinput->get('tmpl');
         $db = JFactory::getDbo();
 
-        $query = GoalsHelper::getListQuery("goals",$db, null, array("is_complete" => 0, "featured" => 1));
+        $query = GoalsHelperGoals::getListQuery("goals",$db, null, array("is_complete" => 0, "featured" => 1));
         $db->setQuery($query);
         $featured_goals =  count($db->loadObjectList());
-        $query = GoalsHelper::getListQuery("plans",$db, null, array("is_complete" => 0, "featured" => 1));
+        $query = GoalsHelperGoals::getListQuery("plans",$db, null, array("is_complete" => 0, "featured" => 1));
         $db->setQuery($query);
         $featured_plans =  count($db->loadObjectList());
 
-        $query = GoalsHelper::getListQuery("goals",$db);
+        $query = GoalsHelperGoals::getListQuery("goals",$db);
         $db->setQuery($query);
         $goals_count = count($db->loadObjectList());
-        $query = GoalsHelper::getListQuery("plans",$db);
+        $query = GoalsHelperGoals::getListQuery("plans",$db);
         $db->setQuery($query);
         $plans_count = count($db->loadObjectList());
-        $query = GoalsHelper::getListQuery("goals",$db, null, array("is_complete" => 1));
+        $query = GoalsHelperGoals::getListQuery("goals",$db, null, array("is_complete" => 1));
         $db->setQuery($query);
         $done_goals =  count($db->loadObjectList());
-        $query = GoalsHelper::getListQuery("plans",$db, null, array("is_complete" => 1));
+        $query = GoalsHelperGoals::getListQuery("plans",$db, null, array("is_complete" => 1));
         $db->setQuery($query);
         $done_plans =  count($db->loadObjectList());
 
@@ -222,13 +222,13 @@ class GoalsHelper
         if($jinput->get('option')=='easysocial')
             $relativeLinks = true;
 
-        GoalsHelper::renderDashHeader($relativeLinks, $can_manage, $tmpl, $featured_goals, $featured_plans, $goals_count, $plans_count, $stages_count, $goalstemplates_count, $planstemplates_count, $done_goals, $done_plans, $featuredActive, $goalsActive, $plansActive, $achievementsActive);
+        GoalsHelperGoals::renderDashHeader($relativeLinks, $can_manage, $tmpl, $featured_goals, $featured_plans, $goals_count, $plans_count, $stages_count, $goalstemplates_count, $planstemplates_count, $done_goals, $done_plans, $featuredActive, $goalsActive, $plansActive, $achievementsActive);
     }
 
     protected function makeDashLink($vars=array(), $relativeLinks='false'){
 
         $router = JRouter::getInstance('site');
-		
+
         $query = $router->getVars();
 
         if($relativeLinks){
@@ -258,7 +258,7 @@ class GoalsHelper
 
     protected function renderDashHeader($relativeLinks, $can_manage = false, $tmpl, $featured_goals, $featured_plans, $goals_count, $plans_count, $stages_count, $goalstemplates_count, $planstemplates_count, $done_goals, $done_plans, $featuredActive = 'active', $goalsActive = '', $plansActive = '', $achievementsActive = ''){
 
-        $settings = GoalsHelper::getSettings();
+        $settings = GoalsHelperGoals::getSettings();
         ?>
         <div class="navbar">
             <div class="navbar-inner">
@@ -411,7 +411,7 @@ class GoalsHelper
 
 
 
-    <?php
+        <?php
 
 
 
@@ -447,7 +447,7 @@ class GoalsHelper
 
         foreach ($habits as $habit) {
 
-            $log = GoalsHelper::getHabitLog($habit->id);
+            $log = GoalsHelperGoals::getHabitLog($habit->id);
 
             if ($log) {
 
@@ -491,75 +491,75 @@ class GoalsHelper
 
 
 
-    <!-- Goals Header -->
+        <!-- Goals Header -->
 
-    <div class="goals-head">
+        <div class="goals-head">
 
-        <!-- Goals Toolbar Navigation -->
+            <!-- Goals Toolbar Navigation -->
 
-        <div class="tools">
+            <div class="tools">
 
-            <ul class="goals-toolbar clearfix">
+                <ul class="goals-toolbar clearfix">
 
-                <li class="toolbar-feature tool-left <?php echo $featuredActive ?>"><a
+                    <li class="toolbar-feature tool-left <?php echo $featuredActive ?>"><a
 
-                        href="<?php echo JRoute::_('index.php?option=com_goals&view=habits'); ?>"><span><?php echo JText::_('COM_GOALS_TOPPANEL_FEATURED')?></span><span class="badge badge-info badge-large"><?php echo $featured ?></span></a></li>
-
-
-
-
-
-                <li class="toolbar-add-item dropdown">
-
-                    <a href="#" title="<?php echo JText::_('COM_GOALS_TOPPANEL_ADD')?>" class="dropdown-toggle"
-
-                       data-toggle="dropdown"><span><?php echo JText::_('COM_GOALS_TOPPANEL_ADD')?></span></a>
-
-                    <ul class="dropdown-menu">
-
-                        <li>
-
-                            <a href="<?php echo JRoute::_('index.php?option=com_goals&view=edithabit'); ?>"><?php echo JText::_('COM_GOALS_TOPPANEL_ADD_HABIT')?></a>
-
-                        </li>
-
-                        <li>
-
-                            <a href="<?php echo JRoute::_('index.php?option=com_goals&view=habitstemplate'); ?>"><?php echo JText::_('COM_GOALS_TOPPANEL_ADD_HABIT_TEMPLATE')?></a>
-
-                        </li>
-
-                    </ul>
-
-                </li>
+                            href="<?php echo JRoute::_('index.php?option=com_goals&view=habits'); ?>"><span><?php echo JText::_('COM_GOALS_TOPPANEL_FEATURED')?></span><span class="badge badge-info badge-large"><?php echo $featured ?></span></a></li>
 
 
 
 
 
-                <li class="toolbar-history"><a
+                    <li class="toolbar-add-item dropdown">
 
-                        href="<?php echo JRoute::_('index.php?option=com_goals&view=habithistory'); ?>"
+                        <a href="#" title="<?php echo JText::_('COM_GOALS_TOPPANEL_ADD')?>" class="dropdown-toggle"
 
-                        title="<?php echo JText::_('COM_GOALS_TOPPANEL_HISTORY')?>"><span><?php echo JText::_('COM_GOALS_TOPPANEL_HISTORY')?></span></a>
+                           data-toggle="dropdown"><span><?php echo JText::_('COM_GOALS_TOPPANEL_ADD')?></span></a>
 
-                </li>
+                        <ul class="dropdown-menu">
 
-                <li class="<?php echo $allActive ?>">
+                            <li>
 
-                    <a href="<?php echo JRoute::_('index.php?option=com_goals&view=allhabits'); ?>"><span><?php echo JText::_('COM_GOALS_TOPPANEL_ALL_HABITS')?></span><span class="badge badge-info badge-large"><?php echo count($habits) - $formed ?></span></a></li>
+                                <a href="<?php echo JRoute::_('index.php?option=com_goals&view=edithabit'); ?>"><?php echo JText::_('COM_GOALS_TOPPANEL_ADD_HABIT')?></a>
 
-                <li class="<?php echo $formedActive ?>">
+                            </li>
 
-                    <a href="<?php echo JRoute::_('index.php?option=com_goals&view=formedhabits'); ?>"><span><?php echo JText::_('COM_GOALS_TOPPANEL_FORMED_HABITS')?></span><span class="badge badge-warning badge-large"><?php echo $formed ?></span></a></li>
+                            <li>
 
-            </ul>
+                                <a href="<?php echo JRoute::_('index.php?option=com_goals&view=habitstemplate'); ?>"><?php echo JText::_('COM_GOALS_TOPPANEL_ADD_HABIT_TEMPLATE')?></a>
+
+                            </li>
+
+                        </ul>
+
+                    </li>
+
+
+
+
+
+                    <li class="toolbar-history"><a
+
+                            href="<?php echo JRoute::_('index.php?option=com_goals&view=habithistory'); ?>"
+
+                            title="<?php echo JText::_('COM_GOALS_TOPPANEL_HISTORY')?>"><span><?php echo JText::_('COM_GOALS_TOPPANEL_HISTORY')?></span></a>
+
+                    </li>
+
+                    <li class="<?php echo $allActive ?>">
+
+                        <a href="<?php echo JRoute::_('index.php?option=com_goals&view=allhabits'); ?>"><span><?php echo JText::_('COM_GOALS_TOPPANEL_ALL_HABITS')?></span><span class="badge badge-info badge-large"><?php echo count($habits) - $formed ?></span></a></li>
+
+                    <li class="<?php echo $formedActive ?>">
+
+                        <a href="<?php echo JRoute::_('index.php?option=com_goals&view=formedhabits'); ?>"><span><?php echo JText::_('COM_GOALS_TOPPANEL_FORMED_HABITS')?></span><span class="badge badge-warning badge-large"><?php echo $formed ?></span></a></li>
+
+                </ul>
+
+            </div>
 
         </div>
 
-    </div>
-
-    <?php
+        <?php
 
     }
 
@@ -1007,7 +1007,7 @@ class GoalsHelper
 
     public static function getPlanTasksCount($pid = 0, $done = 0)
     {
-        $stages = GoalsHelper::getStages($pid);
+        $stages = GoalsHelperGoals::getStages($pid);
         if (count($stages)) {
             $str = '';
             foreach ($stages as $stage) {
@@ -1034,7 +1034,7 @@ class GoalsHelper
 
     public static function getPlanTasks($pid = 0, $done = 0)
     {
-        $stages = GoalsHelper::getStages($pid);
+        $stages = GoalsHelperGoals::getStages($pid);
         if (count($stages)) {
             $str = '';
             foreach ($stages as $stage) {
@@ -1302,9 +1302,9 @@ class GoalsHelper
     function showMilistones($milistones)
 
     {
-        $settings = GoalsHelper::getSettings();
+        $settings = GoalsHelperGoals::getSettings();
         $date_format = JText::_('DATE_FORMAT_LC3');
-        
+
         $tmpl = JRequest::getVar('tmpl');
 
         //if ($tmpl == 'component') $tmpl = '&tmpl=component'; else $tmpl = '';
@@ -1314,7 +1314,7 @@ class GoalsHelper
 
 
 
-    <?php if (sizeof($milistones)) { ?> <h4><?php echo JText::_('COM_GOALS_ACTIVE_MILISTONES'); ?>:</h4> <?php
+        <?php if (sizeof($milistones)) { ?> <h4><?php echo JText::_('COM_GOALS_ACTIVE_MILISTONES'); ?>:</h4> <?php
 
     } else {
 
@@ -1330,7 +1330,7 @@ class GoalsHelper
 
 
 
-    <?php if (sizeof($milistones)) {
+        <?php if (sizeof($milistones)) {
 
         for ($i = 0, $n = sizeof($milistones); $i < $n; $i++) {
 
@@ -1338,73 +1338,73 @@ class GoalsHelper
 
             ?>
 
-        <div class="gl_mil_item">
+            <div class="gl_mil_item">
 
-            <div class="gl_goal_status_left_part">
-
-                <?php
-
-                $status = $milistone->leftstatus;
-
-                $status_style = $milistone->status_image;
-
-                ?>
-
-                <div class="gl_goal_<?php echo $status_style;?>">&nbsp;</div>
-
-            </div>
-
-            <div class="gl_goal_left_part">
-
-                <div class="gl_goal_title">
-
-                    <?php echo $milistone->title;?>
-
-                </div>
-
-                <div class="gl_goal_short_details">
+                <div class="gl_goal_status_left_part">
 
                     <?php
 
-                    if (isset($milistone->duedate))
+                    $status = $milistone->leftstatus;
 
-                        if ($milistone->duedate != '0000-00-00 00:00:00') {
-
-                            echo JText::_('COM_GOALS_DUE') . ': ' . JHtml::_('date', $milistone->duedate, $date_format);
-
-                        }
+                    $status_style = $milistone->status_image;
 
                     ?>
 
-                    <span class="gl_left_count"><br/>
-
-                        <?php
-
-                        if (isset($milistone->left)) {
-
-                            echo $milistone->left;
-
-                        }
-
-                        ?>
-
-												</span>
+                    <div class="gl_goal_<?php echo $status_style;?>">&nbsp;</div>
 
                 </div>
 
-                <div style="clear:both"></div>
+                <div class="gl_goal_left_part">
+
+                    <div class="gl_goal_title">
+
+                        <?php echo $milistone->title;?>
+
+                    </div>
+
+                    <div class="gl_goal_short_details">
+
+                        <?php
+
+                        if (isset($milistone->duedate))
+
+                            if ($milistone->duedate != '0000-00-00 00:00:00') {
+
+                                echo JText::_('COM_GOALS_DUE') . ': ' . JHtml::_('date', $milistone->duedate, $date_format);
+
+                            }
+
+                        ?>
+
+                        <span class="gl_left_count"><br/>
+
+                            <?php
+
+                            if (isset($milistone->left)) {
+
+                                echo $milistone->left;
+
+                            }
+
+                            ?>
+
+												</span>
+
+                    </div>
+
+                    <div style="clear:both"></div>
+
+                </div>
+
+                <div><?php echo $milistone->description; ?></div>
 
             </div>
 
-            <div><?php echo $milistone->description; ?></div>
-
-        </div>
-
-        <div style="clear:both"></div>
+            <div style="clear:both"></div>
 
         <?php } ?>
 
-    <?php
+        <?php
 
     }
 
@@ -1418,7 +1418,7 @@ class GoalsHelper
 
     {
 
-        $settings = GoalsHelper::getSettings();
+        $settings = GoalsHelperGoals::getSettings();
         $date_format = JText::_('DATE_FORMAT_LC3');
 
         $tmpl = JRequest::getVar('tmpl');
@@ -1430,7 +1430,7 @@ class GoalsHelper
 
 
 
-    <?php if (sizeof($stages)) { ?> <h4><?php echo JText::_('COM_GOALS_ACTIVE_STAGES'); ?>:</h4> <?php
+        <?php if (sizeof($stages)) { ?> <h4><?php echo JText::_('COM_GOALS_ACTIVE_STAGES'); ?>:</h4> <?php
 
     } else {
 
@@ -1446,7 +1446,7 @@ class GoalsHelper
 
 
 
-    <?php if (sizeof($stages)) {
+        <?php if (sizeof($stages)) {
 
         foreach ($stages as $stage) {
 
@@ -1454,73 +1454,73 @@ class GoalsHelper
 
             ?>
 
-        <div class="gl_mil_item">
+            <div class="gl_mil_item">
 
-            <div class="gl_goal_status_left_part">
-
-                <?php
-
-                $status = $stage->leftstatus;
-
-                $status_style = $stage->status_image;
-
-                ?>
-
-                <div class="gl_goal_<?php echo $status_style;?>">&nbsp;</div>
-
-            </div>
-
-            <div class="gl_goal_left_part">
-
-                <div class="gl_goal_title">
-
-                    <?php echo $stage->title;?>
-
-                </div>
-
-                <div class="gl_goal_short_details">
+                <div class="gl_goal_status_left_part">
 
                     <?php
 
-                    if (isset($stage->duedate))
+                    $status = $stage->leftstatus;
 
-                        if ($stage->duedate != '0000-00-00 00:00:00') {
-
-                            echo JText::_('COM_GOALS_DUE') . ': ' . JHtml::_('date', $stage->duedate, $date_format);
-
-                        }
+                    $status_style = $stage->status_image;
 
                     ?>
 
-                    <span class="gl_left_count"><br/>
-
-                        <?php
-
-                        if (isset($stage->left)) {
-
-                            echo $stage->left;
-
-                        }
-
-                        ?>
-
-												</span>
+                    <div class="gl_goal_<?php echo $status_style;?>">&nbsp;</div>
 
                 </div>
 
-                <div style="clear:both"></div>
+                <div class="gl_goal_left_part">
+
+                    <div class="gl_goal_title">
+
+                        <?php echo $stage->title;?>
+
+                    </div>
+
+                    <div class="gl_goal_short_details">
+
+                        <?php
+
+                        if (isset($stage->duedate))
+
+                            if ($stage->duedate != '0000-00-00 00:00:00') {
+
+                                echo JText::_('COM_GOALS_DUE') . ': ' . JHtml::_('date', $stage->duedate, $date_format);
+
+                            }
+
+                        ?>
+
+                        <span class="gl_left_count"><br/>
+
+                            <?php
+
+                            if (isset($stage->left)) {
+
+                                echo $stage->left;
+
+                            }
+
+                            ?>
+
+												</span>
+
+                    </div>
+
+                    <div style="clear:both"></div>
+
+                </div>
+
+                <div><?php echo $stage->description; ?></div>
 
             </div>
 
-            <div><?php echo $stage->description; ?></div>
-
-        </div>
-
-        <div style="clear:both"></div>
+            <div style="clear:both"></div>
 
         <?php } ?>
 
-    <?php
+        <?php
 
     }
 
@@ -1536,13 +1536,13 @@ class GoalsHelper
 
         ?>
 
-                <div class="goalfieldslist form-horizontal">
+        <div class="goalfieldslist form-horizontal">
 
-					<?php
+            <?php
 
-        $emchecks = $urlchecks = array();
+            $emchecks = $urlchecks = array();
 
-        if (sizeof($custom_fields)) {
+            if (sizeof($custom_fields)) {
 
             ?>
 
@@ -1685,12 +1685,12 @@ class GoalsHelper
                                 if ($ivals) {
 
                                     $ivals = str_replace('"', '', $ivals);
-                                    
+
                                     $ivals = str_replace('\\', '/', $ivals);
 
                                     if (file_exists(JPATH_SITE . $ivals) && is_file(JPATH_SITE . $ivals)) {
 
-                                        
+
                                         $default_text = '<img src="' . JURI::root() . $ivals . '" alt="" />';
 
                                     }
@@ -1712,11 +1712,11 @@ class GoalsHelper
                                 if ($ivals) $default_text = $ivals;
 
                                 ?>
-									<?php if($negative=0){ ?>
-									<small class="pre-negative-int">
-									<?php echo JText::_('COM_GOALS_NEGATIVE_INPUT_NOTE'); ?>
-									</small>
-									<?php } ?>
+                                <?php if($negative=0){ ?>
+                                <small class="pre-negative-int">
+                                    <?php echo JText::_('COM_GOALS_NEGATIVE_INPUT_NOTE'); ?>
+                                </small>
+                            <?php } ?>
                                 <input type="text" class="text" id="cf_<?php echo $id;?>" name="f_<?php echo $id;?>"
 
                                        value="<?php echo $default_text; ?>" maxlength=""/>
@@ -1865,71 +1865,71 @@ class GoalsHelper
 
                 </div>
 
-                <?php } ?>
+            <?php } ?>
 
-            </div>
+        </div>
 
-					 	 				<?php
+        <?php
 
 
 
-        }
+    }
 
         ?>
 
-    <script type="text/javascript">
+        <script type="text/javascript">
 
-        function isValidUserURLs() {
+            function isValidUserURLs() {
 
-            var RegExp = /^(([\w]+:)?\/\/)?(([\d\w]|%[a-fA-f\d]{2,2})+(:([\d\w]|%[a-fA-f\d]{2,2})+)?@)?([\d\w][-\d\w]{0,253}[\d\w]\.)+[\w]{2,4}(:[\d]+)?(\/([-+_~.\d\w]|%[a-fA-f\d]{2,2})*)*(\?(&?([-+_~.\d\w]|%[a-fA-f\d]{2,2})=?)*)?(#([-+_~.\d\w]|%[a-fA-f\d]{2,2})*)?$/;
+                var RegExp = /^(([\w]+:)?\/\/)?(([\d\w]|%[a-fA-f\d]{2,2})+(:([\d\w]|%[a-fA-f\d]{2,2})+)?@)?([\d\w][-\d\w]{0,253}[\d\w]\.)+[\w]{2,4}(:[\d]+)?(\/([-+_~.\d\w]|%[a-fA-f\d]{2,2})*)*(\?(&?([-+_~.\d\w]|%[a-fA-f\d]{2,2})=?)*)?(#([-+_~.\d\w]|%[a-fA-f\d]{2,2})*)?$/;
 
-            var tmpurl = '';
+                var tmpurl = '';
 
-            <?php if (sizeof($urlchecks)) {
+                <?php if (sizeof($urlchecks)) {
 
                 foreach ($urlchecks as $urlid) {
 
 
 
-                    ?>
+                ?>
 
-                    tmpurl = $('<?php echo $urlid;?>').get('value');
+                tmpurl = $('<?php echo $urlid;?>').get('value');
 
-                    if (tmpurl != '') {
+                if (tmpurl != '') {
 
-                        if (RegExp.test(tmpurl)) {
-
-                        }
-
-                        else {
-
-                            $('<?php echo $urlid;?>').focus();
-
-                            alert('Invalid url');
-
-                            $('<?php echo $urlid;?>').set('class', 'invalid');
-
-                            return false;
-
-                        }
+                    if (RegExp.test(tmpurl)) {
 
                     }
 
-                    $('<?php echo $urlid;?>').set('class', 'text');
+                    else {
 
-                    <?php
+                        $('<?php echo $urlid;?>').focus();
+
+                        alert('Invalid url');
+
+                        $('<?php echo $urlid;?>').set('class', 'invalid');
+
+                        return false;
+
+                    }
 
                 }
 
-            } ?>
+                $('<?php echo $urlid;?>').set('class', 'text');
 
-            return true;
+                <?php
 
-        }
+                }
 
-    </script>
+                } ?>
 
-    <?php
+                return true;
+
+            }
+
+        </script>
+
+        <?php
 
 
 
@@ -1937,57 +1937,57 @@ class GoalsHelper
 
         ?>
 
-    <script type="text/javascript">
+        <script type="text/javascript">
 
-        function isValidUserEmails() {
+            function isValidUserEmails() {
 
-            var RegExp = /^((([a-z]|[0-9]|!|#|$|%|&|'|\*|\+|\-|\/|=|\?|\^|_|`|\{|\||\}|~)+(\.([a-z]|[0-9]|!|#|$|%|&|'|\*|\+|\-|\/|=|\?|\^|_|`|\{|\||\}|~)+)*)@((((([a-z]|[0-9])([a-z]|[0-9]|\-){0,61}([a-z]|[0-9])\.))*([a-z]|[0-9])([a-z]|[0-9]|\-){0,61}([a-z]|[0-9])\.)[\w]{2,4}|(((([0-9]){1,3}\.){3}([0-9]){1,3}))|(\[((([0-9]){1,3}\.){3}([0-9]){1,3})\])))$/
+                var RegExp = /^((([a-z]|[0-9]|!|#|$|%|&|'|\*|\+|\-|\/|=|\?|\^|_|`|\{|\||\}|~)+(\.([a-z]|[0-9]|!|#|$|%|&|'|\*|\+|\-|\/|=|\?|\^|_|`|\{|\||\}|~)+)*)@((((([a-z]|[0-9])([a-z]|[0-9]|\-){0,61}([a-z]|[0-9])\.))*([a-z]|[0-9])([a-z]|[0-9]|\-){0,61}([a-z]|[0-9])\.)[\w]{2,4}|(((([0-9]){1,3}\.){3}([0-9]){1,3}))|(\[((([0-9]){1,3}\.){3}([0-9]){1,3})\])))$/
 
-            <?php  if (sizeof($emchecks)) {
+                <?php  if (sizeof($emchecks)) {
 
                 foreach ($emchecks as $emlid) {
 
-                    ?>
+                ?>
 
-                    if ($('<?php echo $emlid;?>').get('value') != '') {
+                if ($('<?php echo $emlid;?>').get('value') != '') {
 
 
 
-                        if (RegExp.test($('<?php echo $emlid;?>').get('value'))) {
-
-                        }
-
-                        else {
-
-                            $('<?php echo $emlid;?>').focus();
-
-                            alert('Invalid Email');
-
-                            $('<?php echo $emlid;?>').set('class', 'invalid');
-
-                            return false;
-
-                        }
+                    if (RegExp.test($('<?php echo $emlid;?>').get('value'))) {
 
                     }
 
-                    $('<?php echo $emlid;?>').set('class', 'text');
+                    else {
 
-                    <?php
+                        $('<?php echo $emlid;?>').focus();
+
+                        alert('Invalid Email');
+
+                        $('<?php echo $emlid;?>').set('class', 'invalid');
+
+                        return false;
+
+                    }
 
                 }
 
-            } ?>
+                $('<?php echo $emlid;?>').set('class', 'text');
 
-            return true;
+                <?php
 
-        }
+                }
 
-    </script>
+                } ?>
 
-    <div class="clr"></div>
+                return true;
 
-    <?php
+            }
+
+        </script>
+
+        <div class="clr"></div>
+
+        <?php
 
         $content = ob_get_contents();
 
@@ -2008,17 +2008,17 @@ class GoalsHelper
     {
         ?>
 
-                <div class="goalfieldslist form-horizontal">
+        <div class="goalfieldslist form-horizontal">
 
-					<?php
+            <?php
 
-        // echo JHtml::_('tabs.panel',JText::_('COM_GOAL_CATEGORY_FIELDS'), 'gl-category-fields');
-		
-        $cfs = $custom_fields;
+            // echo JHtml::_('tabs.panel',JText::_('COM_GOAL_CATEGORY_FIELDS'), 'gl-category-fields');
 
-        $emchecks = $urlchecks = array();
+            $cfs = $custom_fields;
 
-        if (sizeof($cfs)) {
+            $emchecks = $urlchecks = array();
+
+            if (sizeof($cfs)) {
 
             ?>
 
@@ -2189,11 +2189,11 @@ class GoalsHelper
                                 if ($ivals) $default_text = $ivals;
 
                                 ?>
-									<?php if($negative=0){ ?>
-									<small class="pre-negative-int">
-									<?php echo JText::_('COM_GOALS_NEGATIVE_INPUT_NOTE'); ?>
-									</small>
-									<?php } ?>
+                                <?php if($negative=0){ ?>
+                                <small class="pre-negative-int">
+                                    <?php echo JText::_('COM_GOALS_NEGATIVE_INPUT_NOTE'); ?>
+                                </small>
+                            <?php } ?>
 
                                 <input type="text" class="text" id="cf_<?php echo $id;?>" name="f_<?php echo $id;?>"
 
@@ -2347,123 +2347,123 @@ class GoalsHelper
 
                 </div>
 
-                <?php } ?>
+            <?php } ?>
 
 
 
-            </div>
+        </div>
 
-					 	 				<?php
+        <?php
 
 
 
-        }
+    }
 
         ?>
 
-    <script type="text/javascript">
+        <script type="text/javascript">
 
-        function isValidURLs() {
+            function isValidURLs() {
 
-            var RegExp = /^(([\w]+:)?\/\/)?(([\d\w]|%[a-fA-f\d]{2,2})+(:([\d\w]|%[a-fA-f\d]{2,2})+)?@)?([\d\w][-\d\w]{0,253}[\d\w]\.)+[\w]{2,4}(:[\d]+)?(\/([-+_~.\d\w]|%[a-fA-f\d]{2,2})*)*(\?(&?([-+_~.\d\w]|%[a-fA-f\d]{2,2})=?)*)?(#([-+_~.\d\w]|%[a-fA-f\d]{2,2})*)?$/;
+                var RegExp = /^(([\w]+:)?\/\/)?(([\d\w]|%[a-fA-f\d]{2,2})+(:([\d\w]|%[a-fA-f\d]{2,2})+)?@)?([\d\w][-\d\w]{0,253}[\d\w]\.)+[\w]{2,4}(:[\d]+)?(\/([-+_~.\d\w]|%[a-fA-f\d]{2,2})*)*(\?(&?([-+_~.\d\w]|%[a-fA-f\d]{2,2})=?)*)?(#([-+_~.\d\w]|%[a-fA-f\d]{2,2})*)?$/;
 
-            var tmpurl = '';
+                var tmpurl = '';
 
-            <?php if (sizeof($urlchecks)) {
+                <?php if (sizeof($urlchecks)) {
 
                 foreach ($urlchecks as $urlid) {
 
 
 
-                    ?>
+                ?>
 
-                    tmpurl = $('<?php echo $urlid;?>').get('value');
+                tmpurl = $('<?php echo $urlid;?>').get('value');
 
-                    if (tmpurl != '') {
+                if (tmpurl != '') {
 
-                        if (RegExp.test(tmpurl)) {
-
-                        }
-
-                        else {
-
-                            $('<?php echo $urlid;?>').focus();
-
-                            alert('Invalid url');
-
-                            $('<?php echo $urlid;?>').set('class', 'invalid');
-
-                            return false;
-
-                        }
+                    if (RegExp.test(tmpurl)) {
 
                     }
 
-                    $('<?php echo $urlid;?>').set('class', 'text');
+                    else {
 
-                    <?php
+                        $('<?php echo $urlid;?>').focus();
+
+                        alert('Invalid url');
+
+                        $('<?php echo $urlid;?>').set('class', 'invalid');
+
+                        return false;
+
+                    }
 
                 }
 
-            } ?>
+                $('<?php echo $urlid;?>').set('class', 'text');
 
-            return true;
+                <?php
 
-        }
+                }
 
-    </script>
+                } ?>
 
-    <script type="text/javascript">
+                return true;
 
-        function isValidEmails() {
+            }
 
-            var RegExp = /^((([a-z]|[0-9]|!|#|$|%|&|'|\*|\+|\-|\/|=|\?|\^|_|`|\{|\||\}|~)+(\.([a-z]|[0-9]|!|#|$|%|&|'|\*|\+|\-|\/|=|\?|\^|_|`|\{|\||\}|~)+)*)@((((([a-z]|[0-9])([a-z]|[0-9]|\-){0,61}([a-z]|[0-9])\.))*([a-z]|[0-9])([a-z]|[0-9]|\-){0,61}([a-z]|[0-9])\.)[\w]{2,4}|(((([0-9]){1,3}\.){3}([0-9]){1,3}))|(\[((([0-9]){1,3}\.){3}([0-9]){1,3})\])))$/
+        </script>
 
-            <?php  if (sizeof($emchecks)) {
+        <script type="text/javascript">
+
+            function isValidEmails() {
+
+                var RegExp = /^((([a-z]|[0-9]|!|#|$|%|&|'|\*|\+|\-|\/|=|\?|\^|_|`|\{|\||\}|~)+(\.([a-z]|[0-9]|!|#|$|%|&|'|\*|\+|\-|\/|=|\?|\^|_|`|\{|\||\}|~)+)*)@((((([a-z]|[0-9])([a-z]|[0-9]|\-){0,61}([a-z]|[0-9])\.))*([a-z]|[0-9])([a-z]|[0-9]|\-){0,61}([a-z]|[0-9])\.)[\w]{2,4}|(((([0-9]){1,3}\.){3}([0-9]){1,3}))|(\[((([0-9]){1,3}\.){3}([0-9]){1,3})\])))$/
+
+                <?php  if (sizeof($emchecks)) {
 
                 foreach ($emchecks as $emlid) {
 
-                    ?>
+                ?>
 
-                    if ($('<?php echo $emlid;?>').get('value') != '') {
+                if ($('<?php echo $emlid;?>').get('value') != '') {
 
 
 
-                        if (RegExp.test($('<?php echo $emlid;?>').get('value'))) {
-
-                        }
-
-                        else {
-
-                            $('<?php echo $emlid;?>').focus();
-
-                            alert('Invalid Email');
-
-                            $('<?php echo $emlid;?>').set('class', 'invalid');
-
-                            return false;
-
-                        }
+                    if (RegExp.test($('<?php echo $emlid;?>').get('value'))) {
 
                     }
 
-                    $('<?php echo $emlid;?>').set('class', 'text');
+                    else {
 
-                    <?php
+                        $('<?php echo $emlid;?>').focus();
+
+                        alert('Invalid Email');
+
+                        $('<?php echo $emlid;?>').set('class', 'invalid');
+
+                        return false;
+
+                    }
 
                 }
 
-            } ?>
+                $('<?php echo $emlid;?>').set('class', 'text');
 
-            return true;
+                <?php
 
-        }
+                }
 
-    </script>
+                } ?>
 
-    <div class="clr"></div>
+                return true;
 
-    <?php
+            }
+
+        </script>
+
+        <div class="clr"></div>
+
+        <?php
 
     }
 
@@ -2531,7 +2531,7 @@ class GoalsHelper
 
         $document = JFactory::getDocument();
 
-        $settings = GoalsHelper::getSettings();
+        $settings = GoalsHelperGoals::getSettings();
 
         if ($settings->include_jquery) {
 
@@ -2705,27 +2705,27 @@ class GoalsHelper
         }
 
     }
-	
-	// retrieves $object 
-	
+
+    // retrieves $object
+
     public static function getPercents($goal) {
-		$negative = false;
-		//if($goal->finish < $goal->start) $negative = true;
-		$sum_val = $goal->start;
-		foreach($goal->records as $rec){
-			if($rec->result_mode==0){
-				$sum_val = $rec->value;
-			}else{
-				if($negative) $sum_val -= $rec->value;
-				else $sum_val += $rec->value;
-			}
-			// uncomment for goal achieved stop
-			// if($sum_val>=$goal->finish) break;
-		}
-		if($goal->finish == $goal->start || $sum_val == $goal->finish) $goal->percent = 100;
-		else $goal->percent = round( ((($sum_val - $goal->start))/($goal->finish - $goal->start))*100 );
-		$goal->negative = $negative;
-		
+        $negative = false;
+        //if($goal->finish < $goal->start) $negative = true;
+        $sum_val = $goal->start;
+        foreach($goal->records as $rec){
+            if($rec->result_mode==0){
+                $sum_val = $rec->value;
+            }else{
+                if($negative) $sum_val -= $rec->value;
+                else $sum_val += $rec->value;
+            }
+            // uncomment for goal achieved stop
+            // if($sum_val>=$goal->finish) break;
+        }
+        if($goal->finish == $goal->start || $sum_val == $goal->finish) $goal->percent = 100;
+        else $goal->percent = round( ((($sum_val - $goal->start))/($goal->finish - $goal->start))*100 );
+        $goal->negative = $negative;
+
         return $goal;
     }
 
@@ -2808,13 +2808,13 @@ class GoalsHelper
             case "goals":
                 $query	= $db->getQuery(true)
                     ->select('g.*')
-                /*
-                    ->select('(SELECT COUNT(`t`.`id`) FROM `#__goals_tasks` AS `t` WHERE `t`.`gid`=`g`.`id` LIMIT 1) AS `task_count`')
-                    ->select('(SELECT COUNT(`m`.`id`) FROM `#__goals_milistones` AS `m` WHERE `m`.`gid`=`g`.`id` LIMIT 1) AS `milistones_count`')
-                    ->select('(SELECT COUNT(`mc`.`id`) FROM `#__goals_milistones` AS `mc` WHERE `mc`.`gid`=`g`.`id` AND `mc`.`status`=1 LIMIT 1) AS `milistones_count_complete`')
-                    ->select('`c`.`title` AS `catname`')
-                    ->join('LEFT','`#__goals_categories` AS `c` ON `c`.`id`=`g`.`cid`')
-                */
+                    /*
+                        ->select('(SELECT COUNT(`t`.`id`) FROM `#__goals_tasks` AS `t` WHERE `t`.`gid`=`g`.`id` LIMIT 1) AS `task_count`')
+                        ->select('(SELECT COUNT(`m`.`id`) FROM `#__goals_milistones` AS `m` WHERE `m`.`gid`=`g`.`id` LIMIT 1) AS `milistones_count`')
+                        ->select('(SELECT COUNT(`mc`.`id`) FROM `#__goals_milistones` AS `mc` WHERE `mc`.`gid`=`g`.`id` AND `mc`.`status`=1 LIMIT 1) AS `milistones_count_complete`')
+                        ->select('`c`.`title` AS `catname`')
+                        ->join('LEFT','`#__goals_categories` AS `c` ON `c`.`id`=`g`.`cid`')
+                    */
                     ->from('`#__goals` AS `g`')
                     ->where('`g`.`uid`='.$user->id)
                     ->order('`g`.`is_complete` DESC,`g`.`deadline` DESC')
@@ -2823,12 +2823,12 @@ class GoalsHelper
             case "plans":
                 $query	= $db->getQuery(true)
                     ->select('g.*')
-                /*
-                    ->select('count(m.id) as stages_count')
-                    ->select('`c`.`title` AS `catname`')
-                    ->join('LEFT','`#__goals_categories` AS `c` ON `c`.`id`=`g`.`cid`')
-                    ->join('LEFT','`#__goals_stages` AS `m` ON `g`.`id`=`m`.`pid`')
-                */
+                    /*
+                        ->select('count(m.id) as stages_count')
+                        ->select('`c`.`title` AS `catname`')
+                        ->join('LEFT','`#__goals_categories` AS `c` ON `c`.`id`=`g`.`cid`')
+                        ->join('LEFT','`#__goals_stages` AS `m` ON `g`.`id`=`m`.`pid`')
+                    */
                     ->from('`#__goals_plans` AS `g`')
                     ->where('`g`.`uid`='.$user->id)
                     ->order('`g`.`is_complete` DESC,`g`.`deadline` DESC')
