@@ -25,7 +25,7 @@ class GoalsViewManageHabits extends JViewLegacy
         	$this->state	= $this->get('State');
 			$this->habits	= $habits = $this->get('Items');
 			$this->pagination	= $this->get('Pagination');
-            $this->params = GoalsHelperFE::getSettings();
+            $this->params = GoalsHelper::getSettings();
             $this->startDate = JFactory::getDate()->toUnix()+$week*604800;
             $this->hrefBack = JRoute::_('index.php?option=com_goals&view=managehabits&tmpl=component&week='.(string)($week-1), false);
             $this->hrefForward = JRoute::_('index.php?option=com_goals&view=managehabits&tmpl=component&week='.(string)($week+1),false);
@@ -37,7 +37,7 @@ class GoalsViewManageHabits extends JViewLegacy
                     $hab->complete_count = 0;
                     $hab->percent = 0;
                     $hab->todaydid = false;
-                    $completes = GoalsHelperFE::getHabitLog($hab->id);
+                    $completes = GoalsHelper::getHabitLog($hab->id);
                     if ($completes)
                     {
                         if ($hab->finish>0) $hab->percent = round(($completes/$hab->finish)*100);

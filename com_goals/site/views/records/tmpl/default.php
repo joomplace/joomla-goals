@@ -28,7 +28,7 @@ window.addEvent('domready',function() {
 	}
 </script>
  <div class="gl_dashboard">
-	<?php GoalsHelperFE::showDashHeader('','active','',''); ?>
+	<?php GoalsHelper::showDashHeader('','active','',''); ?>
  <div class="gl_goals">
 <?php
 $items = $this->recs;

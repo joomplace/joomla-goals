@@ -19,7 +19,7 @@ $tmpl = JRequest::getVar('tmpl'); if ($tmpl=='component') $tmpl='&tmpl=component
 	}
 </script>
  <div class="gl_dashboard">
-	<?php GoalsHelperFE::showHabitHeader('','active',''); ?>
+	<?php GoalsHelper::showHabitHeader('','active',''); ?>
  <div class="gl_goals">
 <?php $items = $this->habits; ?>
  		<?php echo $this->loadTemplate('habits'); ?>

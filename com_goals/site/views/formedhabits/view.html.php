@@ -32,7 +32,7 @@ class GoalsViewFormedHabits extends JViewLegacy
                     $hab->percent = 0;
                     $hab->todaydid = false;
 
-                    $completes = GoalsHelperFE::getHabitLog($hab->id);
+                    $completes = GoalsHelper::getHabitLog($hab->id);
                     if ($completes)
                     {
                         if ($hab->finish>0) $hab->percent = round(($completes/$hab->finish)*100);

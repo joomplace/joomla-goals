@@ -78,7 +78,7 @@ function function_exists( function_name ) {
 
 </script>
     <div class="gl_dashboard">
-        <?php GoalsHelperFE::showDashHeader('','active','',''); ?>
+        <?php GoalsHelper::showDashHeader('','active','',''); ?>
     </div>
 <form action="<?php echo JRoute::_('index.php?option=com_goals&view=editrecord&id='.(int) $this->item->id); ?>" method="post" name="adminForm" id="adminForm" class="form-validate"  enctype="multipart/form-data">
 <div class="gl_dashboard form-horizontal">

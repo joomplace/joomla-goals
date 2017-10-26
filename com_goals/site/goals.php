@@ -8,7 +8,7 @@
 **/
 defined('_JEXEC') or die('Restricted access');
 jimport('joomla.application.component.controller');
-JLoader::register('GoalsHelperFE', JPATH_COMPONENT . '/helpers/goals.php');
+JLoader::register('GoalsHelper', JPATH_COMPONENT . '/helpers/goals.php');
 JLoader::register('GoalsHelperRoute', JPATH_COMPONENT . '/helpers/route.php');
 GoalsHelperRoute::bakeBread('','');
 

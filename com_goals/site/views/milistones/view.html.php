@@ -23,11 +23,11 @@ class GoalsViewMilistones extends JViewLegacy
 			$this->mils		= $mils = $this->get('Items');
 			$this->pagination	= $this->get('Pagination');
 
-			$settings = GoalsHelperFE::getSettings();
+			$settings = GoalsHelper::getSettings();
         	$this->settings = $settings;
 
 			if (count($errors = $this->get('Errors'))) { JError::raiseWarning(500, implode("\n", $errors));	return false;}
-            $settings = GoalsHelperFE::getSettings();
+            $settings = GoalsHelper::getSettings();
 			$jdate = new JDate('now');
 			$nowdate =  $jdate->__toString();
 
@@ -37,13 +37,13 @@ class GoalsViewMilistones extends JViewLegacy
 
 				foreach ( $mils as $mil )
 				{
-					$left = GoalsHelperFE::date_diff($nowdate, $mil->duedate);
-					$leftstr = GoalsHelperFE::getDateLeft($left);
+					$left = GoalsHelper::date_diff($nowdate, $mil->duedate);
+					$leftstr = GoalsHelper::getDateLeft($left);
 					$mil->left = '('.$leftstr.' '.$left['lateoraway'].')';
 					//
 					if ($left['lateoraway']=='away' && $mil->duedate>$nowdate)
 					{
-						$mil->leftstatus = GoalsHelperFE::getStatusLeft($left);
+						$mil->leftstatus = GoalsHelper::getStatusLeft($left);
 
 					}else
 					{

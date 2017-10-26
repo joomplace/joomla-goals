@@ -31,8 +31,8 @@ jQuery(document).ready(function($) {
 ?>
     <div class="gl_dashboard">
         <?php
-			if(!$this->goal->is_complete) GoalsHelperFE::showDashHeader('','active','','');
-			else GoalsHelperFE::showDashHeader('','','','active');
+			if(!$this->goal->is_complete) GoalsHelper::showDashHeader('','active','','');
+			else GoalsHelper::showDashHeader('','','','active');
 		?>
         <div class="gl_goals goals-item">
             <?php
@@ -275,8 +275,8 @@ jQuery(document).ready(function($) {
 
 <div class="gl_dashboard">
     <?php
-    if(!$this->goal->is_complete) GoalsHelperFE::showDashHeader('','active','','');
-    else GoalsHelperFE::showDashHeader('','','','active');
+    if(!$this->goal->is_complete) GoalsHelper::showDashHeader('','active','','');
+    else GoalsHelper::showDashHeader('','','','active');
     ?>
     <div class="gl_goals goals-item">
         <?php
@@ -423,7 +423,7 @@ jQuery(document).ready(function($) {
                 <?php if ($own) { ?>
                     <div class="gl_milistones">
                         <?php if (isset($item->milistones)) {
-                            GoalsHelperFE::showMilistones($item->milistones);
+                            GoalsHelper::showMilistones($item->milistones);
                         }
                         ?>
                     </div>

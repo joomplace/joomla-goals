@@ -39,8 +39,8 @@ class GoalsViewToday extends JViewLegacy
 
         if (sizeof($goals)) {
             foreach ( $goals as $goal ) {
-                $goal->milistones 	 = GoalsHelperFE::getMilistones($goal->id);
-                $goal->records 	 	 = GoalsHelperFE::getRecords($goal->id);
+                $goal->milistones 	 = GoalsHelper::getMilistones($goal->id);
+                $goal->records 	 	 = GoalsHelper::getRecords($goal->id);
 
                 $goal->records_count = sizeof($goal->records);
                 $goal->percent 		 = 0;
@@ -51,8 +51,8 @@ class GoalsViewToday extends JViewLegacy
                 }
 
                 //DAte away late
-                $left = GoalsHelperFE::date_diff($nowdate, $goal->deadline);
-                $leftstr = GoalsHelperFE::getDateLeft($left);
+                $left = GoalsHelper::date_diff($nowdate, $goal->deadline);
+                $leftstr = GoalsHelper::getDateLeft($left);
                 $goal->left = '('.$leftstr.' '.$left['lateoraway'].')';
                 //
 
@@ -65,13 +65,13 @@ class GoalsViewToday extends JViewLegacy
                     foreach ( $goal->milistones as $k=>$mil )
                     {
                         //Date away late
-                        $left = GoalsHelperFE::date_diff($nowdate, $mil->duedate);
-                        $leftstr = GoalsHelperFE::getDateLeft($left);
+                        $left = GoalsHelper::date_diff($nowdate, $mil->duedate);
+                        $leftstr = GoalsHelper::getDateLeft($left);
                         $mil->left = '('.$leftstr.' '.$left['lateoraway'].')';
                         //
                         if ($left['lateoraway']=='away' && $mil->duedate>$nowdate)
                         {
-                            $mil->leftstatus = GoalsHelperFE::getStatusLeft($left);
+                            $mil->leftstatus = GoalsHelper::getStatusLeft($left);
 
                         }
                         else
@@ -111,7 +111,7 @@ class GoalsViewToday extends JViewLegacy
                 {
                     if ($left['lateoraway']=='away' && $goal->deadline>$nowdate)
                     {
-                        $goal->status = GoalsHelperFE::getStatusLeft($left);
+                        $goal->status = GoalsHelper::getStatusLeft($left);
                     }else
                     {
                         $goal->status = 4;

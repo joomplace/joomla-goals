@@ -11,7 +11,7 @@ defined('_JEXEC') or die('Restricted access');
 ?>
 <div id="goals-wrap">
  <div class="gl_dashboard">
- <?php GoalsHelperFE::showDashHeader('','','active',''); ?>
+ <?php GoalsHelper::showDashHeader('','','active',''); ?>
 
  <div class="gl_goals">
  		<?php echo $this->loadTemplate('plans'); ?>

@@ -29,7 +29,7 @@ $owner=false;
 	}
 </script>
  <div class="gl_dashboard">
-	<?php GoalsHelperFE::showHabitHeader('','active',''); ?>
+	<?php GoalsHelper::showHabitHeader('','active',''); ?>
  <div class="gl_goals">
 
 <?php

@@ -25,8 +25,8 @@ class GoalsViewAchievements extends JViewLegacy
         $this->plans		= $this->get('PlansList');
 
         foreach ($this->plans as $plan) {
-            $plan->task_count = GoalsHelperFE::getPlanTasksCount($plan->id,1);
-            $plan->stages_count = count(GoalsHelperFE::getStages($plan->id));
+            $plan->task_count = GoalsHelper::getPlanTasksCount($plan->id,1);
+            $plan->stages_count = count(GoalsHelper::getStages($plan->id));
 
         }
 

@@ -136,7 +136,7 @@ class GoalsControllerPlan extends JControllerForm
     function showGoalGraph()
     {
         error_reporting(E_ALL & ~E_NOTICE);
-        $settings = GoalsHelperFE::getSettings();
+        $settings = GoalsHelper::getSettings();
         $date_format = trim(str_replace('%', '', $settings->chart_date_format));
         
         $id = JRequest::getInt('id', 0);

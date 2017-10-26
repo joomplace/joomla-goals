@@ -42,13 +42,13 @@ $itemId = $itemId?('&Itemid='.$itemId):'';
 
 <table cellpadding="0" cellspacing="0" class="calendar_table" id="calendar_table">
 	<tr style="text-align:center;">
-		<td class="week_names" id="mon"><?php echo GoalsHelperFE::dayToStr(1);?></td>
-		<td class="week_names" id="tue"><?php echo GoalsHelperFE::dayToStr(2);?></td>
-		<td class="week_names" id="wed"><?php echo GoalsHelperFE::dayToStr(3);?></td>
-		<td class="week_names" id="thu"><?php echo GoalsHelperFE::dayToStr(4);?></td>
-		<td class="week_names" id="fri"><?php echo GoalsHelperFE::dayToStr(5);?></td>
-		<td class="week_names" id="sat"><?php echo GoalsHelperFE::dayToStr(6);?></td>
-		<td class="week_names" id="sun"><?php echo GoalsHelperFE::dayToStr(0);?></td>
+		<td class="week_names" id="mon"><?php echo GoalsHelper::dayToStr(1);?></td>
+		<td class="week_names" id="tue"><?php echo GoalsHelper::dayToStr(2);?></td>
+		<td class="week_names" id="wed"><?php echo GoalsHelper::dayToStr(3);?></td>
+		<td class="week_names" id="thu"><?php echo GoalsHelper::dayToStr(4);?></td>
+		<td class="week_names" id="fri"><?php echo GoalsHelper::dayToStr(5);?></td>
+		<td class="week_names" id="sat"><?php echo GoalsHelper::dayToStr(6);?></td>
+		<td class="week_names" id="sun"><?php echo GoalsHelper::dayToStr(0);?></td>
 	</tr>
 <?php
 	$rownum = 0;

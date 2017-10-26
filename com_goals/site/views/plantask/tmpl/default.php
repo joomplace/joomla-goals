@@ -18,7 +18,7 @@ $tmpl='';
 	}
 </script>
  <div class="gl_dashboard">
-	<?php GoalsHelperFE::showDashHeader('','','active',''); ?>
+	<?php GoalsHelper::showDashHeader('','','active',''); ?>
  <div class="gl_goals">
 <?php
 $item = $this->rec;

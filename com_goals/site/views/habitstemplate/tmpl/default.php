@@ -14,7 +14,7 @@ JHtml::_('behavior.tooltip');
 JHtml::_('behavior.formvalidation');
 ?>
 <div id="goals-wrap">
-    <?php GoalsHelperFE::showHabitHeader('','active',''); ?>
+    <?php GoalsHelper::showHabitHeader('','active',''); ?>
 
     <div class="goals-content">
         <h2><?php echo JText::_('COM_GOALS_SELECT_TEMPLATE_FOR_HABIT'); ?>:</h2>

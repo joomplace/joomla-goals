@@ -25,7 +25,7 @@ class GoalsViewStages extends JViewLegacy
 
 			if (count($errors = $this->get('Errors'))) { JError::raiseWarning(500, implode("\n", $errors));	return false;}
 
-            $settings = GoalsHelperFE::getSettings();
+            $settings = GoalsHelper::getSettings();
             $this->settings = $settings;
 
 			$jdate = new JDate('now');
@@ -37,14 +37,14 @@ class GoalsViewStages extends JViewLegacy
 
 				foreach ( $stages as $stage )
 				{
-                    $stage->tasks = GoalsHelperFE::getStageTasks($stage->id);
-					$left = GoalsHelperFE::date_diff($nowdate, $stage->duedate);
-					$leftstr = GoalsHelperFE::getDateLeft($left);
+                    $stage->tasks = GoalsHelper::getStageTasks($stage->id);
+					$left = GoalsHelper::date_diff($nowdate, $stage->duedate);
+					$leftstr = GoalsHelper::getDateLeft($left);
                     $stage->left = '('.$leftstr.' '.$left['lateoraway'].')';
 					//
 					if ($left['lateoraway']=='away' && $stage->duedate>$nowdate)
 					{
-                        $stage->leftstatus = GoalsHelperFE::getStatusLeft($left);
+                        $stage->leftstatus = GoalsHelper::getStatusLeft($left);
 
 					}else
 					{

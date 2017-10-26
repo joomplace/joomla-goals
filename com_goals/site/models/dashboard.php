@@ -19,7 +19,7 @@ class GoalsModelDashboard extends JModelList
 	{
 		// Initialise variables.
 		$app	= JFactory::getApplication();
-		$settings	= GoalsHelperFE::getSettings();
+		$settings	= GoalsHelper::getSettings();
 
 		$l = $app->getCfg('list_limit');
 		if (isset($settings->goals_dashboard_count)) $l = (int) $settings->goals_dashboard_count;
@@ -39,7 +39,7 @@ class GoalsModelDashboard extends JModelList
 		$query	= $db->getQuery(true);
         $user = $this->getQueryUser();
 
-        $query = GoalsHelperFE::getListQuery("goals",$db, null, array("is_complete" => 0, "featured" => 1));
+        $query = GoalsHelper::getListQuery("goals",$db, null, array("is_complete" => 0, "featured" => 1));
         $query->select('"goal" as `type`');
 		return $query;
 	}
@@ -50,7 +50,7 @@ class GoalsModelDashboard extends JModelList
         $query	= $db->getQuery(true);
         $user = $this->getQueryUser();
 
-        $query = GoalsHelperFE::getListQuery("plans",$db, null, array("is_complete" => 0, "featured" => 1));
+        $query = GoalsHelper::getListQuery("plans",$db, null, array("is_complete" => 0, "featured" => 1));
         $query->select('"plan" as `type`');
         $db->setQuery($query);
 
@@ -59,7 +59,7 @@ class GoalsModelDashboard extends JModelList
 
 	public function getRecords()
 	{
-		$settings	= GoalsHelperFE::getSettings();
+		$settings	= GoalsHelper::getSettings();
 		$db	= JFactory::getDbo();
         $user = $this->getQueryUser();
 			$query	= $db->getQuery(true);
@@ -90,7 +90,7 @@ class GoalsModelDashboard extends JModelList
 
 	public function getHabitLog($id=0)
 	{
-		return GoalsHelperFE::getHabitLog($id);
+		return GoalsHelper::getHabitLog($id);
 	}
 
     public function setQueryUser($user_id){

@@ -28,7 +28,7 @@ class GoalsViewPlan extends JViewLegacy
             return null;
         }
 
-        $settings = GoalsHelperFE::getSettings();
+        $settings = GoalsHelper::getSettings();
         $this->settings = $settings;
         
 		if (count($errors = $this->get('Errors'))) {
@@ -40,11 +40,11 @@ class GoalsViewPlan extends JViewLegacy
 
 		if (sizeof($plan)) {
 			$this->plan			 = $plan = $plan[0];
-			$plan->stages 	 = GoalsHelperFE::getStages($plan->id);
+			$plan->stages 	 = GoalsHelper::getStages($plan->id);
 
 
-			$plan->records 	  	 = GoalsHelperFE::getPlanTasksCount($plan->id);
-            $plan->records_done = count(GoalsHelperFE::getPlanTasksCount($plan->id, 1));
+			$plan->records 	  	 = GoalsHelper::getPlanTasksCount($plan->id);
+            $plan->records_done = count(GoalsHelper::getPlanTasksCount($plan->id, 1));
 			$plan->records_count = $plan->records;
 			$plan->percent 		 = 0;
 
@@ -54,8 +54,8 @@ class GoalsViewPlan extends JViewLegacy
             }
 
 			//Date away late
-			$left = GoalsHelperFE::date_diff($nowdate, $plan->deadline);
-			$leftstr = GoalsHelperFE::getDateLeft($left);
+			$left = GoalsHelper::date_diff($nowdate, $plan->deadline);
+			$leftstr = GoalsHelper::getDateLeft($left);
 			$plan->left = '('.$leftstr.' '.$left['lateoraway'].')';
 
 			//Statuses
@@ -64,12 +64,12 @@ class GoalsViewPlan extends JViewLegacy
 
 				foreach ( $plan->stages as $mil ) {
 					//Date away late
-					$left = GoalsHelperFE::date_diff($nowdate, $mil->duedate);
-					$leftstr = GoalsHelperFE::getDateLeft($left);
+					$left = GoalsHelper::date_diff($nowdate, $mil->duedate);
+					$leftstr = GoalsHelper::getDateLeft($left);
 					$mil->left = '('.$leftstr.' '.$left['lateoraway'].')';
 
 					if ($left['lateoraway'] == 'away' && $mil->duedate > $nowdate) {
-						$mil->leftstatus = GoalsHelperFE::getStatusLeft($left);
+						$mil->leftstatus = GoalsHelper::getStatusLeft($left);
 					} else {
 						$mil->leftstatus = 4;
 					}

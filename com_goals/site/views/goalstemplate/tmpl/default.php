@@ -14,7 +14,7 @@ JHtml::_('behavior.formvalidation');
 $items = $this->items;
 ?>
 <div id="goals-wrap">
-    <?php GoalsHelperFE::showDashHeader('','active','',''); ?>
+    <?php GoalsHelper::showDashHeader('','active','',''); ?>
 
     <div class="goals-content">
         <h2><?php echo JText::_('COM_GOALS_SELECT_TEMPLATE_FOR_GOAL'); ?>:</h2>

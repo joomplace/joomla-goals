@@ -113,7 +113,7 @@ class GoalsModelGoals extends JModelList
 		$db		= $this->getDbo();
 		$user = $this->getQueryUser();
 		//Select required fields from the categories.
-        $query = GoalsHelperFE::getListQuery("goals",$db, $user);
+        $query = GoalsHelper::getListQuery("goals",$db, $user);
 
         // Filter by a single or group of categories.
         $categoryId = $this->getState('filter.category_id');

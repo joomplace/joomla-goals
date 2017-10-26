@@ -43,7 +43,7 @@ if (sizeof($items)) {
 
         <?php
         
-        $daysHeader = GoalsHelperFE::getHabitsDaysHeader($this->params->weak_day_start);
+        $daysHeader = GoalsHelper::getHabitsDaysHeader($this->params->weak_day_start);
 
         foreach($daysHeader as $day) { ?>
 
@@ -200,7 +200,7 @@ if (sizeof($items)) {
                                  <?php
                                     if($this->params->weak_day_start!='m'){
                                         ?>
-                                        <li class="goals_manager_day<?php echo GoalsHelperFE::getRequiredDayClass((int)$habit->id, date('Y-m-d', strtotime($monday_date) + 6 * 24 * 60 * 60)); ?>" <?php echo GoalsHelperFE::isDisabled($habit->date, date('Y-m-d', strtotime($monday_date) + 6 * 24 * 60 * 60)) ?>>
+                                        <li class="goals_manager_day<?php echo GoalsHelper::getRequiredDayClass((int)$habit->id, date('Y-m-d', strtotime($monday_date) + 6 * 24 * 60 * 60)); ?>" <?php echo GoalsHelper::isDisabled($habit->date, date('Y-m-d', strtotime($monday_date) + 6 * 24 * 60 * 60)) ?>>
 
                                             <label for="sunday_<?php echo (int)$habit->id . $tmpl ?>"
 
@@ -212,7 +212,7 @@ if (sizeof($items)) {
 
                                                    name="sunday_<?php echo (int)$habit->id . $tmpl ?>"
 
-                                                   class="goals_manager_checkbox" <?php echo GoalsHelperFE::getCheckedHabit((int)$habit->id, date('Y-m-d', strtotime($monday_date) + 6 * 24 * 60 * 60)) ?>/>
+                                                   class="goals_manager_checkbox" <?php echo GoalsHelper::getCheckedHabit((int)$habit->id, date('Y-m-d', strtotime($monday_date) + 6 * 24 * 60 * 60)) ?>/>
 
 
 
@@ -223,7 +223,7 @@ if (sizeof($items)) {
                                 <?
                                     }
                                 ?>
-                                <li class="goals_manager_day<?php echo GoalsHelperFE::getRequiredDayClass((int)$habit->id, $monday_date); ?>"  <?php echo GoalsHelperFE::isDisabled($habit->date, $monday_date) ?>>
+                                <li class="goals_manager_day<?php echo GoalsHelper::getRequiredDayClass((int)$habit->id, $monday_date); ?>"  <?php echo GoalsHelper::isDisabled($habit->date, $monday_date) ?>>
 
                                     <label for="monday_<?php echo (int)$habit->id . $tmpl ?>"
 
@@ -235,7 +235,7 @@ if (sizeof($items)) {
 
                                            name="monday_<?php echo (int)$habit->id . $tmpl ?>"
 
-                                           class="goals_manager_checkbox" <?php echo GoalsHelperFE::getCheckedHabit((int)$habit->id, $monday_date) ?> />
+                                           class="goals_manager_checkbox" <?php echo GoalsHelper::getCheckedHabit((int)$habit->id, $monday_date) ?> />
 
 
 
@@ -243,7 +243,7 @@ if (sizeof($items)) {
 
                                 </li>
 
-                                <li class="goals_manager_day<?php echo GoalsHelperFE::getRequiredDayClass((int)$habit->id, date('Y-m-d', strtotime($monday_date) + 1 * 24 * 60 * 60)); ?>" <?php echo GoalsHelperFE::isDisabled($habit->date, date('Y-m-d', strtotime($monday_date) + 1 * 24 * 60 * 60)) ?>>
+                                <li class="goals_manager_day<?php echo GoalsHelper::getRequiredDayClass((int)$habit->id, date('Y-m-d', strtotime($monday_date) + 1 * 24 * 60 * 60)); ?>" <?php echo GoalsHelper::isDisabled($habit->date, date('Y-m-d', strtotime($monday_date) + 1 * 24 * 60 * 60)) ?>>
 
                                     <label for="tuesday_<?php echo (int)$habit->id . $tmpl ?>"
 
@@ -255,7 +255,7 @@ if (sizeof($items)) {
 
                                            name="tuesday_<?php echo (int)$habit->id . $tmpl ?>"
 
-                                           class="goals_manager_checkbox" <?php echo GoalsHelperFE::getCheckedHabit((int)$habit->id, date('Y-m-d', strtotime($monday_date) + 1 * 24 * 60 * 60)) ?> />
+                                           class="goals_manager_checkbox" <?php echo GoalsHelper::getCheckedHabit((int)$habit->id, date('Y-m-d', strtotime($monday_date) + 1 * 24 * 60 * 60)) ?> />
 
 
 
@@ -263,7 +263,7 @@ if (sizeof($items)) {
 
                                 </li>
 
-                                <li class="goals_manager_day<?php echo GoalsHelperFE::getRequiredDayClass((int)$habit->id, date('Y-m-d', strtotime($monday_date) + 2 * 24 * 60 * 60)); ?>" <?php echo GoalsHelperFE::isDisabled($habit->date, date('Y-m-d', strtotime($monday_date) + 2 * 24 * 60 * 60)) ?>>
+                                <li class="goals_manager_day<?php echo GoalsHelper::getRequiredDayClass((int)$habit->id, date('Y-m-d', strtotime($monday_date) + 2 * 24 * 60 * 60)); ?>" <?php echo GoalsHelper::isDisabled($habit->date, date('Y-m-d', strtotime($monday_date) + 2 * 24 * 60 * 60)) ?>>
 
                                     <label for="wednesday_<?php echo (int)$habit->id . $tmpl ?>"
 
@@ -275,7 +275,7 @@ if (sizeof($items)) {
 
                                            name="wednesday_<?php echo (int)$habit->id . $tmpl ?>"
 
-                                           class="goals_manager_checkbox" <?php echo GoalsHelperFE::getCheckedHabit((int)$habit->id, date('Y-m-d', strtotime($monday_date) + 2 * 24 * 60 * 60)) ?> />
+                                           class="goals_manager_checkbox" <?php echo GoalsHelper::getCheckedHabit((int)$habit->id, date('Y-m-d', strtotime($monday_date) + 2 * 24 * 60 * 60)) ?> />
 
 
 
@@ -283,7 +283,7 @@ if (sizeof($items)) {
 
                                 </li>
 
-                                <li class="goals_manager_day<?php echo GoalsHelperFE::getRequiredDayClass((int)$habit->id, date('Y-m-d', strtotime($monday_date) + 3 * 24 * 60 * 60)); ?>" <?php echo GoalsHelperFE::isDisabled($habit->date, date('Y-m-d', strtotime($monday_date) + 3 * 24 * 60 * 60)) ?>>
+                                <li class="goals_manager_day<?php echo GoalsHelper::getRequiredDayClass((int)$habit->id, date('Y-m-d', strtotime($monday_date) + 3 * 24 * 60 * 60)); ?>" <?php echo GoalsHelper::isDisabled($habit->date, date('Y-m-d', strtotime($monday_date) + 3 * 24 * 60 * 60)) ?>>
 
                                     <label for="thursday_<?php echo (int)$habit->id . $tmpl ?>"
 
@@ -295,7 +295,7 @@ if (sizeof($items)) {
 
                                            name="thursday_<?php echo (int)$habit->id . $tmpl ?>"
 
-                                           class="goals_manager_checkbox" <?php echo GoalsHelperFE::getCheckedHabit((int)$habit->id, date('Y-m-d', strtotime($monday_date) + 3 * 24 * 60 * 60)) ?> />
+                                           class="goals_manager_checkbox" <?php echo GoalsHelper::getCheckedHabit((int)$habit->id, date('Y-m-d', strtotime($monday_date) + 3 * 24 * 60 * 60)) ?> />
 
 
 
@@ -303,7 +303,7 @@ if (sizeof($items)) {
 
                                 </li>
 
-                                <li class="goals_manager_day<?php echo GoalsHelperFE::getRequiredDayClass((int)$habit->id, date('Y-m-d', strtotime($monday_date) + 4 * 24 * 60 * 60)); ?>" <?php echo GoalsHelperFE::isDisabled($habit->date, date('Y-m-d', strtotime($monday_date) + 4 * 24 * 60 * 60)) ?>>
+                                <li class="goals_manager_day<?php echo GoalsHelper::getRequiredDayClass((int)$habit->id, date('Y-m-d', strtotime($monday_date) + 4 * 24 * 60 * 60)); ?>" <?php echo GoalsHelper::isDisabled($habit->date, date('Y-m-d', strtotime($monday_date) + 4 * 24 * 60 * 60)) ?>>
 
                                     <label for="friday_<?php echo (int)$habit->id . $tmpl ?>"
 
@@ -315,7 +315,7 @@ if (sizeof($items)) {
 
                                            name="friday_<?php echo (int)$habit->id . $tmpl ?>"
 
-                                           class="goals_manager_checkbox" <?php echo GoalsHelperFE::getCheckedHabit((int)$habit->id, date('Y-m-d', strtotime($monday_date) + 4 * 24 * 60 * 60)) ?> />
+                                           class="goals_manager_checkbox" <?php echo GoalsHelper::getCheckedHabit((int)$habit->id, date('Y-m-d', strtotime($monday_date) + 4 * 24 * 60 * 60)) ?> />
 
 
 
@@ -323,7 +323,7 @@ if (sizeof($items)) {
 
                                 </li>
 
-                                <li class="goals_manager_day<?php echo GoalsHelperFE::getRequiredDayClass((int)$habit->id, date('Y-m-d', strtotime($monday_date) + 5 * 24 * 60 * 60)); ?>" <?php echo GoalsHelperFE::isDisabled($habit->date, date('Y-m-d', strtotime($monday_date) + 5 * 24 * 60 * 60)) ?>>
+                                <li class="goals_manager_day<?php echo GoalsHelper::getRequiredDayClass((int)$habit->id, date('Y-m-d', strtotime($monday_date) + 5 * 24 * 60 * 60)); ?>" <?php echo GoalsHelper::isDisabled($habit->date, date('Y-m-d', strtotime($monday_date) + 5 * 24 * 60 * 60)) ?>>
 
                                     <label for="saturday_<?php echo (int)$habit->id . $tmpl ?>"
 
@@ -335,7 +335,7 @@ if (sizeof($items)) {
 
                                            name="saturday_<?php echo (int)$habit->id . $tmpl ?>"
 
-                                           class="goals_manager_checkbox" <?php echo GoalsHelperFE::getCheckedHabit((int)$habit->id, date('Y-m-d', strtotime($monday_date) + 5 * 24 * 60 * 60)) ?> />
+                                           class="goals_manager_checkbox" <?php echo GoalsHelper::getCheckedHabit((int)$habit->id, date('Y-m-d', strtotime($monday_date) + 5 * 24 * 60 * 60)) ?> />
 
 
 
@@ -346,7 +346,7 @@ if (sizeof($items)) {
                                 <?php
                                 if($this->params->weak_day_start=='m'){
                                     ?>
-                                    <li class="goals_manager_day<?php echo GoalsHelperFE::getRequiredDayClass((int)$habit->id, date('Y-m-d', strtotime($monday_date) + 6 * 24 * 60 * 60)); ?>" <?php echo GoalsHelperFE::isDisabled($habit->date, date('Y-m-d', strtotime($monday_date) + 6 * 24 * 60 * 60)) ?>>
+                                    <li class="goals_manager_day<?php echo GoalsHelper::getRequiredDayClass((int)$habit->id, date('Y-m-d', strtotime($monday_date) + 6 * 24 * 60 * 60)); ?>" <?php echo GoalsHelper::isDisabled($habit->date, date('Y-m-d', strtotime($monday_date) + 6 * 24 * 60 * 60)) ?>>
 
                                         <label for="sunday_<?php echo (int)$habit->id . $tmpl ?>"
 
@@ -358,7 +358,7 @@ if (sizeof($items)) {
 
                                                name="sunday_<?php echo (int)$habit->id . $tmpl ?>"
 
-                                               class="goals_manager_checkbox" <?php echo GoalsHelperFE::getCheckedHabit((int)$habit->id, date('Y-m-d', strtotime($monday_date) + 6 * 24 * 60 * 60)) ?>/>
+                                               class="goals_manager_checkbox" <?php echo GoalsHelper::getCheckedHabit((int)$habit->id, date('Y-m-d', strtotime($monday_date) + 6 * 24 * 60 * 60)) ?>/>
 
 
 
