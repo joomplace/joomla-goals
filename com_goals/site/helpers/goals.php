@@ -8,9 +8,9 @@
 **/
 defined('_JEXEC') or die;
 
-class GoalsHelper
+class GoalsHelperFE
 {
-    public static function getHabitLog($id = 0)
+    public function getHabitLog($id = 0)
     {
         $db = JFactory::getDBO();
         /*
@@ -169,7 +169,7 @@ class GoalsHelper
         return $response;
     }
 
-    public static function showDashHeader($featuredActive = 'active', $goalsActive = '', $plansActive = '', $achievementsActive = '', $relativeLinks = false)
+    public function showDashHeader($featuredActive = 'active', $goalsActive = '', $plansActive = '', $achievementsActive = '', $relativeLinks = false)
     {
         $jinput = JFactory::getApplication()->input;
 
@@ -177,23 +177,23 @@ class GoalsHelper
         $tmpl = $jinput->get('tmpl');
         $db = JFactory::getDbo();
 
-        $query = GoalsHelper::getListQuery("goals",$db, null, array("is_complete" => 0, "featured" => 1));
+        $query = GoalsHelperFE::getListQuery("goals",$db, null, array("is_complete" => 0, "featured" => 1));
         $db->setQuery($query);
         $featured_goals =  count($db->loadObjectList());
-        $query = GoalsHelper::getListQuery("plans",$db, null, array("is_complete" => 0, "featured" => 1));
+        $query = GoalsHelperFE::getListQuery("plans",$db, null, array("is_complete" => 0, "featured" => 1));
         $db->setQuery($query);
         $featured_plans =  count($db->loadObjectList());
 
-        $query = GoalsHelper::getListQuery("goals",$db);
+        $query = GoalsHelperFE::getListQuery("goals",$db);
         $db->setQuery($query);
         $goals_count = count($db->loadObjectList());
-        $query = GoalsHelper::getListQuery("plans",$db);
+        $query = GoalsHelperFE::getListQuery("plans",$db);
         $db->setQuery($query);
         $plans_count = count($db->loadObjectList());
-        $query = GoalsHelper::getListQuery("goals",$db, null, array("is_complete" => 1));
+        $query = GoalsHelperFE::getListQuery("goals",$db, null, array("is_complete" => 1));
         $db->setQuery($query);
         $done_goals =  count($db->loadObjectList());
-        $query = GoalsHelper::getListQuery("plans",$db, null, array("is_complete" => 1));
+        $query = GoalsHelperFE::getListQuery("plans",$db, null, array("is_complete" => 1));
         $db->setQuery($query);
         $done_plans =  count($db->loadObjectList());
 
@@ -222,7 +222,7 @@ class GoalsHelper
         if($jinput->get('option')=='easysocial')
             $relativeLinks = true;
 
-        GoalsHelper::renderDashHeader($relativeLinks, $can_manage, $tmpl, $featured_goals, $featured_plans, $goals_count, $plans_count, $stages_count, $goalstemplates_count, $planstemplates_count, $done_goals, $done_plans, $featuredActive, $goalsActive, $plansActive, $achievementsActive);
+        GoalsHelperFE::renderDashHeader($relativeLinks, $can_manage, $tmpl, $featured_goals, $featured_plans, $goals_count, $plans_count, $stages_count, $goalstemplates_count, $planstemplates_count, $done_goals, $done_plans, $featuredActive, $goalsActive, $plansActive, $achievementsActive);
     }
 
     protected function makeDashLink($vars=array(), $relativeLinks='false'){
@@ -258,7 +258,7 @@ class GoalsHelper
 
     protected function renderDashHeader($relativeLinks, $can_manage = false, $tmpl, $featured_goals, $featured_plans, $goals_count, $plans_count, $stages_count, $goalstemplates_count, $planstemplates_count, $done_goals, $done_plans, $featuredActive = 'active', $goalsActive = '', $plansActive = '', $achievementsActive = ''){
 
-        $settings = GoalsHelper::getSettings();
+        $settings = GoalsHelperFE::getSettings();
         ?>
         <div class="navbar">
             <div class="navbar-inner">
@@ -447,7 +447,7 @@ class GoalsHelper
 
         foreach ($habits as $habit) {
 
-            $log = GoalsHelper::getHabitLog($habit->id);
+            $log = GoalsHelperFE::getHabitLog($habit->id);
 
             if ($log) {
 
@@ -1007,7 +1007,7 @@ class GoalsHelper
 
     public static function getPlanTasksCount($pid = 0, $done = 0)
     {
-        $stages = GoalsHelper::getStages($pid);
+        $stages = GoalsHelperFE::getStages($pid);
         if (count($stages)) {
             $str = '';
             foreach ($stages as $stage) {
@@ -1034,7 +1034,7 @@ class GoalsHelper
 
     public static function getPlanTasks($pid = 0, $done = 0)
     {
-        $stages = GoalsHelper::getStages($pid);
+        $stages = GoalsHelperFE::getStages($pid);
         if (count($stages)) {
             $str = '';
             foreach ($stages as $stage) {
@@ -1302,7 +1302,7 @@ class GoalsHelper
     function showMilistones($milistones)
 
     {
-        $settings = GoalsHelper::getSettings();
+        $settings = GoalsHelperFE::getSettings();
         $date_format = JText::_('DATE_FORMAT_LC3');
         
         $tmpl = JRequest::getVar('tmpl');
@@ -1418,7 +1418,7 @@ class GoalsHelper
 
     {
 
-        $settings = GoalsHelper::getSettings();
+        $settings = GoalsHelperFE::getSettings();
         $date_format = JText::_('DATE_FORMAT_LC3');
 
         $tmpl = JRequest::getVar('tmpl');
@@ -2531,7 +2531,7 @@ class GoalsHelper
 
         $document = JFactory::getDocument();
 
-        $settings = GoalsHelper::getSettings();
+        $settings = GoalsHelperFE::getSettings();
 
         if ($settings->include_jquery) {
 

@@ -17,7 +17,7 @@ window.addEvent('domready',function() {
 });
 </script>
  <div class="gl_dashboard">
- <?php GoalsHelper::showDashHeader('COM_MY_GOALS',1); ?>
+ <?php GoalsHelperFE::showDashHeader('COM_MY_GOALS',1); ?>
 
 <form action="<?php echo JRoute::_('index.php?option=com_goals&view=goals'); ?>" method="post" name="adminForm" >
  <div class="gl_goals">

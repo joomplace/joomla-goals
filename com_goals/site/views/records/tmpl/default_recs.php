@@ -23,7 +23,7 @@ function generateRecordActButtons($record){
     if($own){
         $html[] ='<div class="btn-group">';
         $html[] ='<a type="button" class="btn" href="'.JRoute::_(GoalsHelperRoute::buildLink(array('view'=>'editrecord','id'=>(int)$record->id,'gid'=>(int)$record->gid))).'">'. JText::_('COM_GOAL_REC_EDITBUTTON').'</a>';
-        $html[] ='<input type="button" class="btn" onclick="if (confirm(\''.JText::_('COM_GOALS_DELETE_REC_MESS').'\'))goalgoto(\''.JRoute::_(GoalsHelperRoute::buildLink(array('task'=>'record.delete','id'=>(int)$record->id,'return'=>GoalsHelper::getReturnURL()))).'\')" value="'.JText::_('COM_GOALS_DELETE_RECORD').'" />';
+        $html[] ='<input type="button" class="btn" onclick="if (confirm(\''.JText::_('COM_GOALS_DELETE_REC_MESS').'\'))goalgoto(\''.JRoute::_(GoalsHelperRoute::buildLink(array('task'=>'record.delete','id'=>(int)$record->id,'return'=>GoalsHelperFE::getReturnURL()))).'\')" value="'.JText::_('COM_GOALS_DELETE_RECORD').'" />';
         $html[] ='</div>';
     }
     return implode('',$html);

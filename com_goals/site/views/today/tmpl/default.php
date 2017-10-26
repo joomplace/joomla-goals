@@ -116,8 +116,8 @@ defined('_JEXEC') or die('Restricted access');
                     <ul class="goals-formedlist  goals-toggle-list goals-overdue tab-pane" id="overdue">
 
                         <?php foreach($this->overdue_tasks as $ov_task) {
-                        $left = GoalsHelper::date_diff(date('Y-m-d', time()), $ov_task->date);
-                        $leftstr = GoalsHelper::getDateLeft($left);
+                        $left = GoalsHelperFE::date_diff(date('Y-m-d', time()), $ov_task->date);
+                        $leftstr = GoalsHelperFE::getDateLeft($left);
 
                         ?>
                         <li>

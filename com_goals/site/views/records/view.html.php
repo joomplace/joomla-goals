@@ -21,12 +21,12 @@ class GoalsViewRecords extends JViewLegacy
 			$this->recs		= $recs = $this->get('Items');
 			$this->pagination	= $this->get('Pagination');
 
-			$settings = GoalsHelper::getSettings();
+			$settings = GoalsHelperFE::getSettings();
         	$this->settings = $settings;
 
             foreach($this->recs as &$rec){
-                $rec->cfields = GoalsHelper::getCustomTaskFields($rec->cid, $rec->id);
-                $rec->ufields = GoalsHelper::getCustomTaskUserFields($rec->gid, $rec->id);
+                $rec->cfields = GoalsHelperFE::getCustomTaskFields($rec->cid, $rec->id);
+                $rec->ufields = GoalsHelperFE::getCustomTaskUserFields($rec->gid, $rec->id);
             }
 
 			if (count($errors = $this->get('Errors'))) { JError::raiseWarning(500, implode("\n", $errors));	return false;}

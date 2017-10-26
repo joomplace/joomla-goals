@@ -23,11 +23,11 @@ class GoalsViewRecord extends JViewLegacy
 			$this->recs		= $recs = $this->get('Items');
 			if (isset($recs[0])) $this->rec	= $recs[0]; else $this->rec=null;
 
-			$settings = GoalsHelper::getSettings();
+			$settings = GoalsHelperFE::getSettings();
         	$this->settings = $settings;
 
-			if($this->rec) $this->cfields = $cfields = GoalsHelper::getCustomTaskFields($this->rec->cid, $this->rec->id);
-			if($this->rec) $this->ufields = $ufields = GoalsHelper::getCustomTaskUserFields($this->rec->gid, $this->rec->id);
+			if($this->rec) $this->cfields = $cfields = GoalsHelperFE::getCustomTaskFields($this->rec->cid, $this->rec->id);
+			if($this->rec) $this->ufields = $ufields = GoalsHelperFE::getCustomTaskUserFields($this->rec->gid, $this->rec->id);
 
 			//echo 'SMT DEBUG: <pre>'; print_R($cfields); echo '</pre>';
 			//echo 'SMT DEBUG: <pre>'; print_R($ufields); echo '</pre>';

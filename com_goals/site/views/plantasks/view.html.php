@@ -30,7 +30,7 @@ class GoalsViewPlantasks extends JViewLegacy
                 $this->active = array('plan' => $task->pid, 'stage' => $task->sid, 'task' => $task->id);
             }
 /*
-			$settings = GoalsHelper::getSettings();
+			$settings = GoalsHelperFE::getSettings();
         	$this->settings = $settings;
 */
             foreach($this->plans as &$plan){
@@ -38,12 +38,12 @@ class GoalsViewPlantasks extends JViewLegacy
                 $all = 0;
                 $done = 0;
                 foreach($plan->stages as &$stage){
-                    $done+= $stage->tasks_count['done'] = GoalsHelper::getStageTasksCount($stage->id,true);
+                    $done+= $stage->tasks_count['done'] = GoalsHelperFE::getStageTasksCount($stage->id,true);
                     $all+= $stage->tasks_count['all']= count($stage->tasks);
                     if($stage->tasks){
                         foreach($stage->tasks as &$sta){
-                            $sta->cfields = GoalsHelper::getCustomTaskFieldsPlans($plan->cid, $sta->id);
-                            $sta->ufields = GoalsHelper::getCustomTaskUserFieldsPlans($plan->id, $sta->id);
+                            $sta->cfields = GoalsHelperFE::getCustomTaskFieldsPlans($plan->cid, $sta->id);
+                            $sta->ufields = GoalsHelperFE::getCustomTaskUserFieldsPlans($plan->id, $sta->id);
                         }
                     }
                 }

@@ -16,7 +16,7 @@ class GoalsModelToday extends JModelList
     {
         // Initialise variables.
         $app	= JFactory::getApplication();
-        $settings	= GoalsHelper::getSettings();
+        $settings	= GoalsHelperFE::getSettings();
 
         $l = $app->getCfg('list_limit');
         if (isset($settings->goals_dashboard_count)) $l = (int) $settings->goals_dashboard_count;
@@ -47,7 +47,7 @@ class GoalsModelToday extends JModelList
 
     public function getRecords()
     {
-        $settings	= GoalsHelper::getSettings();
+        $settings	= GoalsHelperFE::getSettings();
         $db	= JFactory::getDbo();
         $user = JFactory::getUser();
         $query	= $db->getQuery(true);
@@ -62,7 +62,7 @@ class GoalsModelToday extends JModelList
 
     public function getTasks()
     {
-        $settings	= GoalsHelper::getSettings();
+        $settings	= GoalsHelperFE::getSettings();
         $db	= JFactory::getDbo();
         $user = JFactory::getUser();
         $query	= $db->getQuery(true);
@@ -77,7 +77,7 @@ class GoalsModelToday extends JModelList
     }
     public function getOverdueTasks()
     {
-        $settings	= GoalsHelper::getSettings();
+        $settings	= GoalsHelperFE::getSettings();
         $db	= JFactory::getDbo();
         $user = JFactory::getUser();
         $query	= $db->getQuery(true);
@@ -110,6 +110,6 @@ class GoalsModelToday extends JModelList
 
     public function getHabitLog($id=0)
     {
-        return GoalsHelper::getHabitLog($id);
+        return GoalsHelperFE::getHabitLog($id);
     }
 }

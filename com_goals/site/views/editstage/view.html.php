@@ -11,6 +11,8 @@ defined('_JEXEC') or die;
 
 jimport('joomla.application.component.view');
 
+include_once(JPATH_COMPONENT . '/helpers/goals.php');
+
 class GoalsViewEditStage extends JViewLegacy
 {
 	protected $form;

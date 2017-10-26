@@ -24,7 +24,7 @@ class GoalsViewAllUserfields extends JViewLegacy
 
 
 			if (count($errors = $this->get('Errors'))) { JError::raiseWarning(500, implode("\n", $errors));	return false;}
-			if (!GoalsHelper::getSettings()->allow_userfields) { JError::raiseWarning(404, JText::_('COM_GOALS_RESTRICTED'));	return false;}
+			if (!GoalsHelperFE::getSettings()->allow_userfields) { JError::raiseWarning(404, JText::_('COM_GOALS_RESTRICTED'));	return false;}
 
 			JHTML::_('behavior.tooltip');
 

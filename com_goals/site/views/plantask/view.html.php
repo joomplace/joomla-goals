@@ -23,8 +23,8 @@ class GoalsViewPlanTask extends JViewLegacy
 			$this->recs		= $recs = $this->get('Items');
 			if (isset($recs[0])) $this->rec	= $recs[0]; else $this->rec=null;
 
-			$this->cfields = $cfields = GoalsHelper::getCustomTaskFieldsPlans($this->rec->cid, $this->rec->id);
-			$this->ufields = $ufields = GoalsHelper::getCustomTaskUserFieldsPlans($this->rec->pid, $this->rec->id);
+			$this->cfields = $cfields = GoalsHelperFE::getCustomTaskFieldsPlans($this->rec->cid, $this->rec->id);
+			$this->ufields = $ufields = GoalsHelperFE::getCustomTaskUserFieldsPlans($this->rec->pid, $this->rec->id);
 			if (count($errors = $this->get('Errors'))) { JError::raiseWarning(500, implode("\n", $errors));	return false;}
 
 			JHTML::_('behavior.tooltip');

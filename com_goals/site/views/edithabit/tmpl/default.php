@@ -73,22 +73,22 @@ if (isset($this->item->id)) $old=true;
                     	        for ( $i = 1, $n = 7; $i < $n; $i++ )
                     	        {
                     	            ?>
-                    	            <td><label style="min-width:10px !important;" for="<?php echo GoalsHelper::dayToStr($i,true);?>"><?php echo GoalsHelper::dayToStr($i,true);?></label></td>
+                    	            <td><label style="min-width:10px !important;" for="<?php echo GoalsHelperFE::dayToStr($i,true);?>"><?php echo GoalsHelperFE::dayToStr($i,true);?></label></td>
                     	            <?php
                     	        }
                     	        ?>
-                    	        <td><label style="min-width:10px !important;" for="<?php echo GoalsHelper::dayToStr(0,true);?>"><?php echo GoalsHelper::dayToStr(0,true);?></label></td>
+                    	        <td><label style="min-width:10px !important;" for="<?php echo GoalsHelperFE::dayToStr(0,true);?>"><?php echo GoalsHelperFE::dayToStr(0,true);?></label></td>
                     	    </tr>
                     	    <tr>
                     	    <?php
                     	        for ( $i = 1, $n = 7; $i < $n; $i++ )
                     	        {
                     	            ?>
-                    	                <td><input id="<?php echo GoalsHelper::dayToStr($i,true);?>" type="checkbox" class="checkbox" name="<?php echo GoalsHelper::dayToStr($i);?>" value="<?php echo $i;?>"  value="<?php echo $i;?>" <?php if (in_array($i, $days)) echo ' checked="checked"'?> />
+                    	                <td><input id="<?php echo GoalsHelperFE::dayToStr($i,true);?>" type="checkbox" class="checkbox" name="<?php echo GoalsHelperFE::dayToStr($i);?>" value="<?php echo $i;?>"  value="<?php echo $i;?>" <?php if (in_array($i, $days)) echo ' checked="checked"'?> />
                     	            <?php
                     	        }
                     	        ?>
-                    	        <td><input id="<?php echo GoalsHelper::dayToStr(0,true);?>" type="checkbox" class="checkbox" name="<?php echo GoalsHelper::dayToStr(0);?>"  value="7" <?php if (in_array('7', $days)) echo ' checked="checked"'?>/></td>
+                    	        <td><input id="<?php echo GoalsHelperFE::dayToStr(0,true);?>" type="checkbox" class="checkbox" name="<?php echo GoalsHelperFE::dayToStr(0);?>"  value="7" <?php if (in_array('7', $days)) echo ' checked="checked"'?>/></td>
                     	    </tr>
                     	</table>
                     </div>

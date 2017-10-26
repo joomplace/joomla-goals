@@ -54,7 +54,7 @@ class GoalsViewHabits extends JViewLegacy
 
         $this->pagination = $this->get('Pagination');
 
-        $this->params = GoalsHelper::getSettings();
+        $this->params = GoalsHelperFE::getSettings();
 
 
 
@@ -86,7 +86,7 @@ class GoalsViewHabits extends JViewLegacy
 
 
 
-                $completes = GoalsHelper::getHabitLog($hab->id);
+                $completes = GoalsHelperFE::getHabitLog($hab->id);
 
                 if ($completes) {
 
@@ -128,7 +128,7 @@ class GoalsViewHabits extends JViewLegacy
 
 
 
-        if (GoalsHelper::getJoomla3Vesion()) {
+        if (GoalsHelperFE::getJoomla3Vesion()) {
 
             JHtml::_('jquery.framework');
 

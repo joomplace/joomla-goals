@@ -10,7 +10,7 @@ defined('_JEXEC') or die('Restricted access');
 ?>
 <div id="goals-wrap">
  <div class="gl_dashboard">
-	<?php GoalsHelper::showDashHeader();
+	<?php GoalsHelperFE::showDashHeader();
 	?>
 	<div id="main">
 		<?php  echo $this->loadTemplate('cal'); ?>

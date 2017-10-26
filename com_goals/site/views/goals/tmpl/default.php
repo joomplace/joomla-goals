@@ -50,7 +50,7 @@ if($search || $category){
 
 <div id="goals-wrap" class="row-fluid">
     <div class="gl_dashboard span12">
-        <?php GoalsHelper::showDashHeader('','active','',''); ?>
+        <?php GoalsHelperFE::showDashHeader('','active','',''); ?>
 
         <div class="well">
 

@@ -22,14 +22,14 @@ class GoalsViewGoal extends JViewLegacy
 		$this->state	= $this->get('State');
 		$this->goal		= $goal = $this->get('Items');
 		$this->user 	= $user = JFactory::getUser(JFactory::getApplication()->input->get('user',null));
-        $this->return   = GoalsHelper::getReturnURL();
+        $this->return   = GoalsHelperFE::getReturnURL();
 
         if ($this->user->id!=$this->goal[0]->uid) {
             JError::raiseWarning(403, JText::_('COM_GOALS_ERROR_ACCESS'));
             return null;
         }
 
-        $settings = GoalsHelper::getSettings();
+        $settings = GoalsHelperFE::getSettings();
         $this->settings = $settings;
 
 		if (count($errors = $this->get('Errors'))) {
@@ -41,18 +41,18 @@ class GoalsViewGoal extends JViewLegacy
 
 		if (sizeof($goal)) {
 			$this->goal			 = $goal = $goal[0];
-			$goal->milistones 	 = GoalsHelper::getMilistones($goal->id);
-			$goal->records 	  	 = GoalsHelper::getRecords($goal->id);
-            $goal->summary       = GoalsHelper::calculateGoal($goal->records, $goal->start, $goal->finish)->summary;
+			$goal->milistones 	 = GoalsHelperFE::getMilistones($goal->id);
+			$goal->records 	  	 = GoalsHelperFE::getRecords($goal->id);
+            $goal->summary       = GoalsHelperFE::calculateGoal($goal->records, $goal->start, $goal->finish)->summary;
 			$goal->records_count = sizeof($goal->records);
 			$goal->percent 		 = 0;
 			if ($goal->records_count) {
-				$goal = GoalsHelper::getPercents($goal);
+				$goal = GoalsHelperFE::getPercents($goal);
 			}
 
 			//Date away late
-			$left = GoalsHelper::date_diff($nowdate, $goal->deadline);
-			$leftstr = GoalsHelper::getDateLeft($left);
+			$left = GoalsHelperFE::date_diff($nowdate, $goal->deadline);
+			$leftstr = GoalsHelperFE::getDateLeft($left);
 			$goal->left = '('.$leftstr.' '.$left['lateoraway'].')';
 
 			//Statuses
@@ -61,12 +61,12 @@ class GoalsViewGoal extends JViewLegacy
 
 				foreach ( $goal->milistones as $mil ) {
 					//Date away late
-					$left = GoalsHelper::date_diff($nowdate, $mil->duedate);
-					$leftstr = GoalsHelper::getDateLeft($left);
+					$left = GoalsHelperFE::date_diff($nowdate, $mil->duedate);
+					$leftstr = GoalsHelperFE::getDateLeft($left);
 					$mil->left = '('.$leftstr.' '.$left['lateoraway'].')';
 
 					if ($left['lateoraway'] == 'away' && $mil->duedate > $nowdate) {
-						$mil->leftstatus = GoalsHelper::getStatusLeft($left);
+						$mil->leftstatus = GoalsHelperFE::getStatusLeft($left);
 					} else {
 						$mil->leftstatus = 4;
 					}

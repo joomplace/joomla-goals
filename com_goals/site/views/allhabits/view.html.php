@@ -54,7 +54,7 @@ class GoalsViewAllHabits extends JViewLegacy
 
 			$this->pagination	= $this->get('Pagination');
 
-            $this->params = GoalsHelper::getSettings();
+            $this->params = GoalsHelperFE::getSettings();
 
             $this->startDate = JFactory::getDate()->toUnix()+$week*604800;
 
@@ -82,7 +82,7 @@ class GoalsViewAllHabits extends JViewLegacy
 
 
 
-                    $completes = GoalsHelper::getHabitLog($hab->id);
+                    $completes = GoalsHelperFE::getHabitLog($hab->id);
 
 
 

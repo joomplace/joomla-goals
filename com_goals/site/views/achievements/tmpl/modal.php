@@ -22,7 +22,7 @@ defined('_JEXEC') or die('Restricted access');
 
  <div class="gl_dashboard">
 
- <?php GoalsHelper::showDashHeader('COM_MY_GOALS',1); ?>
+ <?php GoalsHelperFE::showDashHeader('COM_MY_GOALS',1); ?>
 
 
 

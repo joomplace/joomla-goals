@@ -122,7 +122,7 @@ if(count($this->plans)){
                             $state_btn = "<button type='submit'  class='btn btn-success change-state'>Complete</button>";
                             $state = "";
                         }
-                        $return_url = GoalsHelper::getReturnURL(null, array('view'=>'plantask','id'=>$task->id));
+                        $return_url = GoalsHelperFE::getReturnURL(null, array('view'=>'plantask','id'=>$task->id));
                         echo JHtml::_('bootstrap.addSlide', $stage->id.'task-slide', '<div class="row-fluid"><div class="span9">'.$state.JText::_($task->title).'</div><div class="span3 text-right">'.$date.'</div></div>', 'task'.$task->id);
 
                         ?>

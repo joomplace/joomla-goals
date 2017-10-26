@@ -193,7 +193,7 @@ class GoalsControllerHabit extends JControllerForm
 		$uid 		= JRequest::getInt('u',0);
 		$cal_start 	= JRequest::getVar('stc');
 		$cal_end 	= JRequest::getVar('ecl');
-		$format 	= GoalsHelper::getSettings()->chart_date_format;
+		$format 	= GoalsHelperFE::getSettings()->chart_date_format;
 		$format_s 	= $format ? $format : '%d-%m-%y'; // format_s - old variable with notice
 		$format 	= '%d-%m-%Y';
 		$db 		= JFactory::getDbo();
@@ -266,7 +266,7 @@ class GoalsControllerHabit extends JControllerForm
 			}
 			if ($dates[$k]) {
 				$jdate 		= new JDate($dates[$k]);
-                if (GoalsHelper::getJoomla3Vesion()) {
+                if (GoalsHelperFE::getJoomla3Vesion()) {
                   $format_s = str_replace('%','',$format_s);
                 }
 				$dates[$k] 	= JHtml::_('date', $dates[$k], JText::_('DATE_FORMAT_LC3'));

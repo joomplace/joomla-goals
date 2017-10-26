@@ -17,7 +17,7 @@ class GoalsModelhabithistory extends JModelList
 	{
 		parent::populateState();
 
-		$settings = GoalsHelper::getSettings();
+		$settings = GoalsHelperFE::getSettings();
 
 		// Filter on month, year
 		$this->setState('filter.cal_start', JRequest::getVar('cal_start'));

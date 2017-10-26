@@ -18,7 +18,7 @@ class GoalsModelPlans extends JModelList
 		$db		= $this->getDbo();
 		$user 	= JFactory::getUser();
 		//Select required fields from the categories.
-        $query = GoalsHelper::getListQuery("plans",$db, $user);
+        $query = GoalsHelperFE::getListQuery("plans",$db, $user);
 		return $query;
 
 	}

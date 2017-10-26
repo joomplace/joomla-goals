@@ -64,7 +64,7 @@ if (isset($this->item->id)) $old=true;
 	<input type="hidden" name="task" value="stage.edit" />
 	<input type="hidden" name="id" value="<?php echo ($old)?$this->item->id:0; ?>" />
 	<input type="hidden" name="gid" value="<?php echo (isset($this->item->pid))?$this->item->pid:0; ?>" />
-    <input type="hidden" name="return" value="<?php echo GoalsHelperGoals::getReturnURL(null,array('view'=>'plantasks','pid'=>JFactory::getApplication()->input->get('pid'))); ?>" />
+    <input type="hidden" name="return" value="<?php echo GoalsHelperFEGoals::getReturnURL(null,array('view'=>'plantasks','pid'=>JFactory::getApplication()->input->get('pid'))); ?>" />
 	<?php $tmpl = JRequest::getVar('tmpl'); if ($tmpl=='component') echo'<input type="hidden" name="tmpl" value="component" />';?>
 	<?php echo JHtml::_('form.token'); ?>
 </div>

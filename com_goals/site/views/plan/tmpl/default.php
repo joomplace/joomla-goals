@@ -25,8 +25,8 @@ $date_format = str_replace('%', '', $this->settings->chart_date_format);
       id="adminForm">
     <div class="gl_dashboard">
         <?php 
-			if($this->plan->percent<100) GoalsHelper::showDashHeader('','','active','');
-			else GoalsHelper::showDashHeader('','','','active');
+			if($this->plan->percent<100) GoalsHelperFE::showDashHeader('','','active','');
+			else GoalsHelperFE::showDashHeader('','','','active');
 		?>
         <div class="gl_goals goals-item">
             <?php

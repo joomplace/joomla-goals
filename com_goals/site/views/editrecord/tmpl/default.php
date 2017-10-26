@@ -21,7 +21,8 @@ function showJbField($form, $name='')
 	echo $form->getInput($name);
 	echo '</div>';
 }
-require_once( JPATH_COMPONENT.DIRECTORY_SEPARATOR.'helpers'.DIRECTORY_SEPARATOR.'goals_new.php' );
+
+include_once( JPATH_COMPONENT.DIRECTORY_SEPARATOR.'helpers'.DIRECTORY_SEPARATOR.'goals.php' );
 
 JHTML::_('behavior.modal', 'a.modal');
 $old = false;
@@ -77,7 +78,7 @@ function function_exists( function_name ) {
 
 </script>
     <div class="gl_dashboard">
-        <?php GoalsHelperGoals::showDashHeader('','active','',''); ?>
+        <?php GoalsHelperFE::showDashHeader('','active','',''); ?>
     </div>
 <form action="<?php echo JRoute::_('index.php?option=com_goals&view=editrecord&id='.(int) $this->item->id); ?>" method="post" name="adminForm" id="adminForm" class="form-validate"  enctype="multipart/form-data">
 <div class="gl_dashboard form-horizontal">

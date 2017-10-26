@@ -22,7 +22,7 @@ defined('_JEXEC') or die('Restricted access');
 
 <div id="goals-wrap">
 
- <?php GoalsHelper::showDashHeader('','','','active'); ?>
+ <?php GoalsHelperFE::showDashHeader('','','','active'); ?>
 
 
 

@@ -17,7 +17,7 @@ $tmpl = JRequest::getVar('tmpl'); if ($tmpl=='component') $tmpl='&tmpl=component
 	}
 </script>
  <div class="gl_dashboard">
-	<?php GoalsHelper::showDashHeader('','active','',''); ?>
+	<?php GoalsHelperFE::showDashHeader('','active','',''); ?>
  <div class="gl_goals">
 <?php
 $item = $this->rec;

@@ -26,14 +26,14 @@ class GoalsViewPlans extends JViewLegacy
 		if (count($errors = $this->get('Errors'))) {
 			JError::raiseWarning(500, implode("\n", $errors));	return false;
 		}
-        $settings = GoalsHelper::getSettings();
+        $settings = GoalsHelperFE::getSettings();
         $this->settings = $settings;
 
 		if (sizeof($plans)) {
 			foreach ($plans as $plan)	{
-                $plan->stages 	 = GoalsHelper::getStages($plan->id);
-                $plan->task_count = GoalsHelper::getPlanTasksCount($plan->id);
-                $plan->task_count_complete = GoalsHelper::getPlanTasksCount($plan->id, 1);
+                $plan->stages 	 = GoalsHelperFE::getStages($plan->id);
+                $plan->task_count = GoalsHelperFE::getPlanTasksCount($plan->id);
+                $plan->task_count_complete = GoalsHelperFE::getPlanTasksCount($plan->id, 1);
 				$plan->percent		 = 0;
 				if ($plan->task_count) {
 					$plan->percent 	= round($plan->task_count_complete/$plan->task_count*100);
@@ -41,12 +41,12 @@ class GoalsViewPlans extends JViewLegacy
                 $jdate = new JDate('now');
                 $nowdate = $jdate->__toString();
 
-                $tillleft = GoalsHelper::date_diff($nowdate, $plan->startup, 'start');
-                $tillleftstr = GoalsHelper::getDateLeft($tillleft);
+                $tillleft = GoalsHelperFE::date_diff($nowdate, $plan->startup, 'start');
+                $tillleftstr = GoalsHelperFE::getDateLeft($tillleft);
                 $plan->tillleft = '('.$tillleftstr.' '.$tillleft['lateoraway'].')';
 
-                $left = GoalsHelper::date_diff($nowdate, $plan->deadline);
-                $leftstr = GoalsHelper::getDateLeft($left);
+                $left = GoalsHelperFE::date_diff($nowdate, $plan->deadline);
+                $leftstr = GoalsHelperFE::getDateLeft($left);
                 $plan->left = '('.$leftstr.' '.$left['lateoraway'].')';
 
                 $date_ahead = date('Y-m-d', strtotime($plan->deadline)-(int)$settings->n_days_ahed*24*60*60);
