@@ -107,6 +107,7 @@ if (isset($this->item->id)) $old=true;
     <?php showJbField($this->form,'template'); ?>
     <?php showJbField($this->form,'featured'); ?>
     <input type="hidden" name="jform_tempid" value="<?php echo $this->tempid; ?>" />
+    <input type="hidden" name="jform[uid][]" value="<?php echo JFactory::getUser()->id; ?>" />
 	<input type="hidden" name="task" value="plan.edit" />
 	<input type="hidden" name="id" value="<?php echo ($old)?$this->item->id:0; ?>" />
 	<?php $tmpl = JRequest::getVar('tmpl'); if ($tmpl=='component') echo'<input type="hidden" name="tmpl" value="component" />';?>
