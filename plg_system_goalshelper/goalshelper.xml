@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="3.5" type="plugin" group="system" method="upgrade">
+	<name>plg_system_goalshelper</name>
+	<author>JoomPlace Team</author>
+	<creationDate>November 2017</creationDate>
+	<copyright>Copyright (C) 2005 - 2017 Open Source Matters. All rights reserved.</copyright>
+	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
+	<authorEmail>support@joomplace.com</authorEmail>
+	<authorUrl>www.joomplace.com</authorUrl>
+	<version>1.0.0</version>
+	<description>PLG_SYSTEM_GOALSHELPER_XML_DESCRIPTION</description>
+	<files>
+		<filename plugin="goalshelper">goalshelper.php</filename>
+		<folder>language</folder>
+	</files>
+	<languages>
+		<language tag="en-GB">en-GB.plg_system_goalshelper.ini</language>
+		<language tag="en-GB">en-GB.plg_system_goalshelper.sys.ini</language>
+	</languages>
+</extension>
