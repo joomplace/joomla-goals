@@ -16,13 +16,19 @@ defined('_JEXEC') or die;
  */
 class PlgSystemGoalshelper extends JPlugin
 {
-	public function onAfterInitialise()
-	{
-		if(JFactory::getApplication()->isClient('administrator')) {
-			include_once JPATH_ROOT.'/administrator/components/com_goals/helpers/goals.php';
-		} 
-		if(JFactory::getApplication()->isClient('site')) {
+    public function onAfterInitialise()
+    {
+        $app = JFactory::getApplication();
+
+        if( $app->input->get('option', '', 'get') != 'com_goals' ){
+            return;
+        }
+
+        if($app->isClient('administrator')) {
+            include_once JPATH_ROOT.'/administrator/components/com_goals/helpers/goals.php';
+        }
+        else if($app->isClient('site')) {
             include_once JPATH_ROOT.'/components/com_goals/helpers/goals.php';
-		}
-	}
+        }
+    }
 }
