@@ -705,8 +705,6 @@ content: '';
 
 }
 
-
-
 .goals-content .goals-drag:hover .goals-right-hover {
 
     opacity: 1;
@@ -2518,4 +2516,11 @@ div#goals-wrap .pagination {
 }
 .goals-content .goals-drag, .goals-item-frame {
     border: 1px solid #ccc!important;
+}
+
+@media all and (max-width: 1024px){
+    .goals-content .goals-right-hover {
+        opacity: 1;
+        visibility: visible;
+    }
 }
