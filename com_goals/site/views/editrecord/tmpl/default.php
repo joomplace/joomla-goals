@@ -22,8 +22,6 @@ function showJbField($form, $name='')
 	echo '</div>';
 }
 
-include_once( JPATH_COMPONENT.DIRECTORY_SEPARATOR.'helpers'.DIRECTORY_SEPARATOR.'goals.php' );
-
 JHTML::_('behavior.modal', 'a.modal');
 $old = false;
 if (isset($this->item->id)) $old=true;
