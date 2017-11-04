@@ -705,6 +705,8 @@ content: '';
 
 }
 
+
+
 .goals-content .goals-drag:hover .goals-right-hover {
 
     opacity: 1;
@@ -2518,7 +2520,14 @@ div#goals-wrap .pagination {
     border: 1px solid #ccc!important;
 }
 
-@media all and (max-width: 1024px){
+@media all and (max-width: 1024px) and (orientation: landscape){
+    .goals-content .goals-right-hover {
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+@media all and (max-width: 768px) and (orientation: portrait){
     .goals-content .goals-right-hover {
         opacity: 1;
         visibility: visible;
