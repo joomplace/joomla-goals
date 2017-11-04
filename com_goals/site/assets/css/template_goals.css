@@ -681,7 +681,7 @@ content: '';
 
 .goals-content .goals-right-hover{
 
-    opacity: 0;
+    opacity: 1;
 
     width:40%;
 
@@ -689,7 +689,7 @@ content: '';
 
     padding-top: 20px;
 
-    visibility: hidden;
+    visibility: visible;
 
     margin-left: 5%;
 
