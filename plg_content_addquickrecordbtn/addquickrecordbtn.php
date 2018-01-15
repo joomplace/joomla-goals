@@ -14,7 +14,7 @@ class PlgContentAddquickrecordbtn extends JPlugin
 
     public function onContentAfterDisplay($context, &$row, &$params, $page = 0)
     {
-        JLoader::register('GoalsHelper', 'components/com_goals/helpers/goals.php');
+        JLoader::register('GoalsHelper', JPATH_BASE.'components/com_goals/helpers/goals.php');
         JLoader::load('GoalsHelper');
 
         $form = "<form class=\"row\" action=\"".JRoute::_('index.php?option=com_goals&view=goal&task=record.save')."\" method=\"post\">
