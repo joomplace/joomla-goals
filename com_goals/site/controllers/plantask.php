@@ -43,7 +43,7 @@ class GoalsControllerPlanTask extends JControllerForm
         return $model->getCustomfieldsTable($pid,$tid);
 	}
 
-	function save()
+	function save($key = null, $urlVar = null)
 	{
 		$app		= JFactory::getApplication();
 		$context	= "$this->option.edit.$this->context";
@@ -94,7 +94,7 @@ class GoalsControllerPlanTask extends JControllerForm
 		$this->setRedirect(JRoute::_('index.php?option='.$this->option.'&view='.$this->view_list.'&pid='.$pid.$sid.$tmpl, false));
 	}
 
-	 function cancel()
+	 function cancel($key = null)
 	 {
          $app = JFactory::getApplication();
 	 	$tmpl = JRequest::getVar('tmpl'); if ($tmpl=='component') $tmpl='&tmpl=component'; else $tmpl='';

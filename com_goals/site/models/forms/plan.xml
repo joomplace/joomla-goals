@@ -18,8 +18,7 @@
 			required="true"
 			default=""
 		/>
-		
-		
+
 		<field
 			name="cid"
 			type="sql"
@@ -32,6 +31,14 @@
 			required="true"
 			default=""
 		/>
+
+		<field
+			name="uid"
+			type="user"
+			label="COM_GOALS_USER"
+			description="COM_GOALS_USER_DESC"
+		/>
+
         <field
                 name="featured"
                 type="list"

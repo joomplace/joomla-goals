@@ -33,7 +33,7 @@ class GoalsControllerPlan extends JControllerForm
         return $model->upload();
     }
 
-    function save()
+    function save($key = null, $urlVar = null)
     {
         $app = JFactory::getApplication();
         $context = "$this->option.edit.$this->context";
@@ -44,8 +44,6 @@ class GoalsControllerPlan extends JControllerForm
 
     function delete()
     {
-
-
         // Get items to remove from the request.
         $id = JRequest::getVar('id', array(), '', 'array');
 
@@ -96,7 +94,7 @@ class GoalsControllerPlan extends JControllerForm
         $this->setRedirect(JRoute::_('index.php?option=' . $this->option . '&view=' . $this->view_list . $tmpl, false));
     }
 
-    function cancel()
+    function cancel($key = null)
     {
         $mainframe = JFactory::getApplication();
         $id = JRequest::getInt('id');

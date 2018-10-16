@@ -17,7 +17,7 @@ class GoalsModelEditplan extends GoalsModelPlan
 	{
 		return JTable::getInstance($type, $prefix, $config);
 	}
-    public function getItem() {
+    public function getItem($pk = null) {
         $get = JRequest::get('get');
         if (isset($get['tempid'])) {
             $db = JFactory::getDbo();
