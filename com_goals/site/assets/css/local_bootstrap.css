@@ -2920,6 +2920,7 @@ div#goals-wrap .nav-pills:after {
 div#goals-wrap .nav-tabs > li,
 div#goals-wrap .nav-pills > li {
   float: left;
+  width: auto;
 }
 div#goals-wrap .nav-tabs > li > a,
 div#goals-wrap .nav-pills > li > a {
