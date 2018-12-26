@@ -217,11 +217,10 @@ class GoalsControllerGoal extends JControllerForm
 				}
 			}
         }
-        if(count($values)>=10){
-			$every = floor(count($values)/10)+2;
-			for($i=0; $i<=count($values); $i++){
-				if($i%$every!=0) $dates[$i]='';
-			}
+        if(count($values)>=8){
+            for($i=0; $i<=count($values); $i++){
+                if($i%2!=0) $dates[$i]='';
+            }
         }
 
         /* pChart library inclusions */
