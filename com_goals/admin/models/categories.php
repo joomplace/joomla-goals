@@ -19,7 +19,7 @@ class GoalsModelCategories extends JModelList
 		parent::__construct($config);
 	}
 	
-	protected function populateState()
+	protected function populateState($ordering = NULL, $direction = NULL)
 	{
 		$search = $this->getUserStateFromRequest('com_goals.filter.search', 'filter_search');
 		$this->setState('filter.search', $search);

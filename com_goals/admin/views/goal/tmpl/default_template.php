@@ -12,8 +12,17 @@
 defined('_JEXEC') or die('Restricted Access');
 // load tooltip behavior
 JHtml::_('behavior.tooltip');
+JHtml::_('behavior.formvalidation');
 JFactory::getDocument()->addStyleSheet(JURI::root() . 'administrator/components/com_goals/assets/css/goals.css');
 ?>
+<script type="text/javascript">
+    Joomla.submitbutton = function(task)
+    {
+        if (task == 'goal.cancel') {
+            Joomla.submitform(task, document.getElementById('item-form'));
+        }
+    }
+</script>
 <?php echo $this->loadTemplate('menu');?>
 <table class="admin">
     <tbody>
@@ -32,6 +41,8 @@ JFactory::getDocument()->addStyleSheet(JURI::root() . 'administrator/components/
                         ?>
                         <input type="submit" value="<?php echo JText::_('COM_GOALS_SELECT_GOAL_TEMPLATE_CREATE_BUTTON') ?>">
                     </select>
+                    <input type="hidden" name="task" value="" />
+                    <?php echo JHtml::_('form.token'); ?>
                 </form>
             </fieldset>
         </td>

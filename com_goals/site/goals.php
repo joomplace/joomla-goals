@@ -17,7 +17,7 @@ global $viewer_user;
 $viewed_user = $viewer_user = JFactory::getUser();
 
 $document = JFactory::getDocument();
-$componentParams = &JComponentHelper::getParams('com_goals');
+$componentParams = JComponentHelper::getParams('com_goals');
 $param = $componentParams->get('include_local_bootstrap', 0); 
 if($param || JFactory::getApplication()->input->get('tmpl','')=='component'){
 	$document->addStyleSheet(JURI::root().'components/com_goals/assets/css/local_bootstrap.css');

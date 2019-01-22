@@ -29,7 +29,7 @@ class GoalsTableTask extends JTable
 		if (!$this->id) $isnew = true;
 		$user = JFactory::getUser();
 
-        $componentParams = &JComponentHelper::getParams('com_goals');
+        $componentParams = JComponentHelper::getParams('com_goals');
         $this->result_mode = $componentParams->get('result_mode', 1);
 
         if($this->date == '0000-00-00 00:00:00' || $this->date =='') $this->date = date("Y-m-d H:i:s");

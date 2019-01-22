@@ -118,7 +118,7 @@ class GoalsHelper
         }
     }
 
-    public function dayToStr($day, $abbr = false)
+    public static function dayToStr($day, $abbr = false)
     {
         switch ($day) {
             case 0:
@@ -146,7 +146,8 @@ class GoalsHelper
         return $params;
     }
 
-    public function calculateGoal($data = array(), $start = 0, $finish = 0){
+    public static function calculateGoal($data = array(), $start = 0, $finish = 0)
+    {
         $response = new stdClass();
         $response->summary = $start;
         $response->dinamic = array();
@@ -225,8 +226,8 @@ class GoalsHelper
         GoalsHelper::renderDashHeader($relativeLinks, $can_manage, $tmpl, $featured_goals, $featured_plans, $goals_count, $plans_count, $stages_count, $goalstemplates_count, $planstemplates_count, $done_goals, $done_plans, $featuredActive, $goalsActive, $plansActive, $achievementsActive);
     }
 
-    protected function makeDashLink($vars=array(), $relativeLinks='false'){
-
+    protected static function makeDashLink($vars=array(), $relativeLinks='false')
+    {
         $router = JRouter::getInstance('site');
 		
         $query = $router->getVars();
@@ -256,8 +257,8 @@ class GoalsHelper
         return $link;
     }
 
-    protected function renderDashHeader($relativeLinks, $can_manage = false, $tmpl, $featured_goals, $featured_plans, $goals_count, $plans_count, $stages_count, $goalstemplates_count, $planstemplates_count, $done_goals, $done_plans, $featuredActive = 'active', $goalsActive = '', $plansActive = '', $achievementsActive = ''){
-
+    protected static function renderDashHeader($relativeLinks, $can_manage = false, $tmpl, $featured_goals, $featured_plans, $goals_count, $plans_count, $stages_count, $goalstemplates_count, $planstemplates_count, $done_goals, $done_plans, $featuredActive = 'active', $goalsActive = '', $plansActive = '', $achievementsActive = '')
+    {
         $settings = GoalsHelper::getSettings();
         ?>
         <div class="navbar">
@@ -328,7 +329,7 @@ class GoalsHelper
                                     <?php } ?>
                                 </ul>
                             </li>
-                            <?php if($settings->allow_userfields){ ?>
+                            <?php if(!empty($settings->allow_userfields) && $settings->allow_userfields){ ?>
                                 <li class="">
                                     <a href="<?php echo JRoute::_(GoalsHelperRoute::buildLink(array('view' => 'alluserfields', 'tmpl' => $tmpl))); ?>"
                                        title="<?php echo JText::_('COM_GOALS_TOPPANEL_SETTINGS')?>"><span class="icon-options"></span></a>
@@ -369,7 +370,7 @@ class GoalsHelper
 
     }
 
-    public function showHabitHeader($featuredActive = 'active', $allActive = '', $formedActive = '')
+    public static function showHabitHeader($featuredActive = 'active', $allActive = '', $formedActive = '')
     {
         JFactory::getDocument()->addScriptDeclaration('
     window.onload = setScreenClass;
@@ -565,10 +566,8 @@ class GoalsHelper
 
 
 
-    public function getCustomTaskFields($cid = 0, $tid = 0)
-
+    public static function getCustomTaskFields($cid = 0, $tid = 0)
     {
-
         //if (!$cid) return null;
 
         $db = JFactory::getDBO();
@@ -654,12 +653,8 @@ class GoalsHelper
 
     }
 
-
-
-    public function getCustomTaskUserFields($id = 0, $tid = 0)
-
+    public static function getCustomTaskUserFields($id = 0, $tid = 0)
     {
-
         if (!$id) return null;
 
         $db = JFactory::getDBO();
@@ -712,22 +707,12 @@ class GoalsHelper
 
         }
 
-
-
         return $cfields;
 
     }
 
-
-
-
-
-    public function getCustomTaskFieldsPlans($cid = 0, $tid = 0)
-
+    public static function getCustomTaskFieldsPlans($cid = 0, $tid = 0)
     {
-
-
-
         //if (!$cid) return null;
 
         $db = JFactory::getDBO();
@@ -807,18 +792,11 @@ class GoalsHelper
 
         }
 
-
-
         return $cfields;
-
     }
 
-
-
-    public function getCustomTaskUserFieldsPlans($id = 0, $tid = 0)
-
+    public static function getCustomTaskUserFieldsPlans($id = 0, $tid = 0)
     {
-
         if (!$id) return null;
 
         $db = JFactory::getDBO();
@@ -871,20 +849,11 @@ class GoalsHelper
 
         }
 
-
-
         return $cfields;
-
     }
 
-
-
-
-
     public static function getMilistones($gid = 0)
-
     {
-
         $db = JFactory::getDbo();
 
         $query = $db->getQuery(true);
@@ -899,10 +868,7 @@ class GoalsHelper
 
         $db->setQuery($query);
 
-
-
         return $db->loadObjectList();
-
     }
 
     // ="( it`s no mvc
@@ -977,13 +943,8 @@ class GoalsHelper
         }
     }
 
-
-
-
-    public function getRecords($gid = 0, $limit = 0)
-
+    public static function getRecords($gid = 0, $limit = 0)
     {
-
         $db = JFactory::getDbo();
 
         $query = $db->getQuery(true);
@@ -998,10 +959,7 @@ class GoalsHelper
 
         if (!$limit) $db->setQuery($query); else $db->setQuery($query, 0, $limit);
 
-
-
         return $db->loadObjectList();
-
     }
 
 
@@ -1071,38 +1029,18 @@ class GoalsHelper
         return $db->loadResult();
     }
 
-
-
-    public function getStatusLeft($left)
-
+    public static function getStatusLeft($left)
     {
-
         if ($left['w'] > 0 || $left['o'] > 0 || $left['y'] > 0) $status = 1;
-
-
-
         if ($left['o'] == 0 && $left['y'] == 0 && $left['w'] == 0) {
-
             if ($left['d'] > 2) $status = 2;
-
             if ($left['d'] < 3) $status = 3;
-
         }
-
-
-
         return $status;
-
     }
 
-
-
-
-
     public static function date_diff($date1, $date2)
-
     {
-
         $result = array();
 
         $result['lateoraway'] = 'late';
@@ -1241,12 +1179,8 @@ class GoalsHelper
 
     }
 
-
-
     public static function getDateLeft($left)
-
     {
-
         $leftstr = '';
 
         if ($left['y']) {
@@ -1299,8 +1233,7 @@ class GoalsHelper
 
 
 
-    function showMilistones($milistones)
-
+    public static function showMilistones($milistones)
     {
         $settings = GoalsHelper::getSettings();
         $date_format = JText::_('DATE_FORMAT_LC3');
@@ -1412,12 +1345,8 @@ class GoalsHelper
 
 
 
-
-
     public static function showStages($stages)
-
     {
-
         $settings = GoalsHelper::getSettings();
         $date_format = JText::_('DATE_FORMAT_LC3');
 
@@ -1527,11 +1456,8 @@ class GoalsHelper
     }
 
 
-
-    function showUserFieldsValues($custom_fields = null, $negative = false)
-
+    public static function showUserFieldsValues($custom_fields = null, $negative = false)
     {
-
         ob_start();
 
         ?>
@@ -2003,8 +1929,7 @@ class GoalsHelper
 
 
 
-    function showCustoGroupFieldsValues($custom_fields = null, $negative= false)
-
+    public static function showCustoGroupFieldsValues($custom_fields = null, $negative= false)
     {
         ?>
 
@@ -2470,9 +2395,7 @@ class GoalsHelper
 
 
     public static function getHabitsDaysHeader($day_start)
-
     {
-
         if ($day_start == 'm') {
 
             return array(
@@ -2518,17 +2441,11 @@ class GoalsHelper
         }
 
 
-
-
-
     }
 
 
-
-    public function getJsCssIncluded()
-
+    public static function getJsCssIncluded()
     {
-
         $document = JFactory::getDocument();
 
         $settings = GoalsHelper::getSettings();
@@ -2566,19 +2483,12 @@ class GoalsHelper
             $document->addStyleSheet(JURI::root() . 'components/com_goals/assets/css/bootstrap.css');
         }
 
-
-
     }
 
 
-
     public static function getCheckedHabit($id, $day)
-
     {
-
         //return 'checked="checked"';
-
-
 
         $db = JFactory::getDbo();
 
@@ -2608,21 +2518,12 @@ class GoalsHelper
 
         }
 
-
-
     }
 
 
-
     public static function getRequiredDayClass($id, $date)
-
     {
-
-
-
         $db = JFactory::getDbo();
-
-
 
         $query = $db->getQuery(true);
 
@@ -2666,49 +2567,32 @@ class GoalsHelper
 
         }
 
-
-
-
-
     }
-
 
 
     public static function isDisabled($dateCreated, $dateCheck)
-
     {
-
         if ($dateCreated > $dateCheck) {
-
             return 'style="visibility:hidden;"';
-
         } else {
-
             return null;
-
         }
-
     }
 
-    public static function getJoomla3Vesion() {
-
+    public static function getJoomla3Vesion()
+    {
         $arr = explode('.',JVERSION);
-
         if ($arr[0]==='3') {
-
             return true;
-
         } else {
-
             return false;
-
         }
-
     }
 	
 	// retrieves $object 
 	
-    public static function getPercents($goal) {
+    public static function getPercents($goal)
+    {
 		$negative = false;
 		//if($goal->finish < $goal->start) $negative = true;
 		$sum_val = $goal->start;
@@ -2802,7 +2686,8 @@ class GoalsHelper
         return base64_encode($url);
     }
 
-    public static function getListQuery($type, $db, $user = null, $params = array("is_complete"=>0)){
+    public static function getListQuery($type, $db, $user = null, $params = array("is_complete"=>0))
+    {
         if(!$user) $user = $GLOBALS["viewed_user"];
         switch($type){
             case "goals":
