@@ -13,6 +13,7 @@ $tmpl='';
 $spec_goal=JRequest::getInt('gid');
 
 function generateRecordActButtons($milistone){
+    $inparent='';
     if(JRequest::getVar('gid')) $inparent='&inparent=true';
     $tmpl = JRequest::getVar('tmpl'); if ($tmpl=='component') $tmpl='&tmpl=component'; else $tmpl='';
     $html = array();

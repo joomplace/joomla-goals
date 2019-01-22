@@ -59,7 +59,7 @@ abstract class GoalsHelperRoute
         return self::$dinasty;
     }
 
-    function str_replace_once($search, $replace, $text){
+    public static function str_replace_once($search, $replace, $text){
         $pos = strpos($text, $search);
         return $pos!==false ? substr_replace($text, $replace, $pos, strlen($search)) : $text;
     }
@@ -207,7 +207,7 @@ abstract class GoalsHelperRoute
                             if($query['view']=='editgoal'){
                                 $str = 'edit-goal';
                                 if(isset($query['id'])) $str.='-';
-                                $segments[] = $str.$query['id'];
+                                $segments[] = !empty($query['id']) ? $str.$query['id'] : $str;
                             }
                             else $segments[] = 'goal-'.$query['id'];
                             unset( $query['id'] );
@@ -217,7 +217,7 @@ abstract class GoalsHelperRoute
                             if($query['view']=='editplan'){
                                 $str = 'edit-plan';
                                 if(isset($query['id'])) $str.='-';
-                                $segments[] = $str.$query['id'];
+                                $segments[] = !empty($query['id']) ? $str.$query['id'] : $str;
                             }
                             else $segments[] = 'plan-'.$query['id'];
                             unset( $query['id'] );
@@ -405,29 +405,53 @@ abstract class GoalsHelperRoute
             }else
             */
             if(strpos($segments[$length],'milistone')!==false || strpos($segments[$length],'record')!==false){
-                $target = explode(':',$segments[$length-2]);
-                if(isset($target[1])) $vars['gid'] = $target[1];
+                if(($length-2) > 0) {
+                    $target = explode(':', $segments[$length - 2]);
+                    if (isset($target[1])) {
+                        $vars['gid'] = $target[1];
+                    }
+                }
             }
             if(!isset($vars['view'])){
                 $target = explode('-',$segments[$length]);
                 if(!isset($vars['view'])) $vars['view'] = str_replace(':','',$target[0]);
             }
 
-            $target = explode(':',$segments[$length-1]);
-            if(strpos($target[0],'goal')!==false){
-                if(!isset($vars['gid']) && !isset($vars['pid'])) if(isset($target[1])) $vars['gid'] = $target[1];
-            }else{
-                if(strpos($target[0],'stage')!==false){
-                    /*
-                    if(strpos($target[0],'stages')===false){
-                        $target = explode(':',$segments[$length-1]);
+            if(($length-1) > 0) {
+                $target = explode(':', $segments[$length - 1]);
+                if (strpos($target[0], 'goal') !== false) {
+                    if (!isset($vars['gid']) && !isset($vars['pid'])) {
+                        if (isset($target[1])) {
+                            $vars['gid'] = $target[1];
+                        }
                     }
-                    */
-                    if(!isset($vars['sid'])) if(isset($target[1])) $vars['sid'] = $target[1];
-                    $target = explode(':',$segments[$length-3]);
-                    if(!isset($vars['pid'])) if(isset($target[1])) $vars['pid'] = $target[1];
-                }else{
-                    if(!isset($vars['pid']) && !isset($vars['gid'])) if(isset($target[1])) $vars['pid'] = $target[1];
+                } else {
+                    if (strpos($target[0], 'stage') !== false) {
+                        /*
+                        if(strpos($target[0],'stages')===false){
+                            $target = explode(':',$segments[$length-1]);
+                        }
+                        */
+                        if (!isset($vars['sid'])) {
+                            if (isset($target[1])) {
+                                $vars['sid'] = $target[1];
+                            }
+                        }
+                        if(($length-3) > 0) {
+                            $target = explode(':', $segments[$length - 3]);
+                            if (!isset($vars['pid'])) {
+                                if (isset($target[1])) {
+                                    $vars['pid'] = $target[1];
+                                }
+                            }
+                        }
+                    } else {
+                        if (!isset($vars['pid']) && !isset($vars['gid'])) {
+                            if (isset($target[1])) {
+                                $vars['pid'] = $target[1];
+                            }
+                        }
+                    }
                 }
             }
 

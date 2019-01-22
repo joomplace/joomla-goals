@@ -111,7 +111,7 @@ class GoalsHelper
     }
 
 
-    public function getRecords($gid = 0, $limit = 0)
+    public static function getRecords($gid = 0, $limit = 0)
     {
 
         $db = JFactory::getDbo();
@@ -134,7 +134,7 @@ class GoalsHelper
 
     }
 
-    public function getPlan($id = 0)
+    public static function getPlan($id = 0)
     {
         if($id){
             $db = JFactory::getDbo();
@@ -147,7 +147,8 @@ class GoalsHelper
         }
         else return false;
     }
-    public function getGoal($id = 0)
+
+    public static function getGoal($id = 0)
     {
         if($id){
             $db = JFactory::getDbo();
@@ -161,7 +162,8 @@ class GoalsHelper
         else return false;
     }
 
-    public function updateGoal($id){
+    public static function updateGoal($id)
+    {
         $goal = new stdClass();
         $goal = GoalsHelper::getGoal($id);
         $goalTable = JTable::getInstance('goal', 'GoalsTable');
@@ -209,7 +211,8 @@ class GoalsHelper
         }
     }
 
-    public function updatePlan($id){
+    public static function updatePlan($id)
+    {
         $plan = new stdClass();
         $plan = GoalsHelper::getPlan($id);
         if($plan){
@@ -235,7 +238,8 @@ class GoalsHelper
         }
     }
 
-    public function calculateGoal($data = array(), $start = 0, $finish = 0){
+    public static function calculateGoal($data = array(), $start = 0, $finish = 0)
+    {
         $response = new stdClass();
         $response->summary = $start;
         $response->dinamic = array();
@@ -258,7 +262,8 @@ class GoalsHelper
         return $response;
     }
 
-    public function calculatePlan($stages = array(), $tasks = array()){
+    public static function calculatePlan($stages = array(), $tasks = array())
+    {
         $response = new stdClass();
         $response->summary = 0;
         foreach($stages as $stage){
@@ -281,7 +286,8 @@ class GoalsHelper
         return $response;
     }
 
-    public static function updateStage($id, $stage = null, $initiator = "plan"){
+    public static function updateStage($id, $stage = null, $initiator = "plan")
+    {
         if(!$stage){
             $initiator = "self";
             $stage = new stdClass();
@@ -333,7 +339,8 @@ class GoalsHelper
         return $db->loadObjectList();
     }
 
-    public function prepareFoldersStructure($path, $permissions = '0777'){
+    public static function prepareFoldersStructure($path, $permissions = '0777')
+    {
         jimport( 'joomla.filesystem.folder' );
         jimport('joomla.filesystem.file');
         $destination= explode(DIRECTORY_SEPARATOR , $path);
@@ -351,8 +358,8 @@ class GoalsHelper
         return true;
     }
 
-    public function processFile($folder = array('shared'), $selector = 'file_upload', $must_be = array()){
-
+    public static function processFile($folder = array('shared'), $selector = 'file_upload', $must_be = array())
+    {
         $response = new stdClass();
         $response->filename = false;
         $response->errors = array();
@@ -390,7 +397,7 @@ class GoalsHelper
         return $response;
     }
 
-    public function uploadFile($selector, $folder= 'shared')
+    public static function uploadFile($selector, $folder= 'shared')
     {
         $folder = array('com_goals', $folder, 'original');
         $file = GoalsHelper::processFile($folder,$selector,array('gif','jpeg','jpg','png'));
@@ -439,7 +446,7 @@ class GoalsHelper
 		return $params;
 	}
 	
-	public function getCustomCatFields($cid=0)
+	public static function getCustomCatFields($cid=0)
 	{
 		//if (!$cid) return null;
 		$db		= JFactory::getDBO();
@@ -511,12 +518,11 @@ class GoalsHelper
 				
 			}
 		}
-	return $groups;		
+	    return $groups;
 	}
 	
-	public function getCustomTaskFields($cid=0, $tid=0)
+	public static function getCustomTaskFields($cid=0, $tid=0)
 	{
-
 		//if (!$cid) return null;
 		$db		= JFactory::getDBO();
 		$cfields = array();		
@@ -562,12 +568,11 @@ class GoalsHelper
 							}				
 			}
 		}
-	return $cfields;		
+	    return $cfields;
 	}
 
-    public function getCustomTaskFieldsPlans($cid=0, $tid=0)
+    public static function getCustomTaskFieldsPlans($cid=0, $tid=0)
     {
-
         //if (!$cid) return null;
         $db		= JFactory::getDBO();
         $cfields = array();
@@ -615,7 +620,8 @@ class GoalsHelper
         }
         return $cfields;
     }
-	public function getCustomTaskUserFields($id=0, $tid=0)
+
+	public static function getCustomTaskUserFields($id=0, $tid=0)
 	{
 		if (!$id) return null;
 		$db		= JFactory::getDBO();
@@ -646,12 +652,10 @@ class GoalsHelper
 				}
 			}
 		}	
-	return $cfields;		
+	    return $cfields;
 	}
 
-
-
-    public function getCustomTaskUserFieldsPlans($id=0, $tid=0)
+    public static function getCustomTaskUserFieldsPlans($id=0, $tid=0)
     {
         if (!$id) return null;
         $db		= JFactory::getDBO();
@@ -686,7 +690,7 @@ class GoalsHelper
         return $cfields;
     }
 
-	public function dayToStr($day, $abbr = false)
+	public static function dayToStr($day, $abbr = false)
 	{
 		switch ($day) {
 			case 0: return $abbr ? JText::_('SUN') : JText::_('SUNDAY');
@@ -699,10 +703,10 @@ class GoalsHelper
 		}
 	}
 	
-	function showCustoGroupFields($custom_cat_fields=null)
+	public static function showCustoGroupFields($custom_cat_fields=null)
 	{
-	?>
-	<fieldset class="adminform" > <legend><?php echo JText::_('COM_GOAL_CATEGORY_FIELDS'); ?></legend>
+	    ?>
+	    <fieldset class="adminform" > <legend><?php echo JText::_('COM_GOAL_CATEGORY_FIELDS'); ?></legend>
 					<?php
 					// echo JHtml::_('tabs.panel',JText::_('COM_GOAL_CATEGORY_FIELDS'), 'gl-category-fields');
 					 	$cfs = $custom_cat_fields;
@@ -737,14 +741,14 @@ class GoalsHelper
 					 	 }
 					?>
 					<div class="clr"></div>
-	<?php
+	    <?php
 	}
 	
-	function showUserFieldsValues($custom_fields=null, $negative = false)
+	public static function showUserFieldsValues($custom_fields=null, $negative = false)
 	{
 		ob_start();
-	?>
-	<fieldset class="adminform" > <legend><?php echo JText::_('COM_GOAL_USER_CASTOM_FIELDS'); ?></legend>
+	    ?>
+	    <fieldset class="adminform" > <legend><?php echo JText::_('COM_GOAL_USER_CASTOM_FIELDS'); ?></legend>
 					<?php
 					 	 	$emchecks = $urlchecks = array();
 					 	 	if (sizeof($custom_fields))
@@ -997,14 +1001,14 @@ class GoalsHelper
 							<?php
 					?>
 					<div class="clr"></div>
-	<?php
-	$content = ob_get_contents();
-	ob_get_clean();
-	if (sizeof($custom_fields)) echo $content;
-	return $content;
+        <?php
+        $content = ob_get_contents();
+        ob_get_clean();
+        if (sizeof($custom_fields)) echo $content;
+        return $content;
 	}
 	
-	function showCustoGroupFieldsValues($custom_fields=null, $negative = false)
+	public static function showCustoGroupFieldsValues($custom_fields=null, $negative = false)
 	{
 		if (sizeof($custom_fields))
 		{
@@ -1255,7 +1259,8 @@ class GoalsHelper
     								return true;
     						}
     						</script>
-	<?php
+	    <?php
 		}
 	}
+
 }

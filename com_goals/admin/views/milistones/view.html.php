@@ -35,7 +35,10 @@ class GoalsViewMilistones extends JViewLegacy
 
 	protected function addToolBar() 
 	{
+	    $jinput = JFactory::getApplication()->input;
+        $bar = JToolBar::getInstance('toolbar');
 		$this->canDo = $canDo = GoalsHelper::getActions();
+
 		JToolBarHelper::title(JText::_('COM_GOALS').': '.JText::_('COM_GOALS_MANAGER_MILISTONES'), 'milistones');
 		if ($canDo->get('core.create')) {
 			JToolBarHelper::addNew('milistone.add', 'JTOOLBAR_NEW');
@@ -48,6 +51,9 @@ class GoalsViewMilistones extends JViewLegacy
 		if ($canDo->get('core.delete')) {
 			JToolBarHelper::deleteList('', 'milistones.delete', 'JTOOLBAR_DELETE');
 		}
+		if($jinput->get('view', '') == 'milistones' && $jinput->getInt('filter_goals', 0)){
+            $bar->appendButton('Link', 'undo', 'JTOOLBAR_BACK', '/administrator/index.php?option=com_goals&view=goals');
+        }
 	}
 
 
