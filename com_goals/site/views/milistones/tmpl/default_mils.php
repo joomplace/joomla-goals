@@ -63,7 +63,10 @@ function generateRecordActButtons($milistone){
                                 </strong>
                             </div>
                             <div class="span6">
-                                <?php echo $milistone->value.' '.$item->metric; ?>
+                                <?php
+                                $item_metric = !empty($item->metric) ? ' '.$item->metric : '';
+                                echo $milistone->value.$item_metric;
+                                ?>
                             </div>
                         </div>
                         <div class="row-fluid">
@@ -74,7 +77,7 @@ function generateRecordActButtons($milistone){
                                 </strong>
                             </div>
                             <div class="span6">
-                                <?php echo  JHtml::_('date', $milistone->deadline, JText::_('DATE_FORMAT_LC3')); ?>
+                                <?php echo  JHtml::_('date', $milistone->duedate, JText::_('DATE_FORMAT_LC3')); ?>
                             </div>
                         </div>
                     </div>
