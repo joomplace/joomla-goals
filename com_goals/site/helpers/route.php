@@ -394,8 +394,14 @@ abstract class GoalsHelperRoute
                 if(strpos($segments[$length],'tasks')===false){
                     $length -=1;
                 }
-                $target = explode(':',$segments[$length-1]);
-                if($target[0]=='stage') if(isset($target[1])) $vars['sid'] = $target[1];
+                if(($length-1) > 0) {
+                    $target = explode(':', $segments[$length - 1]);
+                    if ($target[0] == 'stage') {
+                        if (isset($target[1])) {
+                            $vars['sid'] = $target[1];
+                        }
+                    }
+                }
             }
             /*
             if(strpos($segments[$length],'stages')!==false){
