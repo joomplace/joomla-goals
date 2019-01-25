@@ -16,7 +16,7 @@ defined('_JEXEC') or die;
  */
 class PlgSystemGoalshelper extends JPlugin
 {
-	public function onAfterInitialise()
+	public function onAfterRoute()
 	{
         $app = JFactory::getApplication();
 

@@ -87,7 +87,9 @@ if (isset($this->item->id)) $old=true;
 		<div class="control-group"><?php showJbField($this->form,'metric'); ?></div>
 		<div class="control-group"><?php showJbField($this->form,'image'); ?></div>
 		<div class="control-group wide-input"><?php showJbField($this->form,'description'); ?></div>
-		<?php if (GoalsHelper::getSettings()->allow_userfields) { ?>
+		<?php
+        $goals_settings = GoalsHelper::getSettings();
+        if (!empty($goals_settings->allow_userfields)) { ?>
 		<div class="control-group">
 			<div class="control-label"><?php echo $this->form->getLabel('userfields');?></div>
 			<div class="controls"><?php echo $this->form->getInput('userfields');?></div>
