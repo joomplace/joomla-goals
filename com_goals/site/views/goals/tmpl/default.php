@@ -62,7 +62,7 @@ if($search || $category){
             ?>
             <?php echo $filtabhead; ?>
                 <?php echo JHtml::_('bootstrap.addTab', 'tools', 'actions', JText::_('Fast management')); ?>
-                    <?php// if ($own) { ?>
+                    <?php //if($own){ ?>
                     <form class="" action="<?php echo JRoute::_('index.php?option=com_goals&view=goal&task=record.save'); ?>" id="quick-record" method="post" >
                         <div class="row-fluid">
                                 <div class="input-append input-prepend">
@@ -95,7 +95,7 @@ if($search || $category){
                                             });
                                         });
                                     ') ?>
-                    <?php// } ?>
+                    <?php  //} ?>
                 <?php echo JHtml::_('bootstrap.endTab');?>
                 <?php echo JHtml::_('bootstrap.addTab', 'tools', 'filt', JText::_('COM_GOALS_GOALS_SEARCH_FILTERS')); ?>
             <form class="" action="<?php echo JRoute::_('index.php?option=com_goals&view=goals&Itemid='.GoalsHelperRoute::getClosesItemId(array('view' => 'goals'))) ?>" method="post" name="adForm" id="adminForm">

@@ -52,7 +52,7 @@ class GoalsViewEditRecord extends JViewLegacy
         $options[] = JHTML::_('select.option', '', '- Select Goal -');
         $goals = array_merge($options, $goals);
 
-        $this->goals = JHTML::_('select.genericlist', $goals, 'jform[gid]', 'class="required invalid" size="1" onchange="javascript:change_goal(this.value);"', 'value', 'text', $getGoal );
+        $this->goals = JHTML::_('select.genericlist', $goals, 'jform[gid]', 'class="required validate-select" size="1" onchange="javascript:change_goal(this.value);"', 'value', 'text', $getGoal );
 
 		//echo 'SMT DEBUG: <pre>'; print_R($this->form); echo '</pre>';
 		if (empty($this->item->id)) {

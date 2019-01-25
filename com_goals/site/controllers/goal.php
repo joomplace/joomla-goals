@@ -157,7 +157,7 @@ class GoalsControllerGoal extends JControllerForm
         $goal = $db->loadObject();
 
         if (!$goal->id) return null;
-		
+
 		if($fid){
 			$query = $db->getQuery(true)
 				->select('`record`.`id` AS `rec_id`, `record`.`date`, `record`.`title` AS `rec_title`, `record`.`value` AS `rec_value`, `record`.`result_mode`, `ref`.`values` AS `field_values`')
@@ -177,9 +177,6 @@ class GoalsControllerGoal extends JControllerForm
         $db->setQuery($query);
         $records = $db->loadObjectList();
 
-		
-		
-		
 		if($fid){
 			$summary = 0;
 			if (sizeof($records)) {
@@ -296,7 +293,7 @@ class GoalsControllerGoal extends JControllerForm
             if(count($rkeys) >= 2){
                 $rkeys = array($rkeys[0], end($rkeys));
             }
-            
+
             $LabelSettings = array(
                 "NoTitle"          => true,
                 "DrawSerieColor"   => false,

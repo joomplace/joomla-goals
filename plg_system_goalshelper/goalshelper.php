@@ -28,7 +28,8 @@ class PlgSystemGoalshelper extends JPlugin
 			include_once JPATH_ROOT.'/administrator/components/com_goals/helpers/goals.php';
 		}
 		else if($app->isClient('site')) {
-		    if( ($app->input->get('view', '') == 'editrecord' && $app->input->get('task', '') == 'record.save')
+		    if( $app->input->get('task', '') == 'record.save'
+                    || $app->input->get('task', '') == 'plantask.complete'
             ) {
                 include_once JPATH_ROOT.'/administrator/components/com_goals/helpers/goals.php';
             } else {
