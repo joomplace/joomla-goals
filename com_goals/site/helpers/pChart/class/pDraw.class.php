@@ -7167,7 +7167,7 @@ class pDraw
 
 		foreach ($Indexes as $Key => $Index)
 		{
-			$Series = "";
+			$Series = array();
 
 			if ( $Data["Orientation"] == SCALE_POS_LEFTRIGHT )
 			{

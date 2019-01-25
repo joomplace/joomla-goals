@@ -11,7 +11,7 @@ defined('_JEXEC') or die;
 
 JHtml::_('behavior.keepalive');
 JHtml::_('behavior.tooltip');
-JHtml::_('behavior.formvalidation');
+JHtml::_('behavior.formvalidator');
 
 function showJbField($form, $name='')
 {
@@ -29,29 +29,47 @@ if (isset($this->item->id)) $old=true;
 ?>
 <div id="goals-wrap">
 <script type="text/javascript">
-function function_exists( function_name ) {
-	if (typeof function_name == 'string'){
-		return (typeof window[function_name] == 'function');
-	} else{
-		return (function_name instanceof Function);
-	}
-}
+    function function_exists( function_name ) {
+        if (typeof function_name == 'string'){
+            return (typeof window[function_name] == 'function');
+        } else{
+            return (function_name instanceof Function);
+        }
+    }
+
+    window.addEvent('domready', function(){
+        document.formvalidator.setHandler('select', function(value) {
+            return value != '';
+        });
+    });
 
 	Joomla.submitbutton = function(task) {
-		if (task != 'record.cancel')
-		{
-			if (function_exists('isValidURLs'))	if (!isValidURLs()) return false;
-			if (function_exists('isValidEmails'))	 if (!isValidEmails()) return false;
-			if (function_exists('isValidUserURLs'))	 if (!isValidUserURLs()) return false;
-			if (function_exists('isValidUserEmails'))	if (!isValidUserEmails()) return false;
-		}
-		if (task == 'record.cancel' || document.formvalidator.isValid(document.id('adminForm'))) {
-			Joomla.submitform(task, document.getElementById('adminForm'));
+
+//      if (task != 'record.cancel') {
+//			if (function_exists('isValidURLs'))	if (!isValidURLs()) return false;
+//			if (function_exists('isValidEmails'))	 if (!isValidEmails()) return false;
+//			if (function_exists('isValidUserURLs'))	 if (!isValidUserURLs()) return false;
+//			if (function_exists('isValidUserEmails'))	if (!isValidUserEmails()) return false;
+//		}
+
+		if (task == 'record.cancel'
+                || (document.formvalidator.isValid(document.getElementById('adminForm')) && document.getElementById('jformgid').value())
+        ){
+			Joomla.submitform(task);
 		}
 		else {
-			if (!$('jform_title').get('value')) {alert('<?php echo JText::sprintf('COM_GOALS_ERROR_NOT_TITLE','record'); ?>');$('jform_title').focus();}
-			else
-			if (!$('jform_gid').get('value')) {alert('<?php echo JText::_('COM_GOALS_ERROR_SELECT_GOAL'); ?>');$('jform_gid').focus();}
+            if (!jQuery('#jformgid').val()) {
+                jQuery('.alert-error', '#system-message-container').append('<div><?php echo JText::_("COM_GOALS_ERROR_SELECT_GOAL"); ?></div>');
+            }
+
+//			if (!jQuery('#jform_title').val()) {
+//			    alert('<?php echo JText::sprintf('COM_GOALS_ERROR_NOT_TITLE', 'record'); ?>');
+//              jQuery('#jform_title').focus();
+//   	    }
+//		    else if (!jQuery('#jformgid').val()) {
+//		        alert('<?php echo JText::_('COM_GOALS_ERROR_SELECT_GOAL'); ?>');
+//              jQuery('#jformgid').focus();
+//			}
 		}
 	}
 </script>
@@ -111,7 +129,7 @@ function function_exists( function_name ) {
     </div>
     <div class="goals-form-actions control-group">
         <div class="controls">
-            <input type="button" class="btn" onclick="Joomla.submitbutton('record.save')" value="<?php echo JText::_('JSAVE') ?>" />
+            <input type="button" class="btn validate" onclick="Joomla.submitbutton('record.save')" value="<?php echo JText::_('JSAVE') ?>" />
             <input type="button" class="btn" onclick="Joomla.submitbutton('record.cancel')" value="<?php echo JText::_('JCANCEL') ?>" />
         </div>
     </div>
