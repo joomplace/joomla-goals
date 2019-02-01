@@ -24,7 +24,7 @@ class GoalsViewGoal extends JViewLegacy
 		$this->user 	= $user = JFactory::getUser(JFactory::getApplication()->input->get('user',null));
         $this->return   = GoalsHelper::getReturnURL();
 
-        if ($this->user->id!=$this->goal[0]->uid) {
+        if (!empty($this->goal[0]) && $this->user->id!=$this->goal[0]->uid) {
             JError::raiseWarning(403, JText::_('COM_GOALS_ERROR_ACCESS'));
             return null;
         }

@@ -19,7 +19,7 @@ class GoalsModelEdithabit extends GoalsModelHabit
 	}
 
 
-    public function getItem() {
+    public function getItem($pk = null) {
         $get = JRequest::get('get');
         if (isset($get['tempid'])) {
             $db = JFactory::getDbo();

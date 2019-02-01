@@ -24,7 +24,7 @@ class GoalsControllerHabitlog extends JControllerForm
 	}
 
 
-	function cancel()
+	function cancel($key = null)
 	 {
 	 	$id = JRequest::getInt('id');
 	 	$tmpl = JRequest::getVar('tmpl'); if ($tmpl=='component') $tmpl='&tmpl=component'; else $tmpl='';

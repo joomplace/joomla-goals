@@ -27,7 +27,9 @@ class GoalsViewPlantasks extends JViewLegacy
 
             if($input->get('id',false)){
                 $task = $this->get('TaskLegacy');
-                $this->active = array('plan' => $task->pid, 'stage' => $task->sid, 'task' => $task->id);
+                if(!empty($task)) {
+                    $this->active = array('plan' => $task->pid, 'stage' => $task->sid, 'task' => $task->id);
+                }
             }
 /*
 			$settings = GoalsHelper::getSettings();

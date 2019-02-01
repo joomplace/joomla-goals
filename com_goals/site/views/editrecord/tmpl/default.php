@@ -53,7 +53,8 @@ if (isset($this->item->id)) $old=true;
 //		}
 
 		if (task == 'record.cancel'
-                || (document.formvalidator.isValid(document.getElementById('adminForm')) && document.getElementById('jformgid').value())
+                || (document.formvalidator.isValid(document.getElementById('adminForm'))
+                        && document.getElementById('jformgid').options[document.getElementById('jformgid').selectedIndex].value)
         ){
 			Joomla.submitform(task);
 		}

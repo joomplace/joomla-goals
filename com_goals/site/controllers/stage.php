@@ -25,7 +25,7 @@ class GoalsControllerStage extends JControllerForm
 		return parent::getModel($name, $prefix, $config);
 	}
 
-	function save()
+	function save($key = null, $urlVar = null)
 	{
 		$app		= JFactory::getApplication();
 		$context	= "$this->option.edit.$this->context";
@@ -59,7 +59,7 @@ class GoalsControllerStage extends JControllerForm
 		$this->setRedirect(JRoute::_('index.php?option='.$this->option.'&view='.$this->view_list.$tmpl, false));
 	}
 
-	 function cancel()
+	 function cancel($key = null)
 	 {
 
          $app		= JFactory::getApplication();
