@@ -21,7 +21,7 @@ class GoalsControllerHabit extends JControllerForm
 		return parent::getModel($name, $prefix, $config);
 	}
 
-	public function save()
+	public function save($key = null, $urlVar = null)
 	{
 		$app		= JFactory::getApplication();
 		$context	= "$this->option.edit.$this->context";
@@ -52,7 +52,7 @@ class GoalsControllerHabit extends JControllerForm
 		$this->setRedirect(JRoute::_('index.php?option='.$this->option.'&view='.$this->view_list.$tmpl, false));
 	}
 
-	public function cancel()
+	public function cancel($key = null)
 	{
 		$mainframe = JFactory::getApplication();
 		$id = JRequest::getInt('gid');
