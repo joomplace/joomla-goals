@@ -3184,12 +3184,12 @@ class pDraw
 	function computeScale($XMin,$XMax,$MaxDivs,$Factors,$AxisID=0)
 	{
 		/* Compute each factors */
-		$Results = "";
+		$Results = array();
 		foreach ($Factors as $Key => $Factor)
 			$Results[$Factor] = $this->processScale($XMin,$XMax,$MaxDivs,array($Factor),$AxisID);
 
 		/* Remove scales that are creating to much decimals */
-		$GoodScaleFactors = "";
+		$GoodScaleFactors = array();
 		foreach ($Results as $Key => $Result)
 		{
 			$Decimals = preg_split("/\./",$Result["RowHeight"]);
@@ -3231,7 +3231,7 @@ class pDraw
 		else
 			$Mode = AXIS_FORMAT_DEFAULT;
 
-		$Scale = "";
+		$Scale = array();
 		if ( $XMin != $XMax )
 		{
 			$Found = FALSE; $Rescaled = FALSE; $Scaled10Factor = .0001; $Result = 0;
@@ -3904,10 +3904,10 @@ class pDraw
 			$AxisID = $Data["Series"][$SerieName]["Axis"];
 		}
 		if ( !is_array($Values) ) {
-			$tmp = $Values; $Values = ""; $Values[0] = $tmp;
+			$tmp = $Values; $Values = array(); $Values[0] = $tmp;
 		}
 
-		$Result = "";
+		$Result = array();
 		if ( $Data["Orientation"] == SCALE_POS_LEFTRIGHT )
 		{
 			$Height      = ($this->GraphAreaY2 - $this->GraphAreaY1) - $Data["Axis"][$AxisID]["Margin"]*2;
@@ -4426,7 +4426,8 @@ class pDraw
 						$XStep = ($this->GraphAreaX2-$this->GraphAreaX1)/4;
 					} else { $XStep = ($this->GraphAreaX2-$this->GraphAreaX1-$XMargin*2)/$XDivs;
 					}
-					$X     = $this->GraphAreaX1 + $XMargin; $WayPoints = "";
+					$X     = $this->GraphAreaX1 + $XMargin;
+					$WayPoints = array();
 					$Force = $XStep / 5;
 
 					if ( !is_array($PosArray) ) {
@@ -4444,7 +4445,8 @@ class pDraw
 
 						if ( $Y == VOID && $LastY != NULL )
 						{
-							$this->drawSpline($WayPoints,array("Force"=>$Force,"R"=>$R,"G"=>$G,"B"=>$B,"Alpha"=>$Alpha,"Ticks"=>$Ticks,"Weight"=>$Weight)); $WayPoints = "";
+							$this->drawSpline($WayPoints,array("Force"=>$Force,"R"=>$R,"G"=>$G,"B"=>$B,"Alpha"=>$Alpha,"Ticks"=>$Ticks,"Weight"=>$Weight));
+							$WayPoints = array();
 						}
 
 						if ( $Y != VOID && $LastY == NULL && $LastGoodY != NULL && !$BreakVoid )
@@ -4473,7 +4475,8 @@ class pDraw
 						$YStep = ($this->GraphAreaY2-$this->GraphAreaY1)/4;
 					} else { $YStep = ($this->GraphAreaY2-$this->GraphAreaY1-$XMargin*2)/$XDivs;
 					}
-					$Y     = $this->GraphAreaY1 + $XMargin; $WayPoints = "";
+					$Y     = $this->GraphAreaY1 + $XMargin;
+					$WayPoints = array();
 					$Force = $YStep / 5;
 
 					if ( !is_array($PosArray) ) {
@@ -4491,7 +4494,8 @@ class pDraw
 
 						if ( $X == VOID && $LastX != NULL )
 						{
-							$this->drawSpline($WayPoints,array("Force"=>$Force,"R"=>$R,"G"=>$G,"B"=>$B,"Alpha"=>$Alpha,"Ticks"=>$Ticks,"Weight"=>$Weight)); $WayPoints = "";
+							$this->drawSpline($WayPoints,array("Force"=>$Force,"R"=>$R,"G"=>$G,"B"=>$B,"Alpha"=>$Alpha,"Ticks"=>$Ticks,"Weight"=>$Weight));
+							$WayPoints = array();
 						}
 
 						if ( $X != VOID && $LastX == NULL && $LastGoodX != NULL && !$BreakVoid )
@@ -4570,7 +4574,8 @@ class pDraw
 						$XStep = ($this->GraphAreaX2-$this->GraphAreaX1)/4;
 					} else { $XStep = ($this->GraphAreaX2-$this->GraphAreaX1-$XMargin*2)/$XDivs;
 					}
-					$X     = $this->GraphAreaX1 + $XMargin; $WayPoints = "";
+					$X     = $this->GraphAreaX1 + $XMargin;
+					$WayPoints = array();
 					$Force = $XStep / 5;
 
 					if ( !$AroundZero ) {
@@ -4616,7 +4621,7 @@ class pDraw
 								$this->drawSpline($WayPoints,array("Force"=>$Force,"R"=>$R,"G"=>$G,"B"=>$B,"Alpha"=>$Alpha,"Ticks"=>$Ticks));
 							}
 
-							$WayPoints = "";
+							$WayPoints = array();
 						}
 						else
 							$WayPoints[] = array($X,$Y-.5); /* -.5 for AA visual fix */
@@ -4651,7 +4656,8 @@ class pDraw
 						$YStep = ($this->GraphAreaY2-$this->GraphAreaY1)/4;
 					} else { $YStep = ($this->GraphAreaY2-$this->GraphAreaY1-$XMargin*2)/$XDivs;
 					}
-					$Y     = $this->GraphAreaY1 + $XMargin; $WayPoints = "";
+					$Y     = $this->GraphAreaY1 + $XMargin;
+					$WayPoints = array();
 					$Force = $YStep / 5;
 
 					if ( !$AroundZero ) {
@@ -4696,7 +4702,7 @@ class pDraw
 								$this->drawSpline($WayPoints,array("Force"=>$Force,"R"=>$R,"G"=>$G,"B"=>$B,"Alpha"=>$Alpha,"Ticks"=>$Ticks));
 							}
 
-							$WayPoints = "";
+							$WayPoints = array();
 						}
 						else
 							$WayPoints[] = array($X,$Y);
