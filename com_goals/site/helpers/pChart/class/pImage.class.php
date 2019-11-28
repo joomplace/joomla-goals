@@ -320,7 +320,7 @@
     {
      if ( !isset($this->DataSet->Data["Series"][$SerieName]) ) { return(-1); }
 
-     $Result = "";
+     $Result = array();
      foreach($this->DataSet->Data["Series"][$SerieName]["Data"] as $Key => $Value)
       { if ( $Value != VOID && isset($Values[$Key]) ) { $Result[] = $Values[$Key]; } }
      return($Result);
@@ -343,7 +343,7 @@
       }
      elseif( $this->ImageMapStorageMode == IMAGE_MAP_STORAGE_FILE )
       {
-       $TempArray = "";
+       $TempArray = array();
        $Handle    = @fopen($this->ImageMapStorageFolder."/".$this->ImageMapFileName.".map", "r");
        if ($Handle)
         {
@@ -381,7 +381,7 @@
       }
      elseif( $this->ImageMapStorageMode == IMAGE_MAP_STORAGE_FILE )
       {
-       $TempArray = "";
+       $TempArray = array();
        $Handle    = @fopen($this->ImageMapStorageFolder."/".$this->ImageMapFileName.".map", "r");
        if ($Handle)
         {
@@ -445,7 +445,7 @@
    /* Reverse an array of points */
    function reversePlots($Plots)
     {
-     $Result = "";
+     $Result = array();
      for($i=count($Plots)-2;$i>=0;$i=$i-2) { $Result[] = $Plots[$i]; $Result[] = $Plots[$i+1]; }
      return($Result);
     }
