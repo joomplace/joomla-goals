@@ -68,7 +68,7 @@
    /* Class creator */
    public function __construct()
     {
-     $this->Data = "";
+     $this->Data = array();
      $this->Data["XAxisDisplay"]	= AXIS_FORMAT_DEFAULT;
      $this->Data["XAxisFormat"]		= NULL;
      $this->Data["XAxisName"]		= NULL;
@@ -76,6 +76,8 @@
      $this->Data["Abscissa"]		= NULL;
      $this->Data["AbsicssaPosition"]	= AXIS_POSITION_BOTTOM;
 
+     $this->Data["Axis"] = array();
+     $this->Data["Axis"][0] = array();
      $this->Data["Axis"][0]["Display"]  = AXIS_FORMAT_DEFAULT;
      $this->Data["Axis"][0]["Position"] = AXIS_POSITION_LEFT;
      $this->Data["Axis"][0]["Identity"] = AXIS_Y;
@@ -774,7 +776,7 @@
 
    /* Convert a string to a single elements array */
    function convertToArray($Value)
-    { $Values = ""; $Values[] = $Value; return($Values); }
+    { $Values = array(); $Values[] = $Value; return($Values); }
 
    /* Class string wrapper */
    function __toString()
