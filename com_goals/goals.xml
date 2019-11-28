@@ -1,78 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension type="component" version="3.0" method="upgrade">
-        <name>COM_GOALS</name>
-        <creationDate>March 2013</creationDate>
-        <author>JoomPlace Team</author>
-        <authorEmail>support@joomplace.com</authorEmail>
-        <authorUrl>www.joomplace.com</authorUrl>
-        <copyright>(C) JoomPlace, www.joomplace.com</copyright>
-        <license>GNU/GPL http://www.gnu.org/copyleft/gpl.html</license>
-        <version>1.2.4.005</version>
-        <description>COM_GOALS_DESC</description>
-		<scriptfile>script.php</scriptfile>
-		<install>
-                <sql>
-                        <file driver="mysql" charset="utf8">sql/install.mysql.utf8.sql</file>
-                </sql>
-        </install>
-
-        <uninstall>
-                <sql>
-                        <file driver="mysql" charset="utf8">sql/uninstall.mysql.utf8.sql</file>
-                </sql>
-        </uninstall>
-        <update>
-                <schemas>
-                     <schemapath type="mysql">sql/update/</schemapath>
-                </schemas>
-        </update>
-        <files folder="site">
-                <filename>index.html</filename>
-                <filename>goals.php</filename>
-				<filename>controller.php</filename>
-				<filename>router.php</filename>
-				<filename>metadata.xml</filename>
-				<folder>assets</folder>
-				<folder>controllers</folder>
-				<folder>helpers</folder>
-				<folder>models</folder>
-				<folder>views</folder>
-				<folder>helpers</folder>
-        </files>
-        <media destination="com_goals" folder="media">
+    <name>COM_GOALS</name>
+    <creationDate>March 2013</creationDate>
+    <author>JoomPlace Team</author>
+    <authorEmail>support@joomplace.com</authorEmail>
+    <authorUrl>www.joomplace.com</authorUrl>
+    <copyright>(C) JoomPlace, www.joomplace.com</copyright>
+    <license>GNU/GPL http://www.gnu.org/copyleft/gpl.html</license>
+    <version>1.2.4.005</version>
+    <description>COM_GOALS_DESC</description>
+	<scriptfile>script.php</scriptfile>
+	<install>
+        <sql>
+            <file driver="mysql" charset="utf8">sql/install.mysql.utf8.sql</file>
+        </sql>
+    </install>
+    <uninstall>
+        <sql>
+            <file driver="mysql" charset="utf8">sql/uninstall.mysql.utf8.sql</file>
+        </sql>
+    </uninstall>
+    <update>
+        <schemas>
+            <schemapath type="mysql">sql/updates/mysql</schemapath>
+        </schemas>
+    </update>
+    <files folder="site">
+        <filename>index.html</filename>
+        <filename>goals.php</filename>
+		<filename>controller.php</filename>
+		<filename>router.php</filename>
+		<filename>metadata.xml</filename>
+		<folder>assets</folder>
+		<folder>controllers</folder>
+		<folder>helpers</folder>
+		<folder>models</folder>
+		<folder>views</folder>
+		<folder>helpers</folder>
+    </files>
+    <media destination="com_goals" folder="media">
         <folder>images</folder>
         <filename>index.html</filename>
-        </media>
-		<languages folder="site">
+    </media>
+	<languages folder="site">
+        <language tag="en-GB">language/en-GB/en-GB.com_goals.ini</language>
+    </languages>
+    <administration>
+	    <menu>COM_GOALS</menu>
+		<submenu>
+		    <menu link="option=com_goals&amp;view=dashboard" alt="COM_GOALS_ADMINISTRATION_DASHBOARD">COM_GOALS_ADMINISTRATION_DASHBOARD</menu>
+			<menu link="option=com_config&amp;view=component&amp;component=com_goals" alt="COM_GOALS_ADMINISTRATION_SETTINGS">COM_GOALS_ADMINISTRATION_SETTINGS</menu>
+        </submenu>
+        <languages folder="admin">
             <language tag="en-GB">language/en-GB/en-GB.com_goals.ini</language>
+            <language tag="en-GB">language/en-GB/en-GB.com_goals.sys.ini</language>
         </languages>
-
-        <administration>
-			    <menu>COM_GOALS</menu>
-				<submenu>
-					<menu link="option=com_goals&amp;view=dashboard" alt="COM_GOALS_ADMINISTRATION_DASHBOARD">COM_GOALS_ADMINISTRATION_DASHBOARD</menu>
-					<menu link="option=com_config&amp;view=component&amp;component=com_goals" alt="COM_GOALS_ADMINISTRATION_SETTINGS">COM_GOALS_ADMINISTRATION_SETTINGS</menu>
-				</submenu>
-
-				<languages folder="admin">
-                        <language tag="en-GB">language/en-GB/en-GB.com_goals.ini</language>
-                        <language tag="en-GB">language/en-GB/en-GB.com_goals.sys.ini</language>
-                </languages>
-
-                <files folder="admin">
-                        <filename>index.html</filename>
-                        <filename>goals.php</filename>
-						<filename>controller.php</filename>
-						<filename>access.xml</filename>
-						<filename>config.xml</filename>
-						<filename>changelog.txt</filename>
-                        <folder>assets</folder>
-						<folder>controllers</folder>
-						<folder>helpers</folder>
-						<folder>models</folder>
-						<folder>sql</folder>
-						<folder>tables</folder>
-						<folder>views</folder>
-                </files>
-        </administration>
+        <files folder="admin">
+            <filename>index.html</filename>
+            <filename>goals.php</filename>
+			<filename>controller.php</filename>
+			<filename>access.xml</filename>
+			<filename>config.xml</filename>
+			<filename>changelog.txt</filename>
+            <folder>assets</folder>
+			<folder>controllers</folder>
+			<folder>helpers</folder>
+			<folder>models</folder>
+			<folder>sql</folder>
+			<folder>tables</folder>
+			<folder>views</folder>
+        </files>
+    </administration>
 </extension>
