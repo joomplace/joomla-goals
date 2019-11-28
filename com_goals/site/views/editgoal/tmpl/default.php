@@ -24,7 +24,6 @@ function showJbField($form, $name='')
 	echo '</div>';
 }
 
-
 JHTML::_('behavior.modal', 'a.popup');
 $old = false;
 if (isset($this->item->id)) $old=true;
@@ -87,7 +86,7 @@ if (isset($this->item->id)) $old=true;
 		<div class="control-group"><?php showJbField($this->form,'metric'); ?></div>
 		<div class="control-group"><?php showJbField($this->form,'image'); ?></div>
 		<div class="control-group wide-input"><?php showJbField($this->form,'description'); ?></div>
-		<?php if (GoalsHelper::getSettings()->allow_userfields) { ?>
+		<?php if (!empty(GoalsHelper::getSettings()->allow_userfields)) { ?>
 		<div class="control-group">
 			<div class="control-label"><?php echo $this->form->getLabel('userfields');?></div>
 			<div class="controls"><?php echo $this->form->getInput('userfields');?></div>
