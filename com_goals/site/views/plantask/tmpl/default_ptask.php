@@ -63,7 +63,7 @@ $tmpl = JRequest::getVar('tmpl'); if ($tmpl=='component') $tmpl='&tmpl=component
                         <td><?php echo JHtml::_('date', $record->c_date, JText::_('DATE_FORMAT_LC3')) ?></td>
                     </tr>
                     <?php } ?>
-					<?php if(sizeof($this->cfields)){
+					<?php if(!empty($this->cfields)){
 						foreach ( $this->cfields as $cf )
 						{
 
@@ -93,7 +93,7 @@ $tmpl = JRequest::getVar('tmpl'); if ($tmpl=='component') $tmpl='&tmpl=component
 					<?php
 					//echo 'SMT DEBUG: <pre>'; print_R($this->ufields); echo '</pre>';
 
-					if(sizeof($this->ufields)){
+					if(!empty($this->ufields)){
 						foreach ( $this->ufields as $cf )
 						{
 							// echo json_decode(str_replace('"','',$cf->inp_values),true).'<br />';

@@ -243,7 +243,7 @@ class GoalsControllerHabit extends JControllerForm
 			$val = 0;
 			$p = 0;
 			$n = 0;
-			if (sizeof($habs)) {
+			if (!empty($habs)) {
 				foreach ( $habs as $hab ) {
 					if ($hab->type == '+') {
 						$val += $hab->weight;
@@ -288,11 +288,11 @@ class GoalsControllerHabit extends JControllerForm
 
 		/* Create and populate the pData object */
 		$MyData = new pData();
-		$MyData->addPoints(sizeof($pos) ? $pos : array(VOID,VOID,VOID,VOID,VOID),"Positive");
-		$MyData->addPoints(sizeof($neg) ? $neg : array(VOID,VOID,VOID,VOID,VOID),"Negative");
-		$MyData->addPoints(sizeof($values) ? $values : array(VOID,VOID,VOID,VOID,VOID),"Spline");
+		$MyData->addPoints(!empty($pos) ? $pos : array(VOID,VOID,VOID,VOID,VOID),"Positive");
+		$MyData->addPoints(!empty($neg) ? $neg : array(VOID,VOID,VOID,VOID,VOID),"Negative");
+		$MyData->addPoints(!empty($values) ? $values : array(VOID,VOID,VOID,VOID,VOID),"Spline");
 		$MyData->setAxisName(0, JText::_("Weight"));
-		$MyData->addPoints(sizeof($dates) ? $dates : array(VOID,VOID,VOID,VOID,VOID),"Labels");
+		$MyData->addPoints(!empty($dates) ? $dates : array(VOID,VOID,VOID,VOID,VOID),"Labels");
 		$MyData->setSerieDescription("Labels","Dates");
 		$MyData->setAbscissa("Labels");
 		$MyData->setAxisDisplay(0,AXIS_FORMAT_CUSTOM,"YAxisFormat");
@@ -302,7 +302,7 @@ class GoalsControllerHabit extends JControllerForm
 
 		/* Set the default font properties */
 		$myPicture->setFontProperties(array("R"=>0,"G"=>0,"B"=>0,"FontName"=>JPATH_COMPONENT."/helpers/pChart/fonts/tahoma.ttf","FontSize"=>8));
-		if (!sizeof($dates)) {
+		if (empty($dates)) {
 			$myPicture->drawText(370, 118, JText::_('COM_GOALS_CHART_NO_DATA'), array("FontSize"=>16, "Align"=>TEXT_ALIGN_BOTTOMMIDDLE, "R"=>206, "G"=>206, "B"=>206));
 		}
 

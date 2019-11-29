@@ -609,11 +609,11 @@ class GoalsHelper
         catch(Exception $e){}
 
 
-        if (sizeof($fields)) {
+        if (!empty($fields)) {
 
             foreach ($fields as $field) {
 
-                if (sizeof($selected))
+                if (!empty($selected))
 
                     if (in_array($field->id, $selected)) {
 
@@ -679,7 +679,7 @@ class GoalsHelper
 
         $cfields = $db->loadObjectList();
 
-        if (sizeof($cfields)) {
+        if (!empty($cfields)) {
 
             foreach ($cfields as $field) {
 
@@ -754,11 +754,11 @@ class GoalsHelper
         catch(Exception $e){}
 
 
-        if (sizeof($fields)) {
+        if (!empty($fields)) {
 
             foreach ($fields as $field) {
 
-                if (sizeof($selected))
+                if (!empty($selected))
 
                     if (in_array($field->id, $selected)) {
 
@@ -821,7 +821,7 @@ class GoalsHelper
 
         $cfields = $db->loadObjectList();
 
-        if (sizeof($cfields)) {
+        if (!empty($cfields)) {
 
             foreach ($cfields as $field) {
 
@@ -1247,7 +1247,7 @@ class GoalsHelper
 
 
 
-    <?php if (sizeof($milistones)) { ?> <h4><?php echo JText::_('COM_GOALS_ACTIVE_MILISTONES'); ?>:</h4> <?php
+    <?php if (!empty($milistones)) { ?> <h4><?php echo JText::_('COM_GOALS_ACTIVE_MILISTONES'); ?>:</h4> <?php
 
     } else {
 
@@ -1263,9 +1263,9 @@ class GoalsHelper
 
 
 
-    <?php if (sizeof($milistones)) {
+    <?php if (!empty($milistones)) {
 
-        for ($i = 0, $n = sizeof($milistones); $i < $n; $i++) {
+        for ($i = 0, $n = count($milistones); $i < $n; $i++) {
 
             $milistone = $milistones[$i];
 
@@ -1359,7 +1359,7 @@ class GoalsHelper
 
 
 
-    <?php if (sizeof($stages)) { ?> <h4><?php echo JText::_('COM_GOALS_ACTIVE_STAGES'); ?>:</h4> <?php
+    <?php if (!empty($stages)) { ?> <h4><?php echo JText::_('COM_GOALS_ACTIVE_STAGES'); ?>:</h4> <?php
 
     } else {
 
@@ -1375,7 +1375,7 @@ class GoalsHelper
 
 
 
-    <?php if (sizeof($stages)) {
+    <?php if (!empty($stages)) {
 
         foreach ($stages as $stage) {
 
@@ -1468,7 +1468,7 @@ class GoalsHelper
 
         $emchecks = $urlchecks = array();
 
-        if (sizeof($custom_fields)) {
+        if (!empty($custom_fields)) {
 
             ?>
 
@@ -1661,7 +1661,7 @@ class GoalsHelper
 
                                 if (isset($params->sl_elmts)) {
 
-                                    if (sizeof($params->sl_elmts)) {
+                                    if (!empty($params->sl_elmts)) {
 
                                         foreach ($params->sl_elmts as $el) {
 
@@ -1687,7 +1687,7 @@ class GoalsHelper
 
                                 if (isset($params->ms_elmts)) {
 
-                                    if (sizeof($params->ms_elmts)) {
+                                    if (!empty($params->ms_elmts)) {
 
                                         foreach ($params->ms_elmts as $el) {
 
@@ -1713,7 +1713,7 @@ class GoalsHelper
 
                                 if (isset($params->ch_elmts)) {
 
-                                    if (sizeof($params->ch_elmts)) {
+                                    if (!empty($params->ch_elmts)) {
 
                                         foreach ($params->ch_elmts as $k => $el) {
 
@@ -1749,7 +1749,7 @@ class GoalsHelper
 
                                 if (isset($params->rb_elmts)) {
 
-                                    if (sizeof($params->rb_elmts)) {
+                                    if (!empty($params->rb_elmts)) {
 
                                         foreach ($params->rb_elmts as $k => $el) {
 
@@ -1811,7 +1811,7 @@ class GoalsHelper
 
             var tmpurl = '';
 
-            <?php if (sizeof($urlchecks)) {
+            <?php if (!empty($urlchecks)) {
 
                 foreach ($urlchecks as $urlid) {
 
@@ -1869,7 +1869,7 @@ class GoalsHelper
 
             var RegExp = /^((([a-z]|[0-9]|!|#|$|%|&|'|\*|\+|\-|\/|=|\?|\^|_|`|\{|\||\}|~)+(\.([a-z]|[0-9]|!|#|$|%|&|'|\*|\+|\-|\/|=|\?|\^|_|`|\{|\||\}|~)+)*)@((((([a-z]|[0-9])([a-z]|[0-9]|\-){0,61}([a-z]|[0-9])\.))*([a-z]|[0-9])([a-z]|[0-9]|\-){0,61}([a-z]|[0-9])\.)[\w]{2,4}|(((([0-9]){1,3}\.){3}([0-9]){1,3}))|(\[((([0-9]){1,3}\.){3}([0-9]){1,3})\])))$/
 
-            <?php  if (sizeof($emchecks)) {
+            <?php  if (!empty($emchecks)) {
 
                 foreach ($emchecks as $emlid) {
 
@@ -1914,42 +1914,27 @@ class GoalsHelper
     <div class="clr"></div>
 
     <?php
-
         $content = ob_get_contents();
-
         ob_get_clean();
 
-        if (sizeof($custom_fields)) echo $content;
-
-
+        if (!empty($custom_fields)) echo $content;
 
         return $content;
-
     }
-
 
 
     public static function showCustoGroupFieldsValues($custom_fields = null, $negative= false)
     {
         ?>
-
-                <div class="goalfieldslist form-horizontal">
-
-					<?php
+        <div class="goalfieldslist form-horizontal">
+		<?php
 
         // echo JHtml::_('tabs.panel',JText::_('COM_GOAL_CATEGORY_FIELDS'), 'gl-category-fields');
 		
         $cfs = $custom_fields;
-
         $emchecks = $urlchecks = array();
 
-        if (sizeof($cfs)) {
-
-            ?>
-
-
-
-            <?php
+        if (!empty($cfs)) {
 
             foreach ($cfs as $field) {
 
@@ -2138,7 +2123,7 @@ class GoalsHelper
 
                                 if (isset($params->sl_elmts)) {
 
-                                    if (sizeof($params->sl_elmts)) {
+                                    if (!empty($params->sl_elmts)) {
 
                                         foreach ($params->sl_elmts as $el) {
 
@@ -2164,7 +2149,7 @@ class GoalsHelper
 
                                 if (isset($params->ms_elmts)) {
 
-                                    if (sizeof($params->ms_elmts)) {
+                                    if (!empty($params->ms_elmts)) {
 
                                         foreach ($params->ms_elmts as $el) {
 
@@ -2190,7 +2175,7 @@ class GoalsHelper
 
                                 if (isset($params->ch_elmts)) {
 
-                                    if (sizeof($params->ch_elmts)) {
+                                    if (!empty($params->ch_elmts)) {
 
                                         foreach ($params->ch_elmts as $k => $el) {
 
@@ -2228,7 +2213,7 @@ class GoalsHelper
 
                                 if (isset($params->rb_elmts)) {
 
-                                    if (sizeof($params->rb_elmts)) {
+                                    if (!empty($params->rb_elmts)) {
 
                                         foreach ($params->rb_elmts as $k => $el) {
 
@@ -2294,7 +2279,7 @@ class GoalsHelper
 
             var tmpurl = '';
 
-            <?php if (sizeof($urlchecks)) {
+            <?php if (!empty($urlchecks)) {
 
                 foreach ($urlchecks as $urlid) {
 
@@ -2344,7 +2329,7 @@ class GoalsHelper
 
             var RegExp = /^((([a-z]|[0-9]|!|#|$|%|&|'|\*|\+|\-|\/|=|\?|\^|_|`|\{|\||\}|~)+(\.([a-z]|[0-9]|!|#|$|%|&|'|\*|\+|\-|\/|=|\?|\^|_|`|\{|\||\}|~)+)*)@((((([a-z]|[0-9])([a-z]|[0-9]|\-){0,61}([a-z]|[0-9])\.))*([a-z]|[0-9])([a-z]|[0-9]|\-){0,61}([a-z]|[0-9])\.)[\w]{2,4}|(((([0-9]){1,3}\.){3}([0-9]){1,3}))|(\[((([0-9]){1,3}\.){3}([0-9]){1,3})\])))$/
 
-            <?php  if (sizeof($emchecks)) {
+            <?php  if (!empty($emchecks)) {
 
                 foreach ($emchecks as $emlid) {
 
