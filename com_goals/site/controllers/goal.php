@@ -179,7 +179,7 @@ class GoalsControllerGoal extends JControllerForm
 
 		if($fid){
 			$summary = 0;
-			if (sizeof($records)) {
+			if (!empty($records)) {
 				foreach ($records as $i => $record) {
 					$f_value = intval(trim($record->field_values,'"'));
 					if ($f_value !== '0') {
@@ -197,7 +197,7 @@ class GoalsControllerGoal extends JControllerForm
 		}
 		else{
 			$summary = $goal->start;
-			if (sizeof($records)) {
+			if (!empty($records)) {
 				foreach ($records as $i => $record) {
 					if ($record->value !== '0') {
 						$dates[] = JHtml::_('date', $record->date, JText::_('DATE_FORMAT_LC3'));
@@ -227,10 +227,10 @@ class GoalsControllerGoal extends JControllerForm
 
         /* Create and populate the pData object */
         $myData = new pData();
-        $myData->addPoints(sizeof($values) ? $values : array(VOID, VOID, VOID, VOID, VOID), "Serie1");
+        $myData->addPoints(!empty($values) ? $values : array(VOID, VOID, VOID, VOID, VOID), "Serie1");
         $myData->setSerieDescription("Records", "Serie 1");
         $myData->setSerieOnAxis("Serie1", 0);
-        $myData->addPoints(sizeof($dates) ? $dates : array(VOID, VOID, VOID, VOID, VOID), "Absissa");
+        $myData->addPoints(!empty($dates) ? $dates : array(VOID, VOID, VOID, VOID, VOID), "Absissa");
         $myData->setAbscissa("Absissa");
         $myData->setAxisPosition(0, AXIS_POSITION_LEFT);
         $myData->setAxisName(0, "");
@@ -252,7 +252,7 @@ class GoalsControllerGoal extends JControllerForm
         /* Draw the scale and the chart */
         $myPicture->setGraphArea(50, 50, 675, 190);
         $myPicture->setFontProperties(array("R" => 0, "G" => 0, "B" => 0, "FontName" => JPATH_COMPONENT . "/helpers/pChart/fonts/tahoma.ttf", "FontSize" => 8));
-        if (!sizeof($values)) {
+        if (empty($values)) {
             $myPicture->drawText(370, 118, JText::_('COM_GOALS_CHART_NO_DATA'), array("FontSize" => 16, "Align" => TEXT_ALIGN_BOTTOMMIDDLE, "R" => 206, "G" => 206, "B" => 206));
         }
 
@@ -284,7 +284,7 @@ class GoalsControllerGoal extends JControllerForm
         $myPicture->setShadow(true, array("X" => 1, "Y" => 1, "R" => 0, "G" => 0, "B" => 0, "Alpha" => 10));
         $myPicture->setFontProperties(array("FontName" => JPATH_COMPONENT . "/helpers/pChart/fonts/tahoma.ttf", "FontSize" => 7));
 
-        if (sizeof($values)) {
+        if (!empty($values)) {
             // Get even keys from records array for label position
             foreach ($records as $record) {
                 $rval[] = $record->value;
