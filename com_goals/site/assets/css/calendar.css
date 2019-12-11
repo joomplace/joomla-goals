@@ -89,7 +89,7 @@ table.calendar_outter td#cells{
 
 .calendar_table td {
 	padding:3px !important;
-	width:5% !important;
+	/*width:5% !important;*/
 	height:28px !important;
 	float: none !important;
 	font-size:14px !important;
@@ -103,12 +103,16 @@ table.calendar_outter td#cells{
 	font-weight:bold;
 }
 
+#calendar_table {
+	width: 99%;
+}
+
 #calendar_table .last_col {
-	border-right:1px solid #aaa; 
+	border-right: 1px solid #aaa;
 }
 
 #calendar_table .first_row {
-	border-top:1px solid #aaa; 
+	border-top: 1px solid #aaa;
 }
 
 #calendar_table .week_names {
@@ -122,9 +126,9 @@ table.calendar_outter td#cells{
 
 .calendar h2.container_heading { padding-left: 0; text-align: center; }
 .calendar h2.container_heading .left_arrow { position: absolute; left: 0; top: 4px; width: 58px; height: 32px; border-right: solid 1px #dadada}
-.calendar h2.container_heading .left_arrow a, .calendar h2.container_heading .left_arrow a:hover { position: absolute; left: 50%; top: 50%; margin: -8px 0 0 -5px; width: 11px; height: 17px; overflow: hidden; text-indent: 11px; background: url(../images/arrow_left.gif) no-repeat left top !important; }
+.calendar h2.container_heading .left_arrow a, .calendar h2.container_heading .left_arrow a:hover { position: absolute; left: 0; top: 50%; margin: -8px 0 0 0; width: 100%; height: 17px; overflow: hidden; text-indent: 11px; background: url(../images/arrow_left.gif) no-repeat 50% top !important; cursor: pointer; }
 .calendar h2.container_heading .right_arrow { position: absolute; right: 0; top: 4px; width: 58px; height: 32px; border-left: solid 1px #dadada}
-.calendar h2.container_heading .right_arrow a, .calendar h2.container_heading .right_arrow a:hover { position: absolute; right: 50%; top: 50%; margin: -8px -5px 0 0; width: 11px; height: 17px; overflow: hidden; text-indent: 11px; background: url(../images/arrow_right.gif) no-repeat left top !important; }
+.calendar h2.container_heading .right_arrow a, .calendar h2.container_heading .right_arrow a:hover { position: absolute; right: 0; top: 50%; margin: -8px 0 0 0; width: 100%; height: 17px; overflow: hidden; text-indent: 11px; background: url(../images/arrow_right.gif) no-repeat 50% top !important; cursor: pointer; }
 
 table.calendar_table td.gray { background: #a6a6a6; }
 table.calendar_table td.yellow { background: #FFFFC6 !important; color: #565656 !important;}
@@ -149,11 +153,11 @@ table.calendar_table td.blue { background: cyan; }
 }
 
 .calendar h2.container_heading .left_arrow a, .calendar h2.container_heading .left_arrow a:hover {
-    margin: -8px 0 0 -5px !important;  overflow: hidden;
+    margin: -8px 0 0 0 !important;  overflow: hidden;
 }
 
 .calendar h2.container_heading .right_arrow a, .calendar h2.container_heading .right_arrow a:hover {
-    margin: -8px 0 0 -5px !important;  overflow: hidden;
+    margin: -8px 0 0 0 !important;  overflow: hidden;
 
 }
 
