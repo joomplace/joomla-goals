@@ -20,7 +20,7 @@ class PlgSystemGoalshelper extends JPlugin
 	{
         $app = JFactory::getApplication();
 
-	    if( $app->input->get('option', '', 'get') != 'com_goals' ){
+	    if( $app->input->get('option', '') != 'com_goals' ){
             return true;
         }
 
@@ -38,5 +38,7 @@ class PlgSystemGoalshelper extends JPlugin
                 include_once JPATH_ROOT . '/components/com_goals/helpers/goals.php';
             }
 		}
+
+        return true;
 	}
 }
