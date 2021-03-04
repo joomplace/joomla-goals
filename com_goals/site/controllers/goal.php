@@ -365,7 +365,7 @@ class GoalsControllerGoal extends JControllerForm
 
         $db->setQuery($query)->query();
 
-        $this->setRedirect(JRoute::_('index.php?option=com_goals&view=goals', false));
+      $this->setRedirect(JRoute::_(GoalsHelperRoute::buildLink(array('view' => 'goals', 'tmpl' => $tmpl)), false));
 
         return;
     }
