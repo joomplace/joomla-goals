@@ -450,7 +450,7 @@ class GoalsControllerHabit extends JControllerForm
         $query->set('featured='.($featured?'0':'1'));
         $query->where('id='.$id);
         $db->setQuery($query)->query();
-        $this->setRedirect(JRoute::_(GoalsHelperRoute::buildLink(array('view' => 'habits', 'tmpl' => $tmpl)), false));
+        $this->setRedirect(JRoute::_(GoalsHelperRoute::buildLink(array('view' => 'habits')), false));
         return;
     }
 }
