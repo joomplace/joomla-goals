@@ -70,7 +70,11 @@ if (isset($this->item->id)) $old=true;
 	}
 	<?php } ?>
 </script>
-
+<style>
+    .js-calendar {
+        margin-top: 0 !important;
+    }
+</style>
 <form action="<?php echo JRoute::_('index.php?option=com_goals&view=editgoal&id='.(int) $this->item->id.$tmpl); ?>" method="post" name="adminForm" id="adminForm" class="form-validate">
 <div class="gl_dashboard form-horizontal">
 	<h2 class="goals-form-name">

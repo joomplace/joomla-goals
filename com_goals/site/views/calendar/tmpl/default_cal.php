@@ -42,13 +42,13 @@ $itemId = $itemId?('&Itemid='.$itemId):'';
 
 <table cellpadding="0" cellspacing="0" class="calendar_table" id="calendar_table">
 	<tr style="text-align:center;">
-		<td class="week_names" id="mon"><?php echo GoalsHelper::dayToStr(1);?></td>
-		<td class="week_names" id="tue"><?php echo GoalsHelper::dayToStr(2);?></td>
-		<td class="week_names" id="wed"><?php echo GoalsHelper::dayToStr(3);?></td>
-		<td class="week_names" id="thu"><?php echo GoalsHelper::dayToStr(4);?></td>
-		<td class="week_names" id="fri"><?php echo GoalsHelper::dayToStr(5);?></td>
-		<td class="week_names" id="sat"><?php echo GoalsHelper::dayToStr(6);?></td>
-		<td class="week_names" id="sun"><?php echo GoalsHelper::dayToStr(0);?></td>
+		<td class="week_names" id="mon"><?php echo GoalsHelper::dayToStr(1, true);?></td>
+		<td class="week_names" id="tue"><?php echo GoalsHelper::dayToStr(2, true);?></td>
+		<td class="week_names" id="wed"><?php echo GoalsHelper::dayToStr(3, true);?></td>
+		<td class="week_names" id="thu"><?php echo GoalsHelper::dayToStr(4, true);?></td>
+		<td class="week_names" id="fri"><?php echo GoalsHelper::dayToStr(5, true);?></td>
+		<td class="week_names" id="sat"><?php echo GoalsHelper::dayToStr(6, true);?></td>
+		<td class="week_names" id="sun"><?php echo GoalsHelper::dayToStr(0, true);?></td>
 	</tr>
 <?php
 	$rownum = 0;
@@ -74,33 +74,40 @@ $itemId = $itemId?('&Itemid='.$itemId):'';
 	</div>
 <script type="text/javascript">
 		function addCalendarTips(){
-
-			jQuery(".qtip").each(function(){				
-		    	var tipShow  = true;
-		    	var tipHide	 = {fixed: true, when: {event: 'mouseout'}, effect: {length: 10}}
+			jQuery(".qtip").each(function(){
+			    var tipShow  = true,
+                    tipHide	 = {fixed: true, when: {event: 'mouseout'}, effect: {length: 10}};
 
 		    	// Split the title and the content
-		    	var title = '';
-		    	var content = jQuery(this).attr('title');
-				var contentArray = content.split('::');
+		    	var title = '',
+                    content = jQuery(this).attr('title'),
+                    contentArray = content.split('::');
 
 				// Remove the 'title' attributes from the existing .jomTips classes
-				jQuery( this ).attr('title' , '' );
+				jQuery(this).attr('title', '');
 
-				if(contentArray.length == 2)
-				{
+				if(contentArray.length == 2) {
 					content = contentArray[1];
 					title = {text: contentArray[0]} ;
-				} else
-					title = title = {text: ''} ;;
+				} else {
+                    title = title = {text: ''};
+                }
 
+				var widthTooltip = 250,
+                    positionTooltip = 'leftTop';
+				if((window.innerWidth - this.offsetLeft) < widthTooltip){
+                    positionTooltip = 'rightTop';
+                    if((this.offsetLeft + this.clientWidth) < widthTooltip){
+                        positionTooltip = 'topMiddle';
+                    }
+                }
 
 		    	jQuery(this).qtip({
 		    		content: {
 					   text: content
 					},
 					style: {
-						width: 250,
+						width: widthTooltip,
 						padding: 5,
 						background: '#eeeeee',
 						color: 'black',
@@ -114,7 +121,7 @@ $itemId = $itemId?('&Itemid='.$itemId):'';
 					position: {
 						corner: {
 							target: 'bottomCenter',
-							tooltip: 'leftTop'
+							tooltip: positionTooltip
 						}
 					},
 					hide: tipHide,
@@ -122,7 +129,7 @@ $itemId = $itemId?('&Itemid='.$itemId):'';
 			 	});
 			});
 
-		};
+		}
 
 		function refresh_calendar(url) {
 			jQuery('table#calendar_table').get(0).style.visibility = 'hidden';

@@ -119,12 +119,38 @@ function goalsShowWindow(windowUrl){
 	}
 	
 	yPos=yPos-60  ;
-	var leftPos = (myWidth - 837)/2;
-	
+	//var leftPos = (myWidth - 837)/2;
+	var leftPos = myWidth * 0.02;
+	var ifrWidth = 0.96 * myWidth,
+		ifrHeight = 0.96 * myHeight;
+
+	if(windowUrl.indexOf('calendar') !== -1){
+		ifrWidth = 0.85 * myWidth;
+	}
+
 	document.getElementById('blogWindow').style.visibility	= "visible";
 	document.getElementById('blogWindow').style.zIndex = myGetZIndexMax() + 1;
-    document.getElementById('blogWindowContent').innerHTML	= '<iframe id="blogContentFrame" src="' + windowUrl + '" frameborder="0" style="width: 770px; height: 530px;" scrolling="auto"></iframe>';
-    
+    document.getElementById('blogWindowContent').innerHTML	= '<iframe id="blogContentFrame" src="' + windowUrl + '" frameborder="0" style="width: ' + ifrWidth + 'px; height: ' + ifrHeight + 'px;" scrolling="auto"></iframe>';
+
+	document.getElementById('blogContentFrame').onload = function(){
+		var ifrStyle = document.createElement('style');
+		ifrStyle.innerHTML =
+			'.goals-form-datainput .editor {' +
+			'max-width: 90% !important;' +
+			'}' +
+			'.goals-form-datainput .js-calendar{' +
+			'max-width: 78% !important;' +
+			'}' +
+			'small.help-block {' +
+			'max-width: 90%;' +
+			'}' +
+			'#editor-xtd-buttons a.btn {' +
+			'margin-bottom: 5px;' +
+			'}';
+		var iframeWindow = this.contentWindow || this.contentDocument.parentWindow;
+		iframeWindow.document.head.appendChild(ifrStyle);
+	};
+
 	// change the iframe source
 	document.getElementById('blogContentFrame').setAttribute("src", '');
 	document.getElementById('blogContentFrame').setAttribute("src", windowUrl);
@@ -138,10 +164,11 @@ function goalsShowWindow(windowUrl){
 	*/
 	// In ie 7, pageYOffset is null
 	var iframe = document.getElementById("blogWindow");
-	if (window.pageYOffset)
+	if (window.pageYOffset) {
 		iframe.style.marginTop = (window.pageYOffset + 10) + 'px';
-	else
-	    iframe.style.marginTop = (document.body.scrollTop + 10) + 'px';
+	} else {
+		iframe.style.marginTop = (document.body.scrollTop + 10) + 'px';
+	}
 	iframe.style.height = (yPos) + 'px';
 	
 	
@@ -156,8 +183,7 @@ function goalsShowWindow(windowUrl){
 	document.getElementById("blogContentFrame").style.height = (yPos - 30) + 'px';
 	document.getElementById("blogWindowContentOuter").style.height = m_s;
 	document.getElementById("sf_ml").style.height = m_s;
-	document.getElementById("sf_mr").style.height = m_s;    
-	
+	document.getElementById("sf_mr").style.height = m_s;
 	 
 }
 
