@@ -365,11 +365,10 @@ class GoalsControllerGoal extends JControllerForm
 
         $db->setQuery($query)->query();
 
-        $app = JFactory::getApplication();
-        $menu = $app->getMenu();
-        $menuItem = $menu->getItems( 'link', 'index.php?option=com_goals&view=goals', true );
-        $this->setRedirect(JRoute::_('index.php?option=com_goals&view=goals&Itemid='.$menuItem->id, false));
+        $jinput = JFactory::getApplication()->input;
+        $ItemId = $jinput->get->getInt('Itemid');
 
+        $this->setRedirect(JRoute::_('index.php?option=com_goals&view=goals&Itemid='.$ItemId, false));
 
         return;
     }

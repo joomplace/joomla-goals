@@ -329,10 +329,10 @@ class GoalsControllerPlan extends JControllerForm
         $query->where('id='.$id);
         $db->setQuery($query)->query();
 
-        $app = JFactory::getApplication();
-        $menu = $app->getMenu();
-        $menuItem = $menu->getItems( 'link', 'index.php?option=com_goals&view=plans', true );
-        $this->setRedirect(JRoute::_('index.php?option=com_goals&view=plans&Itemid='.$menuItem->id, false));
+        $jinput = JFactory::getApplication()->input;
+        $ItemId = $jinput->get->getInt('Itemid');
+
+        $this->setRedirect(JRoute::_('index.php?option=com_goals&view=plans&Itemid='.$ItemId, false));
         return;
     }
 

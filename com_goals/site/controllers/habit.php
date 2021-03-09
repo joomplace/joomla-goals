@@ -452,11 +452,10 @@ class GoalsControllerHabit extends JControllerForm
         $db->setQuery($query)->query();
 
 
-        $app = JFactory::getApplication();
-        $menu = $app->getMenu();
-        $menuItem = $menu->getItems( 'link', 'index.php?option=com_goals&view=habits', true );
-        $this->setRedirect(JRoute::_('index.php?option=com_goals&view=habits&Itemid='.$menuItem->id, false));
-        return;;
+        $jinput = JFactory::getApplication()->input;
+        $ItemId = $jinput->get->getInt('Itemid');
+        $this->setRedirect(JRoute::_('index.php?option=com_goals&view=habits&Itemid='.$ItemId, false));
+
         return;
     }
 }
