@@ -347,31 +347,30 @@ class GoalsControllerGoal extends JControllerForm
 
     public function featuredOnOff()
     {
-        $id = JRequest::getVar('id');
+        $input = JFactory::getApplication()->input;
+        $id = $input->getInt('id', 0);
+        $Itemid = $input->getInt('Itemid', 0);
+
         $db = JFactory::getDbo();
-
         $query = $db->getQuery(true);
-        $query->select('featured');
-        $query->from('#__goals');
-        $query->where('`id`='.$id);
 
+        $query->select($db->qn('featured'))
+            ->from($db->qn('#__goals'))
+            ->where($db->qn('id') .'='. $db->q($id));
         $db->setQuery($query);
         $featured = (int)$db->loadResult();
 
-        $query = $db->getQuery(true);
-        $query->update('#__goals');
-        $query->set('featured='.($featured?'0':'1'));
-        $query->where('id='.$id);
+        $query->clear();
+        $query->update($db->qn('#__goals'));
+        $query->set('`featured`='.($featured?'0':'1'));
+        $query->where($db->qn('id') .'='. $db->q($id));
 
-        $db->setQuery($query)->query();
+        $db->setQuery($query)
+            ->execute();
 
-        $jinput = JFactory::getApplication()->input;
-        $ItemId = $jinput->get->getInt('Itemid');
+        $this->setRedirect(JRoute::_('index.php?option=com_goals&view=goals&Itemid='.$Itemid, false));
 
-        $this->setRedirect(JRoute::_('index.php?option=com_goals&view=goals&Itemid='.$ItemId, false));
-
-        return;
+        return true;
     }
-
 
 }
