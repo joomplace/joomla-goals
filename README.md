@@ -1,7 +1,7 @@
 # Personal Goals Manager Component
 <b>Personal Goals Manager Component</b> is specially designed to help your Joomla! site users to set personal goals and plans, track achievements progress and organize personal schedule management. The personal manager extension can also be used to improve habits quickly and without great efforts.
 
-<b>WHY TO USE THE EXTENSION?</>
+<b>WHY TO USE THE EXTENSION?</b>
 
 It can be used to create goals, plans and habits management service useful for everyone at your Joomla! site, get more traffic and succeed!
 
